@@ -5,11 +5,63 @@ function DreamLab({ onReturn }) {
   const [projectType, setProjectType] = useState('');
   const [goal, setGoal] = useState('');
   const [support, setSupport] = useState('');
-  const [submitted, setSubmitted] = useState(false);
+  const [profile, setProfile] = useState(null);
+
+  function buildProfile() {
+    let creatorType = 'Emerging Builder';
+    let recommendedLane = 'Starter Brand Lane';
+    let nextStep = 'Clarify the offer, audience, and first simple launch path.';
+    let revenuePath = 'Start with one paid offer, then expand into recurring support.';
+
+    if (projectType === 'Full Ecosystem') {
+      creatorType = 'Ecosystem Architect';
+      recommendedLane = 'Creator Operating System Lane';
+      nextStep = 'Map the core rooms, client journey, and phased deployment structure.';
+      revenuePath = 'Recurring memberships, managed services, licensing, and premium builds.';
+    }
+
+    if (projectType === 'App Idea') {
+      creatorType = 'System Visionary';
+      recommendedLane = 'Prototype + Validation Lane';
+      nextStep = 'Build a clickable prototype and define the first user problem clearly.';
+      revenuePath = 'Beta access, subscriptions, setup fees, and future upgrades.';
+    }
+
+    if (projectType === 'Ebook / Nook Book') {
+      creatorType = 'Knowledge Product Creator';
+      recommendedLane = 'Digital Product Lane';
+      nextStep = 'Package the idea into a clear title, promise, outline, and sales page.';
+      revenuePath = 'Ebook sales, bundles, mini-courses, and affiliate add-ons.';
+    }
+
+    if (projectType === 'Website' || projectType === 'Funnel') {
+      creatorType = 'Launch Builder';
+      recommendedLane = 'Fast Launch Lane';
+      nextStep = 'Create the front door, offer message, lead capture, and first conversion path.';
+      revenuePath = 'Service sales, consultations, affiliate links, and upgrade packages.';
+    }
+
+    if (projectType === 'Product Brand') {
+      creatorType = 'Brand Builder';
+      recommendedLane = 'Commerce + Identity Lane';
+      nextStep = 'Define the product promise, visual identity, buyer type, and first sales page.';
+      revenuePath = 'Product sales, bundles, upsells, subscriptions, and brand collaborations.';
+    }
+
+    return {
+      alias: alias || 'Unnamed Creator',
+      creatorType,
+      recommendedLane,
+      supportLevel: support || 'Not selected',
+      nextStep,
+      revenuePath,
+      goal: goal || 'No goal entered yet.',
+    };
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
-    setSubmitted(true);
+    setProfile(buildProfile());
   }
 
   return (
@@ -17,7 +69,7 @@ function DreamLab({ onReturn }) {
       <section className="max-w-5xl mx-auto">
         <div className="text-center mb-10">
           <p className="text-xs text-purple-400 tracking-[0.4em] uppercase mb-4">
-            Geniunaire MasterMinds // Stage 2.5
+            Geniunaire MasterMinds // Stage 3
           </p>
 
           <h1 className="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-300 via-purple-400 to-slate-300 mb-6">
@@ -83,27 +135,30 @@ function DreamLab({ onReturn }) {
               type="submit"
               className="w-full px-8 py-4 bg-purple-900 border border-purple-500 text-white rounded uppercase tracking-widest text-sm font-bold"
             >
-              Analyze Intake
+              Generate Deployment Profile
             </button>
           </form>
 
           <div className="border border-purple-900 bg-black rounded-xl p-6">
             <h2 className="text-purple-300 uppercase tracking-widest text-sm font-bold mb-6">
-              Intake Preview
+              Deployment Profile
             </h2>
 
-            {!submitted && (
+            {!profile && (
               <p className="text-slate-500">
-                Complete the intake form to preview the first Dream Lab profile.
+                Complete the intake form to generate the first Dream Lab deployment profile.
               </p>
             )}
 
-            {submitted && (
+            {profile && (
               <div className="space-y-4 text-sm">
-                <p><span className="text-purple-300">Alias:</span> {alias || 'Not provided'}</p>
-                <p><span className="text-purple-300">Project:</span> {projectType || 'Not selected'}</p>
-                <p><span className="text-purple-300">Support:</span> {support || 'Not selected'}</p>
-                <p><span className="text-purple-300">Goal:</span> {goal || 'Not provided'}</p>
+                <p><span className="text-purple-300">Creator:</span> {profile.alias}</p>
+                <p><span className="text-purple-300">Creator Type:</span> {profile.creatorType}</p>
+                <p><span className="text-purple-300">Recommended Lane:</span> {profile.recommendedLane}</p>
+                <p><span className="text-purple-300">Support Level:</span> {profile.supportLevel}</p>
+                <p><span className="text-purple-300">Next Best Step:</span> {profile.nextStep}</p>
+                <p><span className="text-purple-300">Revenue Path:</span> {profile.revenuePath}</p>
+                <p><span className="text-purple-300">Goal:</span> {profile.goal}</p>
               </div>
             )}
 
