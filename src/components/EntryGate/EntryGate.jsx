@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function EntryGate({ onEnterDreamLab }) {
+function EntryGate({ onEnterDreamLab, onEnterMoneyTracker }) {
   const [soundEnabled, setSoundEnabled] = useState(false);
   const [accessCode, setAccessCode] = useState('');
   const [accessStatus, setAccessStatus] = useState('idle');
@@ -155,13 +155,14 @@ function EntryGate({ onEnterDreamLab }) {
           </button>
 
           <button
-            type="button"
-            className="group relative px-8 py-5 bg-black border border-slate-700 hover:border-slate-300 rounded overflow-hidden transition-all duration-500 hover:shadow-[0_0_30px_rgba(203,213,225,0.55)] hover:-translate-y-1"
-          >
-            <span className="relative z-10 text-slate-400 uppercase tracking-widest font-semibold text-sm group-hover:text-white">
-              Access The Vault
-            </span>
-          </button>
+  type="button"
+  onClick={onEnterMoneyTracker}
+  className="group relative px-8 py-5 bg-black border border-slate-700 hover:border-slate-300 rounded overflow-hidden transition-all duration-500 hover:shadow-[0_0_30px_rgba(203,213,225,0.55)] hover:-translate-y-1"
+>
+  <span className="relative z-10 text-slate-400 uppercase tracking-widest font-semibold text-sm group-hover:text-white">
+    Access The Vault
+  </span>
+</button>
         </div>
       </section>
 
