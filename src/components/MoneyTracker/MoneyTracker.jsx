@@ -8,6 +8,8 @@ function MoneyTracker({ onReturn }) {
   const [projected, setProjected] = useState('');
   const [actual, setActual] = useState('');
   const [status, setStatus] = useState('');
+  const [notes, setNotes] = useState('');
+
   const [projects, setProjects] = useState(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     return saved ? JSON.parse(saved) : [];
@@ -17,14 +19,8 @@ function MoneyTracker({ onReturn }) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
   }, [projects]);
 
-  const totalProjected = projects.reduce((sum, p) => {
-    return sum + Number(p.projected || 0);
-  }, 0);
-
-  const totalActual = projects.reduce((sum, p) => {
-    return sum + Number(p.actual || 0);
-  }, 0);
-
+  const totalProjected = projects.reduce((sum, p) => sum + Number(p.projected || 0), 0);
+  const totalActual = projects.reduce((sum, p) => sum + Number(p.actual || 0), 0);
   const planning = projects.filter((p) => p.status === 'Planning').length;
   const building = projects.filter((p) => p.status === 'Building').length;
   const live = projects.filter((p) => p.status === 'Live').length;
@@ -39,6 +35,7 @@ function MoneyTracker({ onReturn }) {
       projected: projected || '0',
       actual: actual || '0',
       status: status || 'Planning',
+      notes: notes || '',
     };
 
     setProjects([newProject, ...projects]);
@@ -47,16 +44,14 @@ function MoneyTracker({ onReturn }) {
     setProjected('');
     setActual('');
     setStatus('');
+    setNotes('');
   }
 
   function updateProject(id, field, value) {
     setProjects(
       projects.map((project) => {
         if (project.id === id) {
-          return {
-            ...project,
-            [field]: value,
-          };
+          return { ...project, [field]: value };
         }
 
         return project;
@@ -80,7 +75,7 @@ function MoneyTracker({ onReturn }) {
         </h1>
 
         <p className="text-slate-400 mb-8">
-          Track project money, status, and revenue movement.
+          Track project money, status, revenue movement, and notes.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
@@ -162,13 +157,21 @@ function MoneyTracker({ onReturn }) {
           <select
             value={status}
             onChange={(event) => setStatus(event.target.value)}
-            className="w-full mb-5 bg-black border border-slate-700 px-4 py-3 rounded"
+            className="w-full mb-4 bg-black border border-slate-700 px-4 py-3 rounded"
           >
             <option value="">Status</option>
             <option value="Planning">Planning</option>
             <option value="Building">Building</option>
             <option value="Live">Live</option>
           </select>
+
+          <textarea
+            value={notes}
+            onChange={(event) => setNotes(event.target.value)}
+            placeholder="Project notes / next steps / domain / payment / support notes"
+            rows="4"
+            className="w-full mb-5 bg-black border border-slate-700 px-4 py-3 rounded"
+          />
 
           <button className="px-6 py-3 bg-purple-900 border border-purple-500 rounded">
             Save Project
@@ -224,6 +227,14 @@ function MoneyTracker({ onReturn }) {
                 <option value="Building">Building</option>
                 <option value="Live">Live</option>
               </select>
+
+              <textarea
+                value={project.notes || ''}
+                onChange={(event) => updateProject(project.id, 'notes', event.target.value)}
+                rows="3"
+                placeholder="Project notes"
+                className="w-full mb-3 bg-black border border-slate-700 px-4 py-2 rounded"
+              />
 
               <button
                 type="button"
