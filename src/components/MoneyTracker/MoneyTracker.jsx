@@ -53,7 +53,11 @@ function MoneyTracker({ onReturn }) {
   function clearProjects() {
     setProjects([]);
   }
-
+function deleteProject(projectId) {
+  setProjects((currentProjects) => {
+    return currentProjects.filter((project) => project.id !== projectId);
+  });
+}
   return (
     <main className="min-h-screen bg-black text-slate-300 px-6 py-10">
       <section className="max-w-6xl mx-auto">
@@ -152,31 +156,41 @@ function MoneyTracker({ onReturn }) {
             Save Project
           </button>
         </form>
+<div className="border border-purple-900 rounded-xl p-6 mb-8">
+  <h2 className="text-purple-300 mb-4">Tracked Projects</h2>
 
-        <div className="border border-purple-900 rounded-xl p-6 mb-8">
-          <h2 className="text-purple-300 mb-4">Tracked Projects</h2>
+  {projects.length === 0 && (
+    <p className="text-slate-500">No tracked projects yet.</p>
+  )}
 
-          {projects.length === 0 && <p className="text-slate-500">No tracked projects yet.</p>}
+  {projects.map((project) => (
+    <div key={project.id} className="border border-slate-800 rounded p-4 mb-3">
+      <p>Project: {project.name}</p>
+      <p>Type: {project.type}</p>
+      <p>Projected: ${project.projected}</p>
+      <p>Actual: ${project.actual}</p>
+      <p>Status: {project.status}</p>
 
-          {projects.map((project) => (
-            <div key={project.id} className="border border-slate-800 rounded p-4 mb-3">
-              <p>Project: {project.name}</p>
-              <p>Type: {project.type}</p>
-              <p>Projected: ${project.projected}</p>
-              <p>Actual: ${project.actual}</p>
-              <p>Status: {project.status}</p>
-            </div>
-          ))}
+      <button
+        type="button"
+        onClick={() => deleteProject(project.id)}
+        className="mt-3 px-4 py-2 border border-red-900 text-red-300 rounded hover:bg-red-950"
+      >
+        Delete Project
+      </button>
+    </div>
+  ))}
 
-          {projects.length > 0 && (
-            <button
-              onClick={clearProjects}
-              className="mt-4 px-6 py-3 border border-red-900 text-red-300 rounded"
-            >
-              Clear Saved Projects
-            </button>
-          )}
-        </div>
+  {projects.length > 0 && (
+    <button
+      type="button"
+      onClick={clearProjects}
+      className="mt-4 px-6 py-3 border border-red-900 text-red-300 rounded"
+    >
+      Clear Saved Projects
+    </button>
+  )}
+</div>
 
         <button
           onClick={onReturn}
