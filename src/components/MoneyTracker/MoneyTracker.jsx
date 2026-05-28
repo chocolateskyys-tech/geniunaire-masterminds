@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function MoneyTracker({ onReturn }) {
   const [name, setName] = useState('');
@@ -6,7 +6,21 @@ function MoneyTracker({ onReturn }) {
   const [projected, setProjected] = useState('');
   const [actual, setActual] = useState('');
   const [status, setStatus] = useState('');
-  const [projects, setProjects] = useState([]);
+
+  const [projects, setProjects] = useState(() => {
+    const savedProjects = localStorage.getItem('geniunaireMoneyProjects');
+
+    if (savedProjects) {
+      return JSON.parse(savedProjects);
+    }
+
+    return [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('geniunaireMoneyProjects', JSON.stringify(projects));
+  }, [projects]);
+  
 
   const totalProjected = projects.reduce((sum, project) => sum + Number(project.projected || 0), 0);
   const totalActual = projects.reduce((sum, project) => sum + Number(project.actual || 0), 0);
@@ -15,8 +29,6 @@ function MoneyTracker({ onReturn }) {
   const planningCount = projects.filter((project) => project.status === 'Planning').length;
   const buildingCount = projects.filter((project) => project.status === 'Building').length;
   const liveCount = projects.filter((project) => project.status === 'Live').length;
-  const supportCount = projects.filter((project) => project.status === 'Needs Support').length;
-  const trackingCount = projects.filter((project) => project.status === 'Revenue Tracking').length;
 
   function addProject(event) {
     event.preventDefault();
@@ -36,6 +48,10 @@ function MoneyTracker({ onReturn }) {
     setProjected('');
     setActual('');
     setStatus('');
+  }
+
+  function clearProjects() {
+    setProjects([]);
   }
 
   return (
@@ -69,7 +85,7 @@ function MoneyTracker({ onReturn }) {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <div className="border border-slate-800 rounded-xl p-4">
             <p className="text-slate-500 text-sm">Planning</p>
             <p className="text-xl text-purple-300 font-bold">{planningCount}</p>
@@ -83,16 +99,6 @@ function MoneyTracker({ onReturn }) {
           <div className="border border-slate-800 rounded-xl p-4">
             <p className="text-slate-500 text-sm">Live</p>
             <p className="text-xl text-purple-300 font-bold">{liveCount}</p>
-          </div>
-
-          <div className="border border-slate-800 rounded-xl p-4">
-            <p className="text-slate-500 text-sm">Needs Support</p>
-            <p className="text-xl text-purple-300 font-bold">{supportCount}</p>
-          </div>
-
-          <div className="border border-slate-800 rounded-xl p-4">
-            <p className="text-slate-500 text-sm">Revenue Tracking</p>
-            <p className="text-xl text-purple-300 font-bold">{trackingCount}</p>
           </div>
         </div>
 
@@ -114,7 +120,6 @@ function MoneyTracker({ onReturn }) {
             <option value="Funnel">Funnel</option>
             <option value="Ebook">Ebook</option>
             <option value="App">App</option>
-            <option value="Affiliate Hub">Affiliate Hub</option>
             <option value="Full Ecosystem">Full Ecosystem</option>
           </select>
 
@@ -141,8 +146,6 @@ function MoneyTracker({ onReturn }) {
             <option value="Planning">Planning</option>
             <option value="Building">Building</option>
             <option value="Live">Live</option>
-            <option value="Needs Support">Needs Support</option>
-            <option value="Revenue Tracking">Revenue Tracking</option>
           </select>
 
           <button className="px-6 py-3 bg-purple-900 border border-purple-500 rounded">
@@ -164,6 +167,15 @@ function MoneyTracker({ onReturn }) {
               <p>Status: {project.status}</p>
             </div>
           ))}
+
+          {projects.length > 0 && (
+            <button
+              onClick={clearProjects}
+              className="mt-4 px-6 py-3 border border-red-900 text-red-300 rounded"
+            >
+              Clear Saved Projects
+            </button>
+          )}
         </div>
 
         <button
