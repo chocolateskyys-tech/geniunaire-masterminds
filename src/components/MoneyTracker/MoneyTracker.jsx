@@ -8,15 +8,15 @@ function MoneyTracker({ onReturn }) {
   const [status, setStatus] = useState('');
   const [projects, setProjects] = useState([]);
 
-  const totalProjected = projects.reduce((sum, project) => {
-    return sum + Number(project.projected || 0);
-  }, 0);
-
-  const totalActual = projects.reduce((sum, project) => {
-    return sum + Number(project.actual || 0);
-  }, 0);
-
+  const totalProjected = projects.reduce((sum, project) => sum + Number(project.projected || 0), 0);
+  const totalActual = projects.reduce((sum, project) => sum + Number(project.actual || 0), 0);
   const revenueGap = totalProjected - totalActual;
+
+  const planningCount = projects.filter((project) => project.status === 'Planning').length;
+  const buildingCount = projects.filter((project) => project.status === 'Building').length;
+  const liveCount = projects.filter((project) => project.status === 'Live').length;
+  const supportCount = projects.filter((project) => project.status === 'Needs Support').length;
+  const trackingCount = projects.filter((project) => project.status === 'Revenue Tracking').length;
 
   function addProject(event) {
     event.preventDefault();
@@ -41,9 +41,7 @@ function MoneyTracker({ onReturn }) {
   return (
     <main className="min-h-screen bg-black text-slate-300 px-6 py-10">
       <section className="max-w-6xl mx-auto">
-        <h1 className="text-5xl font-bold text-purple-400 mb-4">
-          MONEY TRACKER
-        </h1>
+        <h1 className="text-5xl font-bold text-purple-400 mb-4">MONEY TRACKER</h1>
 
         <p className="text-slate-400 mb-8">
           Track project value, revenue goals, actual income, and launch status.
@@ -68,6 +66,33 @@ function MoneyTracker({ onReturn }) {
           <div className="border border-purple-900 rounded-xl p-4">
             <p className="text-slate-500 text-sm">Revenue Gap</p>
             <p className="text-2xl text-purple-300 font-bold">${revenueGap}</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
+          <div className="border border-slate-800 rounded-xl p-4">
+            <p className="text-slate-500 text-sm">Planning</p>
+            <p className="text-xl text-purple-300 font-bold">{planningCount}</p>
+          </div>
+
+          <div className="border border-slate-800 rounded-xl p-4">
+            <p className="text-slate-500 text-sm">Building</p>
+            <p className="text-xl text-purple-300 font-bold">{buildingCount}</p>
+          </div>
+
+          <div className="border border-slate-800 rounded-xl p-4">
+            <p className="text-slate-500 text-sm">Live</p>
+            <p className="text-xl text-purple-300 font-bold">{liveCount}</p>
+          </div>
+
+          <div className="border border-slate-800 rounded-xl p-4">
+            <p className="text-slate-500 text-sm">Needs Support</p>
+            <p className="text-xl text-purple-300 font-bold">{supportCount}</p>
+          </div>
+
+          <div className="border border-slate-800 rounded-xl p-4">
+            <p className="text-slate-500 text-sm">Revenue Tracking</p>
+            <p className="text-xl text-purple-300 font-bold">{trackingCount}</p>
           </div>
         </div>
 
@@ -128,9 +153,7 @@ function MoneyTracker({ onReturn }) {
         <div className="border border-purple-900 rounded-xl p-6 mb-8">
           <h2 className="text-purple-300 mb-4">Tracked Projects</h2>
 
-          {projects.length === 0 && (
-            <p className="text-slate-500">No tracked projects yet.</p>
-          )}
+          {projects.length === 0 && <p className="text-slate-500">No tracked projects yet.</p>}
 
           {projects.map((project) => (
             <div key={project.id} className="border border-slate-800 rounded p-4 mb-3">
