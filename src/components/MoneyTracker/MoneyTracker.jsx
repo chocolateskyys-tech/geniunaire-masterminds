@@ -1,48 +1,40 @@
 import { useEffect, useState } from 'react';
 
+const STORAGE_KEY = 'geniunaireMoneyProjects';
+
 function MoneyTracker({ onReturn }) {
   const [name, setName] = useState('');
   const [type, setType] = useState('');
   const [projected, setProjected] = useState('');
   const [actual, setActual] = useState('');
   const [status, setStatus] = useState('');
-
   const [projects, setProjects] = useState(() => {
-    const savedProjects = localStorage.getItem('geniunaireMoneyProjects');
-
-    if (savedProjects) {
-      return JSON.parse(savedProjects);
-    }
-
-    return [];
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved) : [];
   });
 
   useEffect(() => {
-    localStorage.setItem('geniunaireMoneyProjects', JSON.stringify(projects));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
   }, [projects]);
-  
 
-  const totalProjected = projects.reduce((sum, project) => sum + Number(project.projected || 0), 0);
-  const totalActual = projects.reduce((sum, project) => sum + Number(project.actual || 0), 0);
-  const revenueGap = totalProjected - totalActual;
-
-  const planningCount = projects.filter((project) => project.status === 'Planning').length;
-  const buildingCount = projects.filter((project) => project.status === 'Building').length;
-  const liveCount = projects.filter((project) => project.status === 'Live').length;
+  const totalProjected = projects.reduce((sum, p) => sum + Number(p.projected || 0), 0);
+  const totalActual = projects.reduce((sum, p) => sum + Number(p.actual || 0), 0);
 
   function addProject(event) {
     event.preventDefault();
 
-    const project = {
-      id: Date.now(),
-      name: name || 'Unnamed Project',
-      type: type || 'Not selected',
-      projected: projected || '0',
-      actual: actual || '0',
-      status: status || 'Planning',
-    };
+    setProjects([
+      {
+        id: Date.now(),
+        name: name || 'Unnamed Project',
+        type: type || 'Not selected',
+        projected: projected || '0',
+        actual: actual || '0',
+        status: status || 'Planning',
+      },
+      ...projects,
+    ]);
 
-    setProjects([project, ...projects]);
     setName('');
     setType('');
     setProjected('');
@@ -50,75 +42,62 @@ function MoneyTracker({ onReturn }) {
     setStatus('');
   }
 
+  function updateStatus(id, newStatus) {
+    setProjects(projects.map((p) => (p.id === id ? { ...p, status: newStatus } : p)));
+  }
+
+  function deleteProject(id) {
+    setProjects(projects.filter((p) => p.id !== id));
+  }
+
   function clearProjects() {
     setProjects([]);
   }
-function deleteProject(projectId) {
-  setProjects((currentProjects) => {
-    return currentProjects.filter((project) => project.id !== projectId);
-  });
-}
+
+  const statusCounts = {
+    Planning: projects.filter((p) => p.status === 'Planning').length,
+    Building: projects.filter((p) => p.status === 'Building').length,
+    Live: projects.filter((p) => p.status === 'Live').length,
+  };
+
   return (
     <main className="min-h-screen bg-black text-slate-300 px-6 py-10">
       <section className="max-w-6xl mx-auto">
         <h1 className="text-5xl font-bold text-purple-400 mb-4">MONEY TRACKER</h1>
-
-        <p className="text-slate-400 mb-8">
-          Track project value, revenue goals, actual income, and launch status.
-        </p>
+        <p className="text-slate-400 mb-8">Track project value, revenue goals, actual income, and launch status.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           <div className="border border-purple-900 rounded-xl p-4">
             <p className="text-slate-500 text-sm">Projects</p>
             <p className="text-2xl text-purple-300 font-bold">{projects.length}</p>
           </div>
-
           <div className="border border-purple-900 rounded-xl p-4">
             <p className="text-slate-500 text-sm">Projected</p>
             <p className="text-2xl text-purple-300 font-bold">${totalProjected}</p>
           </div>
-
           <div className="border border-purple-900 rounded-xl p-4">
             <p className="text-slate-500 text-sm">Actual</p>
             <p className="text-2xl text-purple-300 font-bold">${totalActual}</p>
           </div>
-
           <div className="border border-purple-900 rounded-xl p-4">
             <p className="text-slate-500 text-sm">Revenue Gap</p>
-            <p className="text-2xl text-purple-300 font-bold">${revenueGap}</p>
+            <p className="text-2xl text-purple-300 font-bold">${totalProjected - totalActual}</p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div className="border border-slate-800 rounded-xl p-4">
-            <p className="text-slate-500 text-sm">Planning</p>
-            <p className="text-xl text-purple-300 font-bold">{planningCount}</p>
-          </div>
-
-          <div className="border border-slate-800 rounded-xl p-4">
-            <p className="text-slate-500 text-sm">Building</p>
-            <p className="text-xl text-purple-300 font-bold">{buildingCount}</p>
-          </div>
-
-          <div className="border border-slate-800 rounded-xl p-4">
-            <p className="text-slate-500 text-sm">Live</p>
-            <p className="text-xl text-purple-300 font-bold">{liveCount}</p>
-          </div>
+          {Object.entries(statusCounts).map(([label, count]) => (
+            <div key={label} className="border border-slate-800 rounded-xl p-4">
+              <p className="text-slate-500 text-sm">{label}</p>
+              <p className="text-xl text-purple-300 font-bold">{count}</p>
+            </div>
+          ))}
         </div>
 
         <form onSubmit={addProject} className="border border-purple-900 rounded-xl p-6 mb-8">
-          <input
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-            placeholder="Project / Client Name"
-            className="w-full mb-4 bg-black border border-slate-700 px-4 py-3 rounded"
-          />
+          <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Project / Client Name" className="w-full mb-4 bg-black border border-slate-700 px-4 py-3 rounded" />
 
-          <select
-            value={type}
-            onChange={(event) => setType(event.target.value)}
-            className="w-full mb-4 bg-black border border-slate-700 px-4 py-3 rounded"
-          >
+          <select value={type} onChange={(e) => setType(e.target.value)} className="w-full mb-4 bg-black border border-slate-700 px-4 py-3 rounded">
             <option value="">Project Type</option>
             <option value="Website">Website</option>
             <option value="Funnel">Funnel</option>
@@ -127,75 +106,51 @@ function deleteProject(projectId) {
             <option value="Full Ecosystem">Full Ecosystem</option>
           </select>
 
-          <input
-            value={projected}
-            onChange={(event) => setProjected(event.target.value)}
-            placeholder="Projected Revenue"
-            className="w-full mb-4 bg-black border border-slate-700 px-4 py-3 rounded"
-          />
+          <input value={projected} onChange={(e) => setProjected(e.target.value)} placeholder="Projected Revenue" className="w-full mb-4 bg-black border border-slate-700 px-4 py-3 rounded" />
+          <input value={actual} onChange={(e) => setActual(e.target.value)} placeholder="Actual Revenue" className="w-full mb-4 bg-black border border-slate-700 px-4 py-3 rounded" />
 
-          <input
-            value={actual}
-            onChange={(event) => setActual(event.target.value)}
-            placeholder="Actual Revenue"
-            className="w-full mb-4 bg-black border border-slate-700 px-4 py-3 rounded"
-          />
-
-          <select
-            value={status}
-            onChange={(event) => setStatus(event.target.value)}
-            className="w-full mb-5 bg-black border border-slate-700 px-4 py-3 rounded"
-          >
+          <select value={status} onChange={(e) => setStatus(e.target.value)} className="w-full mb-5 bg-black border border-slate-700 px-4 py-3 rounded">
             <option value="">Status</option>
             <option value="Planning">Planning</option>
             <option value="Building">Building</option>
             <option value="Live">Live</option>
           </select>
 
-          <button className="px-6 py-3 bg-purple-900 border border-purple-500 rounded">
-            Save Project
-          </button>
+          <button className="px-6 py-3 bg-purple-900 border border-purple-500 rounded">Save Project</button>
         </form>
-<div className="border border-purple-900 rounded-xl p-6 mb-8">
-  <h2 className="text-purple-300 mb-4">Tracked Projects</h2>
 
-  {projects.length === 0 && (
-    <p className="text-slate-500">No tracked projects yet.</p>
-  )}
+        <div className="border border-purple-900 rounded-xl p-6 mb-8">
+          <h2 className="text-purple-300 mb-4">Tracked Projects</h2>
 
-  {projects.map((project) => (
-    <div key={project.id} className="border border-slate-800 rounded p-4 mb-3">
-      <p>Project: {project.name}</p>
-      <p>Type: {project.type}</p>
-      <p>Projected: ${project.projected}</p>
-      <p>Actual: ${project.actual}</p>
-      <p>Status: {project.status}</p>
+          {projects.length === 0 && <p className="text-slate-500">No tracked projects yet.</p>}
 
-      <button
-        type="button"
-        onClick={() => deleteProject(project.id)}
-        className="mt-3 px-4 py-2 border border-red-900 text-red-300 rounded hover:bg-red-950"
-      >
-        Delete Project
-      </button>
-    </div>
-  ))}
+          {projects.map((project) => (
+            <div key={project.id} className="border border-slate-800 rounded p-4 mb-3">
+              <p>Project: {project.name}</p>
+              <p>Type: {project.type}</p>
+              <p>Projected: ${project.projected}</p>
+              <p>Actual: ${project.actual}</p>
 
-  {projects.length > 0 && (
-    <button
-      type="button"
-      onClick={clearProjects}
-      className="mt-4 px-6 py-3 border border-red-900 text-red-300 rounded"
-    >
-      Clear Saved Projects
-    </button>
-  )}
-</div>
+              <select value={project.status} onChange={(e) => updateStatus(project.id, e.target.value)} className="mt-3 w-full bg-black border border-slate-700 px-4 py-2 rounded">
+                <option value="Planning">Planning</option>
+                <option value="Building">Building</option>
+                <option value="Live">Live</option>
+              </select>
 
-        <button
-          onClick={onReturn}
-          className="px-6 py-3 border border-slate-700 rounded hover:border-purple-500"
-        >
+              <button type="button" onClick={() => deleteProject(project.id)} className="mt-3 px-4 py-2 border border-red-900 text-red-300 rounded">
+                Delete Project
+              </button>
+            </div>
+          ))}
+
+          {projects.length > 0 && (
+            <button type="button" onClick={clearProjects} className="mt-4 px-6 py-3 border border-red-900 text-red-300 rounded">
+              Clear Saved Projects
+            </button>
+          )}
+        </div>
+
+        <button onClick={onReturn} className="px-6 py-3 border border-slate-700 rounded hover:border-purple-500">
           Return To Entry Gate
         </button>
       </section>
@@ -204,3 +159,4 @@ function deleteProject(projectId) {
 }
 
 export default MoneyTracker;
+         
