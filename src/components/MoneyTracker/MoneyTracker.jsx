@@ -19,22 +19,23 @@ function MoneyTracker({ onReturn }) {
 
   const totalProjected = projects.reduce((sum, p) => sum + Number(p.projected || 0), 0);
   const totalActual = projects.reduce((sum, p) => sum + Number(p.actual || 0), 0);
+  const planning = projects.filter((p) => p.status === 'Planning').length;
+  const building = projects.filter((p) => p.status === 'Building').length;
+  const live = projects.filter((p) => p.status === 'Live').length;
 
   function addProject(event) {
     event.preventDefault();
 
-    setProjects([
-      {
-        id: Date.now(),
-        name: name || 'Unnamed Project',
-        type: type || 'Not selected',
-        projected: projected || '0',
-        actual: actual || '0',
-        status: status || 'Planning',
-      },
-      ...projects,
-    ]);
+    const newProject = {
+      id: Date.now(),
+      name: name || 'Unnamed Project',
+      type: type || 'Not selected',
+      projected: projected || '0',
+      actual: actual || '0',
+      status: status || 'Planning',
+    };
 
+    setProjects([newProject, ...projects]);
     setName('');
     setType('');
     setProjected('');
@@ -42,43 +43,48 @@ function MoneyTracker({ onReturn }) {
     setStatus('');
   }
 
-  function updateStatus(id, newStatus) {
-    setProjects(projects.map((p) => (p.id === id ? { ...p, status: newStatus } : p)));
+  function updateProject(id, field, value) {
+    setProjects(
+      projects.map((project) => {
+        if (project.id === id) {
+          return { ...project, [field]: value };
+        }
+
+        return project;
+      })
+    );
   }
 
   function deleteProject(id) {
-    setProjects(projects.filter((p) => p.id !== id));
+    setProjects(projects.filter((project) => project.id !== id));
   }
 
   function clearProjects() {
     setProjects([]);
   }
 
-  const statusCounts = {
-    Planning: projects.filter((p) => p.status === 'Planning').length,
-    Building: projects.filter((p) => p.status === 'Building').length,
-    Live: projects.filter((p) => p.status === 'Live').length,
-  };
-
   return (
     <main className="min-h-screen bg-black text-slate-300 px-6 py-10">
       <section className="max-w-6xl mx-auto">
         <h1 className="text-5xl font-bold text-purple-400 mb-4">MONEY TRACKER</h1>
-        <p className="text-slate-400 mb-8">Track project value, revenue goals, actual income, and launch status.</p>
+        <p className="text-slate-400 mb-8">Track project money, status, and revenue movement.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           <div className="border border-purple-900 rounded-xl p-4">
             <p className="text-slate-500 text-sm">Projects</p>
             <p className="text-2xl text-purple-300 font-bold">{projects.length}</p>
           </div>
+
           <div className="border border-purple-900 rounded-xl p-4">
             <p className="text-slate-500 text-sm">Projected</p>
             <p className="text-2xl text-purple-300 font-bold">${totalProjected}</p>
           </div>
+
           <div className="border border-purple-900 rounded-xl p-4">
             <p className="text-slate-500 text-sm">Actual</p>
             <p className="text-2xl text-purple-300 font-bold">${totalActual}</p>
           </div>
+
           <div className="border border-purple-900 rounded-xl p-4">
             <p className="text-slate-500 text-sm">Revenue Gap</p>
             <p className="text-2xl text-purple-300 font-bold">${totalProjected - totalActual}</p>
@@ -86,12 +92,20 @@ function MoneyTracker({ onReturn }) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          {Object.entries(statusCounts).map(([label, count]) => (
-            <div key={label} className="border border-slate-800 rounded-xl p-4">
-              <p className="text-slate-500 text-sm">{label}</p>
-              <p className="text-xl text-purple-300 font-bold">{count}</p>
-            </div>
-          ))}
+          <div className="border border-slate-800 rounded-xl p-4">
+            <p className="text-slate-500 text-sm">Planning</p>
+            <p className="text-xl text-purple-300 font-bold">{planning}</p>
+          </div>
+
+          <div className="border border-slate-800 rounded-xl p-4">
+            <p className="text-slate-500 text-sm">Building</p>
+            <p className="text-xl text-purple-300 font-bold">{building}</p>
+          </div>
+
+          <div className="border border-slate-800 rounded-xl p-4">
+            <p className="text-slate-500 text-sm">Live</p>
+            <p className="text-xl text-purple-300 font-bold">{live}</p>
+          </div>
         </div>
 
         <form onSubmit={addProject} className="border border-purple-900 rounded-xl p-6 mb-8">
@@ -116,7 +130,9 @@ function MoneyTracker({ onReturn }) {
             <option value="Live">Live</option>
           </select>
 
-          <button className="px-6 py-3 bg-purple-900 border border-purple-500 rounded">Save Project</button>
+          <button className="px-6 py-3 bg-purple-900 border border-purple-500 rounded">
+            Save Project
+          </button>
         </form>
 
         <div className="border border-purple-900 rounded-xl p-6 mb-8">
@@ -125,19 +141,21 @@ function MoneyTracker({ onReturn }) {
           {projects.length === 0 && <p className="text-slate-500">No tracked projects yet.</p>}
 
           {projects.map((project) => (
-            <div key={project.id} className="border border-slate-800 rounded p-4 mb-3">
-              <p>Project: {project.name}</p>
-              <p>Type: {project.type}</p>
-              <p>Projected: ${project.projected}</p>
-              <p>Actual: ${project.actual}</p>
+            <div key={project.id} className="border border-slate-800 rounded p-4 mb-4">
+              <p className="mb-2">Project: {project.name}</p>
+              <p className="mb-4">Type: {project.type}</p>
 
-              <select value={project.status} onChange={(e) => updateStatus(project.id, e.target.value)} className="mt-3 w-full bg-black border border-slate-700 px-4 py-2 rounded">
+              <input value={project.projected} onChange={(e) => updateProject(project.id, 'projected', e.target.value)} className="w-full mb-3 bg-black border border-slate-700 px-4 py-2 rounded" />
+
+              <input value={project.actual} onChange={(e) => updateProject(project.id, 'actual', e.target.value)} className="w-full mb-3 bg-black border border-slate-700 px-4 py-2 rounded" />
+
+              <select value={project.status} onChange={(e) => updateProject(project.id, 'status', e.target.value)} className="w-full mb-3 bg-black border border-slate-700 px-4 py-2 rounded">
                 <option value="Planning">Planning</option>
                 <option value="Building">Building</option>
                 <option value="Live">Live</option>
               </select>
 
-              <button type="button" onClick={() => deleteProject(project.id)} className="mt-3 px-4 py-2 border border-red-900 text-red-300 rounded">
+              <button type="button" onClick={() => deleteProject(project.id)} className="px-4 py-2 border border-red-900 text-red-300 rounded">
                 Delete Project
               </button>
             </div>
@@ -159,4 +177,3 @@ function MoneyTracker({ onReturn }) {
 }
 
 export default MoneyTracker;
-         
