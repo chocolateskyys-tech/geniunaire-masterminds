@@ -8,6 +8,16 @@ function MoneyTracker({ onReturn }) {
   const [status, setStatus] = useState('');
   const [projects, setProjects] = useState([]);
 
+  const totalProjected = projects.reduce((sum, project) => {
+    return sum + Number(project.projected || 0);
+  }, 0);
+
+  const totalActual = projects.reduce((sum, project) => {
+    return sum + Number(project.actual || 0);
+  }, 0);
+
+  const revenueGap = totalProjected - totalActual;
+
   function addProject(event) {
     event.preventDefault();
 
@@ -38,6 +48,28 @@ function MoneyTracker({ onReturn }) {
         <p className="text-slate-400 mb-8">
           Track project value, revenue goals, actual income, and launch status.
         </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+          <div className="border border-purple-900 rounded-xl p-4">
+            <p className="text-slate-500 text-sm">Projects</p>
+            <p className="text-2xl text-purple-300 font-bold">{projects.length}</p>
+          </div>
+
+          <div className="border border-purple-900 rounded-xl p-4">
+            <p className="text-slate-500 text-sm">Projected</p>
+            <p className="text-2xl text-purple-300 font-bold">${totalProjected}</p>
+          </div>
+
+          <div className="border border-purple-900 rounded-xl p-4">
+            <p className="text-slate-500 text-sm">Actual</p>
+            <p className="text-2xl text-purple-300 font-bold">${totalActual}</p>
+          </div>
+
+          <div className="border border-purple-900 rounded-xl p-4">
+            <p className="text-slate-500 text-sm">Revenue Gap</p>
+            <p className="text-2xl text-purple-300 font-bold">${revenueGap}</p>
+          </div>
+        </div>
 
         <form onSubmit={addProject} className="border border-purple-900 rounded-xl p-6 mb-8">
           <input
