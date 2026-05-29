@@ -9,6 +9,7 @@ function MoneyTracker({ onReturn }) {
   const [actual, setActual] = useState('');
   const [status, setStatus] = useState('');
   const [notes, setNotes] = useState('');
+  const [priority, setPriority] = useState('');
 
   const [projects, setProjects] = useState(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -19,11 +20,17 @@ function MoneyTracker({ onReturn }) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
   }, [projects]);
 
-  const totalProjected = projects.reduce((sum, p) => sum + Number(p.projected || 0), 0);
-  const totalActual = projects.reduce((sum, p) => sum + Number(p.actual || 0), 0);
-  const planning = projects.filter((p) => p.status === 'Planning').length;
-  const building = projects.filter((p) => p.status === 'Building').length;
-  const live = projects.filter((p) => p.status === 'Live').length;
+  const totalProjected = projects.reduce((sum, project) => {
+    return sum + Number(project.projected || 0);
+  }, 0);
+
+  const totalActual = projects.reduce((sum, project) => {
+    return sum + Number(project.actual || 0);
+  }, 0);
+
+  const planning = projects.filter((project) => project.status === 'Planning').length;
+  const building = projects.filter((project) => project.status === 'Building').length;
+  const live = projects.filter((project) => project.status === 'Live').length;
 
   function addProject(event) {
     event.preventDefault();
@@ -36,22 +43,28 @@ function MoneyTracker({ onReturn }) {
       actual: actual || '0',
       status: status || 'Planning',
       notes: notes || '',
+      priority: priority || 'Medium',
     };
 
     setProjects([newProject, ...projects]);
+
     setName('');
     setType('');
     setProjected('');
     setActual('');
     setStatus('');
     setNotes('');
+    setPriority('');
   }
 
   function updateProject(id, field, value) {
     setProjects(
       projects.map((project) => {
         if (project.id === id) {
-          return { ...project, [field]: value };
+          return {
+            ...project,
+            [field]: value,
+          };
         }
 
         return project;
@@ -75,7 +88,7 @@ function MoneyTracker({ onReturn }) {
         </h1>
 
         <p className="text-slate-400 mb-8">
-          Track project money, status, revenue movement, and notes.
+          Track project money, status, priority, revenue movement, and notes.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
@@ -170,8 +183,20 @@ function MoneyTracker({ onReturn }) {
             onChange={(event) => setNotes(event.target.value)}
             placeholder="Project notes / next steps / domain / payment / support notes"
             rows="4"
-            className="w-full mb-5 bg-black border border-slate-700 px-4 py-3 rounded"
+            className="w-full mb-4 bg-black border border-slate-700 px-4 py-3 rounded"
           />
+
+          <select
+            value={priority}
+            onChange={(event) => setPriority(event.target.value)}
+            className="w-full mb-5 bg-black border border-slate-700 px-4 py-3 rounded"
+          >
+            <option value="">Priority Level</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+            <option value="Urgent">Urgent</option>
+          </select>
 
           <button className="px-6 py-3 bg-purple-900 border border-purple-500 rounded">
             Save Project
@@ -235,6 +260,17 @@ function MoneyTracker({ onReturn }) {
                 placeholder="Project notes"
                 className="w-full mb-3 bg-black border border-slate-700 px-4 py-2 rounded"
               />
+
+              <select
+                value={project.priority || 'Medium'}
+                onChange={(event) => updateProject(project.id, 'priority', event.target.value)}
+                className="w-full mb-3 bg-black border border-slate-700 px-4 py-2 rounded"
+              >
+                <option value="Low">Low Priority</option>
+                <option value="Medium">Medium Priority</option>
+                <option value="High">High Priority</option>
+                <option value="Urgent">Urgent Priority</option>
+              </select>
 
               <button
                 type="button"
