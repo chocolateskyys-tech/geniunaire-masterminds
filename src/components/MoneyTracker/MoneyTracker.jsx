@@ -10,6 +10,7 @@ function MoneyTracker({ onReturn }) {
   const [status, setStatus] = useState('');
   const [notes, setNotes] = useState('');
   const [priority, setPriority] = useState('');
+  const [copyStatus, setCopyStatus] = useState('');
 
   const [projects, setProjects] = useState(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -31,10 +32,7 @@ function MoneyTracker({ onReturn }) {
   const planning = projects.filter((project) => project.status === 'Planning').length;
   const building = projects.filter((project) => project.status === 'Building').length;
   const live = projects.filter((project) => project.status === 'Live').length;
-  const lowPriority = projects.filter((project) => project.priority === 'Low').length;
-  const mediumPriority = projects.filter((project) => project.priority === 'Medium').length;
-  const highPriority = projects.filter((project) => project.priority === 'High').length;
-  const urgentPriority = projects.filter((project) => project.priority === 'Urgent').length;
+
   function addProject(event) {
     event.preventDefault();
 
@@ -64,10 +62,7 @@ function MoneyTracker({ onReturn }) {
     setProjects(
       projects.map((project) => {
         if (project.id === id) {
-          return {
-            ...project,
-            [field]: value,
-          };
+          return { ...project, [field]: value };
         }
 
         return project;
@@ -81,6 +76,49 @@ function MoneyTracker({ onReturn }) {
 
   function clearProjects() {
     setProjects([]);
+    setCopyStatus('');
+  }
+
+  function buildSummary() {
+    const projectLines = projects.map((project, index) => {
+      return [
+        `Project ${index + 1}: ${project.name}`,
+        `Type: ${project.type}`,
+        `Priority: ${project.priority || 'Medium'}`,
+        `Status: ${project.status}`,
+        `Projected Revenue: $${project.projected || '0'}`,
+        `Actual Revenue: $${project.actual || '0'}`,
+        `Notes: ${project.notes || 'No notes added'}`,
+      ].join('\n');
+    });
+
+    return [
+      'GENIUNAIRE MASTERMINDS — MONEY TRACKER SUMMARY',
+      '',
+      `Total Projects: ${projects.length}`,
+      `Total Projected Revenue: $${totalProjected}`,
+      `Total Actual Revenue: $${totalActual}`,
+      `Revenue Gap: $${totalProjected - totalActual}`,
+      '',
+      `Planning: ${planning}`,
+      `Building: ${building}`,
+      `Live: ${live}`,
+      '',
+      'PROJECT DETAILS',
+      '',
+      projectLines.length > 0 ? projectLines.join('\n\n') : 'No tracked projects yet.',
+    ].join('\n');
+  }
+
+  async function copySummary() {
+    const summary = buildSummary();
+
+    try {
+      await navigator.clipboard.writeText(summary);
+      setCopyStatus('Summary copied to clipboard.');
+    } catch (error) {
+      setCopyStatus('Copy failed. Select and copy manually.');
+    }
   }
 
   return (
@@ -133,6 +171,28 @@ function MoneyTracker({ onReturn }) {
             <p className="text-slate-500 text-sm">Live</p>
             <p className="text-xl text-purple-300 font-bold">{live}</p>
           </div>
+        </div>
+
+        <div className="border border-purple-900 rounded-xl p-6 mb-8">
+          <h2 className="text-purple-300 mb-4">Export Summary</h2>
+
+          <p className="text-slate-500 mb-4">
+            Copy a clean project summary for ChatGPT, email, notes, planning, or investor prep.
+          </p>
+
+          <button
+            type="button"
+            onClick={copySummary}
+            className="px-6 py-3 bg-purple-900 border border-purple-500 rounded"
+          >
+            Copy Project Summary
+          </button>
+
+          {copyStatus && (
+            <p className="mt-4 text-purple-300">
+              {copyStatus}
+            </p>
+          )}
         </div>
 
         <form onSubmit={addProject} className="border border-purple-900 rounded-xl p-6 mb-8">
