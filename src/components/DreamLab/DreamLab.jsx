@@ -1,9 +1,18 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+const STORAGE_KEY = 'geniunaireDreamProfiles';
 
 function DreamLab({ onReturn }) {
   const [alias, setAlias] = useState('');
   const [type, setType] = useState('');
-  const [saved, setSaved] = useState([]);
+  const [saved, setSaved] = useState(() => {
+    const storedProfiles = localStorage.getItem(STORAGE_KEY);
+    return storedProfiles ? JSON.parse(storedProfiles) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+  }, [saved]);
 
   function addProfile(event) {
     event.preventDefault();
@@ -17,6 +26,14 @@ function DreamLab({ onReturn }) {
     setSaved([profile, ...saved]);
     setAlias('');
     setType('');
+  }
+
+  function deleteProfile(profileId) {
+    setSaved(saved.filter((profile) => profile.id !== profileId));
+  }
+
+  function clearProfiles() {
+    setSaved([]);
   }
 
   return (
@@ -59,14 +76,34 @@ function DreamLab({ onReturn }) {
         <div className="border border-purple-900 rounded-xl p-6 mb-8">
           <h2 className="text-purple-300 mb-4">Saved Profiles</h2>
 
-          {saved.length === 0 && <p className="text-slate-500">No saved profiles yet.</p>}
+          {saved.length === 0 && (
+            <p className="text-slate-500">No saved profiles yet.</p>
+          )}
 
           {saved.map((profile) => (
             <div key={profile.id} className="border border-slate-800 rounded p-4 mb-3">
               <p>Alias: {profile.alias}</p>
               <p>Project: {profile.type}</p>
+
+              <button
+                type="button"
+                onClick={() => deleteProfile(profile.id)}
+                className="mt-3 px-4 py-2 border border-red-900 text-red-300 rounded"
+              >
+                Delete Profile
+              </button>
             </div>
           ))}
+
+          {saved.length > 0 && (
+            <button
+              type="button"
+              onClick={clearProfiles}
+              className="mt-4 px-6 py-3 border border-red-900 text-red-300 rounded"
+            >
+              Clear Saved Profiles
+            </button>
+          )}
         </div>
 
         <button
