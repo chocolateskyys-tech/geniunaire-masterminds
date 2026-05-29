@@ -75,9 +75,14 @@ function MoneyTracker({ onReturn }) {
   }
 
   function clearProjects() {
+  const confirmed = window.confirm(
+    'Are you sure you want to clear all saved Money Tracker projects? This cannot be undone.'
+  );
+
+  if (confirmed) {
     setProjects([]);
-    setCopyStatus('');
   }
+}
 
   function buildSummary() {
     const projectLines = projects.map((project, index) => {

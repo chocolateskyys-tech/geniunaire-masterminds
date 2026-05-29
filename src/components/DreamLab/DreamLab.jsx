@@ -33,8 +33,14 @@ function DreamLab({ onReturn }) {
   }
 
   function clearProfiles() {
+  const confirmed = window.confirm(
+    'Are you sure you want to clear all saved Dream Lab profiles? This cannot be undone.'
+  );
+
+  if (confirmed) {
     setSaved([]);
   }
+}
 
   return (
     <main className="min-h-screen bg-black text-slate-300 px-6 py-10">
