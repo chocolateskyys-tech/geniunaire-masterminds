@@ -31,7 +31,10 @@ function MoneyTracker({ onReturn }) {
   const planning = projects.filter((project) => project.status === 'Planning').length;
   const building = projects.filter((project) => project.status === 'Building').length;
   const live = projects.filter((project) => project.status === 'Live').length;
-
+  const lowPriority = projects.filter((project) => project.priority === 'Low').length;
+  const mediumPriority = projects.filter((project) => project.priority === 'Medium').length;
+  const highPriority = projects.filter((project) => project.priority === 'High').length;
+  const urgentPriority = projects.filter((project) => project.priority === 'Urgent').length;
   function addProject(event) {
     event.preventDefault();
 
