@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function EntryGate({ onEnterDreamLab, onEnterMoneyTracker }) {
+function EntryGate({ onEnterDreamLab, onEnterMoneyTracker, onRequestClearance }) {
   const [soundEnabled, setSoundEnabled] = useState(false);
   const [accessCode, setAccessCode] = useState('');
   const [accessStatus, setAccessStatus] = useState('idle');
@@ -131,6 +131,7 @@ return (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
         <button
           type="button"
+          onClick={onEnterDreamLab}
           className="group relative px-8 py-5 bg-black border border-purple-500/50 hover:border-purple-400 rounded overflow-hidden transition-all duration-500 hover:shadow-[0_0_24px_rgba(168,85,247,0.45)] hover:-translate-y-1"
         >
           <span className="relative z-10 text-slate-200 uppercase tracking-widest font-semibold text-sm group-hover:text-white">
@@ -140,13 +141,14 @@ return (
 
         <button
           type="button"
+          onClick={onRequestClearance}
           className="group relative px-8 py-5 bg-purple-900/40 border border-purple-500 rounded overflow-hidden transition-all duration-500 hover:shadow-[0_0_28px_rgba(168,85,247,0.7)] hover:bg-purple-800/50 hover:-translate-y-1"
-        >
+        >   
           <span className="relative z-10 text-white uppercase tracking-widest font-bold text-sm">
             Request Clearance
           </span>
         </button>
-
+  
         <button
           type="button"
           onClick={onEnterDreamLab}

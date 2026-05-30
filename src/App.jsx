@@ -7,6 +7,7 @@ import CreatorStudio from './components/CreatorStudio/CreatorStudio';
 import VaultReleaseLibrary from './components/VaultReleaseLibrary/VaultReleaseLibrary';
 import FounderPromoVault from './components/FounderPromoVault/FounderPromoVault';
 import FounderTierRules from './components/FounderTierRules/FounderTierRules';
+import SignupRequest from './components/SignupRequest/SignupRequest';
 
 function App() {
   const [currentView, setCurrentView] = useState('entryGate');
@@ -40,10 +41,15 @@ function App() {
       return <FounderTierRules onReturn={() => setCurrentView('entryGate')} />;
     }
 
+    if (currentView === 'signupRequest') {
+      return <SignupRequest onReturn={() => setCurrentView('entryGate')} />;
+    }
+
     return (
       <EntryGate
         onEnterDreamLab={() => setCurrentView('dreamLab')}
         onEnterMoneyTracker={() => setCurrentView('moneyTracker')}
+        onRequestClearance={() => setCurrentView('signupRequest')}
       />
     );
   }
@@ -125,6 +131,14 @@ function App() {
                 className="px-4 py-2 border border-slate-700 text-slate-300 rounded hover:border-purple-500"
               >
                 Founder Rules
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setCurrentView('signupRequest')}
+                className="px-4 py-2 border border-slate-700 text-slate-300 rounded hover:border-purple-500"
+              >
+                Request Clearance
               </button>
             </div>
           </div>
