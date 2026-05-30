@@ -6,6 +6,7 @@ import DormMageddon from './components/DormMageddon/DormMageddon';
 import CreatorStudio from './components/CreatorStudio/CreatorStudio';
 import VaultReleaseLibrary from './components/VaultReleaseLibrary/VaultReleaseLibrary';
 import FounderPromoVault from './components/FounderPromoVault/FounderPromoVault';
+import FounderTierRules from './components/FounderTierRules/FounderTierRules';
 
 function App() {
   const [currentView, setCurrentView] = useState('entryGate');
@@ -33,6 +34,10 @@ function App() {
 
     if (currentView === 'founderPromoVault') {
       return <FounderPromoVault onReturn={() => setCurrentView('entryGate')} />;
+    }
+
+    if (currentView === 'founderTierRules') {
+      return <FounderTierRules onReturn={() => setCurrentView('entryGate')} />;
     }
 
     return (
@@ -112,6 +117,14 @@ function App() {
                 className="px-4 py-2 border border-slate-700 text-slate-300 rounded hover:border-purple-500"
               >
                 Promo Vault
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setCurrentView('founderTierRules')}
+                className="px-4 py-2 border border-slate-700 text-slate-300 rounded hover:border-purple-500"
+              >
+                Founder Rules
               </button>
             </div>
           </div>
