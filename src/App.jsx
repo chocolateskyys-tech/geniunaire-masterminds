@@ -4,6 +4,7 @@ import DreamLab from './components/DreamLab/DreamLab';
 import MoneyTracker from './components/MoneyTracker/MoneyTracker';
 import DormMageddon from './components/DormMageddon/DormMageddon';
 import CreatorStudio from './components/CreatorStudio/CreatorStudio';
+import VaultReleaseLibrary from './components/VaultReleaseLibrary/VaultReleaseLibrary';
 
 function App() {
   const [currentView, setCurrentView] = useState('entryGate');
@@ -23,6 +24,10 @@ function App() {
 
     if (currentView === 'creatorStudio') {
       return <CreatorStudio onReturn={() => setCurrentView('entryGate')} />;
+    }
+
+    if (currentView === 'vaultReleaseLibrary') {
+      return <VaultReleaseLibrary onReturn={() => setCurrentView('entryGate')} />;
     }
 
     return (
@@ -86,6 +91,14 @@ function App() {
                 className="px-4 py-2 border border-slate-700 text-slate-300 rounded hover:border-purple-500"
               >
                 Creator Studio
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setCurrentView('vaultReleaseLibrary')}
+                className="px-4 py-2 border border-slate-700 text-slate-300 rounded hover:border-purple-500"
+              >
+                Vault Releases
               </button>
             </div>
           </div>
