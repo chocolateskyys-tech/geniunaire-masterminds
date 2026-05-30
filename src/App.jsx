@@ -2,6 +2,8 @@ import { useState } from 'react';
 import EntryGate from './components/EntryGate/EntryGate';
 import DreamLab from './components/DreamLab/DreamLab';
 import MoneyTracker from './components/MoneyTracker/MoneyTracker';
+import DormMageddon from './components/DormMageddon/DormMageddon';
+import CreatorStudio from './components/CreatorStudio/CreatorStudio';
 
 function App() {
   const [currentView, setCurrentView] = useState('entryGate');
@@ -13,6 +15,14 @@ function App() {
 
     if (currentView === 'moneyTracker') {
       return <MoneyTracker onReturn={() => setCurrentView('entryGate')} />;
+    }
+
+    if (currentView === 'dormMageddon') {
+      return <DormMageddon onReturn={() => setCurrentView('entryGate')} />;
+    }
+
+    if (currentView === 'creatorStudio') {
+      return <CreatorStudio onReturn={() => setCurrentView('entryGate')} />;
     }
 
     return (
@@ -60,6 +70,22 @@ function App() {
                 className="px-4 py-2 border border-slate-700 text-slate-300 rounded hover:border-purple-500"
               >
                 Money Tracker
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setCurrentView('dormMageddon')}
+                className="px-4 py-2 border border-slate-700 text-slate-300 rounded hover:border-purple-500"
+              >
+                DormMageddon
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setCurrentView('creatorStudio')}
+                className="px-4 py-2 border border-slate-700 text-slate-300 rounded hover:border-purple-500"
+              >
+                Creator Studio
               </button>
             </div>
           </div>
