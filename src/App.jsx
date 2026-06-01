@@ -15,6 +15,7 @@ import RobotStorefront from './components/RobotStorefront/RobotStorefront';
 
 function App() {
   const [currentView, setCurrentView] = useState('entryGate');
+  const [requestedAccess, setRequestedAccess] = useState('General Dream Funnel Access');
 
   const navItems = [
     ['Entry Gate', 'entryGate'],
@@ -32,6 +33,11 @@ function App() {
     ['Robots', 'robotStorefront'],
   ];
 
+  function requestAccess(accessType) {
+    setRequestedAccess(accessType);
+    setCurrentView('signupRequest');
+  }
+
   function renderCurrentView() {
     const roomProps = {
       onReturn: () => setCurrentView('entryGate'),
@@ -45,7 +51,12 @@ function App() {
       vaultReleaseLibrary: <VaultReleaseLibrary {...roomProps} />,
       founderPromoVault: <FounderPromoVault {...roomProps} />,
       founderTierRules: <FounderTierRules {...roomProps} />,
-      signupRequest: <SignupRequest {...roomProps} />,
+      signupRequest: (
+        <SignupRequest
+          {...roomProps}
+          requestedAccess={requestedAccess}
+        />
+      ),
       assetVault: <AssetVault {...roomProps} />,
       checkoutRoom: <CheckoutRoom {...roomProps} />,
       domainVault: <DomainVault {...roomProps} />,
@@ -58,9 +69,9 @@ function App() {
 
     return (
       <EntryGate
-        onEnterDreamLab={() => setCurrentView('dreamLab')}
-        onEnterMoneyTracker={() => setCurrentView('moneyTracker')}
-        onRequestClearance={() => setCurrentView('signupRequest')}
+        onEnterDreamLab={() => requestAccess('Think Tank / Dream Lab Access')}
+        onEnterMoneyTracker={() => requestAccess('Vault / Money Tracker Access')}
+        onRequestClearance={() => requestAccess('General Dream Funnel Access')}
       />
     );
   }
@@ -84,7 +95,13 @@ function App() {
                 <button
                   key={view}
                   type="button"
-                  onClick={() => setCurrentView(view)}
+                  onClick={() => {
+                    if (view === 'signupRequest') {
+                      requestAccess('General Dream Funnel Access');
+                    } else {
+                      setCurrentView(view);
+                    }
+                  }}
                   className={
                     currentView === view
                       ? 'px-4 py-2 border border-purple-500 text-purple-300 rounded bg-purple-950'
