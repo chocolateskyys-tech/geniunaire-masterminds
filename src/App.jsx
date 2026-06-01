@@ -18,6 +18,8 @@ import AIBuildLab from './components/AIBuildLab/AIBuildLab';
 function App() {
   const [currentView, setCurrentView] = useState('entryGate');
   const [requestedAccess, setRequestedAccess] = useState('General Dream Funnel Access');
+  const [requestedDestination, setRequestedDestination] = useState('dreamLab');
+  const [accessGranted, setAccessGranted] = useState(false);
 
   const navItems = [
     ['Entry Gate', 'entryGate'],
@@ -37,54 +39,87 @@ function App() {
     ['AI Build Lab', 'aiBuildLab'],
   ];
 
-  function requestAccess(accessType) {
+  const roomProps = {
+    onReturn: () => {
+      setAccessGranted(false);
+      setCurrentView('entryGate');
+    },
+  };
+
+  const views = {
+    dreamLab: <DreamLab {...roomProps} />,
+    moneyTracker: <MoneyTracker {...roomProps} />,
+    dormMageddon: <DormMageddon {...roomProps} />,
+    creatorStudio: <CreatorStudio {...roomProps} />,
+    vaultReleaseLibrary: <VaultReleaseLibrary {...roomProps} />,
+    founderPromoVault: <FounderPromoVault {...roomProps} />,
+    founderTierRules: <FounderTierRules {...roomProps} />,
+    assetVault: <AssetVault {...roomProps} />,
+    checkoutRoom: <CheckoutRoom {...roomProps} />,
+    domainVault: <DomainVault {...roomProps} />,
+    robotStorefront: <RobotStorefront {...roomProps} />,
+    soundscapeStudio: <SoundscapeStudio {...roomProps} />,
+    aiBuildLab: <AIBuildLab {...roomProps} />,
+  };
+
+  function requestAccess(accessType, destination = 'dreamLab') {
     setRequestedAccess(accessType);
+    setRequestedDestination(destination);
+    setAccessGranted(false);
     setCurrentView('signupRequest');
   }
 
-  function renderCurrentView() {
-    const roomProps = {
-      onReturn: () => setCurrentView('entryGate'),
-    };
+  function grantAccess() {
+    setAccessGranted(true);
+    setCurrentView(requestedDestination || 'dreamLab');
+  }
 
-    const views = {
-      dreamLab: <DreamLab {...roomProps} />,
-      moneyTracker: <MoneyTracker {...roomProps} />,
-      dormMageddon: <DormMageddon {...roomProps} />,
-      creatorStudio: <CreatorStudio {...roomProps} />,
-      vaultReleaseLibrary: <VaultReleaseLibrary {...roomProps} />,
-      founderPromoVault: <FounderPromoVault {...roomProps} />,
-      founderTierRules: <FounderTierRules {...roomProps} />,
-      signupRequest: (
-        <SignupRequest
-          {...roomProps}
-          requestedAccess={requestedAccess}
-        />
-      ),
-      assetVault: <AssetVault {...roomProps} />,
-      checkoutRoom: <CheckoutRoom {...roomProps} />,
-      domainVault: <DomainVault {...roomProps} />,
-      robotStorefront: <RobotStorefront {...roomProps} />,
-      soundscapeStudio: <SoundscapeStudio {...roomProps} />,
-      aiBuildLab: <AIBuildLab {...roomProps} />,
-    };
+  function founderAccess() {
+    setRequestedAccess('Founder / Owner Full Access');
+    setRequestedDestination('aiBuildLab');
+    setAccessGranted(true);
+    setCurrentView('aiBuildLab');
+  }
 
-    if (views[currentView]) {
-      return views[currentView];
-    }
-
+  function renderSignup() {
     return (
-      <EntryGate
-        onEnterDreamLab={() => requestAccess('Think Tank / Dream Lab Access')}
-        onEnterMoneyTracker={() => requestAccess('Vault / Money Tracker Access')}
-        onRequestClearance={() => requestAccess('General Dream Funnel Access')}
+      <SignupRequest
+        onReturn={() => {
+          setAccessGranted(false);
+          setCurrentView('entryGate');
+        }}
+        requestedAccess={requestedAccess}
+        onAccessGranted={grantAccess}
       />
     );
   }
 
+  function renderCurrentView() {
+    if (currentView === 'entryGate') {
+      return (
+        <EntryGate
+          onEnterDreamLab={() => requestAccess('Think Tank / Dream Lab Access', 'dreamLab')}
+          onEnterMoneyTracker={() => requestAccess('Vault / Money Tracker Access', 'moneyTracker')}
+          onRequestClearance={() => requestAccess('General Dream Funnel Access', 'dreamLab')}
+          onFounderAccess={founderAccess}
+        />
+      );
+    }
+
+    if (currentView === 'signupRequest') {
+      return renderSignup();
+    }
+
+    if (!accessGranted) {
+      return renderSignup();
+    }
+
+    return views[currentView] || views.dreamLab;
+  }
+
   return (
     <div className="min-h-screen bg-black">
-      {currentView !== 'entryGate' && (
+      {currentView !== 'entryGate' && accessGranted && (
         <nav className="sticky top-0 z-50 border-b border-purple-900 bg-black/90 backdrop-blur px-6 py-4">
           <div className="max-w-6xl mx-auto flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
             <div>
@@ -102,8 +137,11 @@ function App() {
                   key={view}
                   type="button"
                   onClick={() => {
-                    if (view === 'signupRequest') {
-                      requestAccess('General Dream Funnel Access');
+                    if (view === 'entryGate') {
+                      setAccessGranted(false);
+                      setCurrentView('entryGate');
+                    } else if (view === 'signupRequest') {
+                      requestAccess('General Dream Funnel Access', 'dreamLab');
                     } else {
                       setCurrentView(view);
                     }
