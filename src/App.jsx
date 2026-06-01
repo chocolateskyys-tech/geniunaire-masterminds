@@ -12,6 +12,7 @@ import AssetVault from './components/AssetVault/AssetVault';
 import CheckoutRoom from './components/CheckoutRoom/CheckoutRoom';
 import DomainVault from './components/DomainVault/DomainVault';
 import RobotStorefront from './components/RobotStorefront/RobotStorefront';
+import SoundscapeStudio from './components/SoundscapeStudio/SoundscapeStudio';
 
 function App() {
   const [currentView, setCurrentView] = useState('entryGate');
@@ -31,6 +32,7 @@ function App() {
     ['Checkout', 'checkoutRoom'],
     ['Domains', 'domainVault'],
     ['Robots', 'robotStorefront'],
+    ['Soundscape', 'soundscapeStudio'],
   ];
 
   function requestAccess(accessType) {
@@ -61,6 +63,7 @@ function App() {
       checkoutRoom: <CheckoutRoom {...roomProps} />,
       domainVault: <DomainVault {...roomProps} />,
       robotStorefront: <RobotStorefront {...roomProps} />,
+      soundscapeStudio: <SoundscapeStudio {...roomProps} />,
     };
 
     if (views[currentView]) {
