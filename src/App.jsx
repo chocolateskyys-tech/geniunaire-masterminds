@@ -15,6 +15,7 @@ import RobotStorefront from './components/RobotStorefront/RobotStorefront';
 import SoundscapeStudio from './components/SoundscapeStudio/SoundscapeStudio';
 import AIBuildLab from './components/AIBuildLab/AIBuildLab';
 import WebsiteRescueLab from './components/WebsiteRescueLab/WebsiteRescueLab';
+import ProductVault from './components/ProductVault/ProductVault';
 
 function App() {
   const [currentView, setCurrentView] = useState('entryGate');
@@ -39,6 +40,7 @@ function App() {
     ['Soundscape', 'soundscapeStudio'],
     ['AI Build Lab', 'aiBuildLab'],
     ['Website Rescue', 'websiteRescueLab'],
+    ['Product Vault', 'productVault'],
   ];
 
   const roomProps = {
@@ -63,6 +65,7 @@ function App() {
     soundscapeStudio: <SoundscapeStudio {...roomProps} />,
     aiBuildLab: <AIBuildLab {...roomProps} />,
     websiteRescueLab: <WebsiteRescueLab {...roomProps} />,
+    productVault: <ProductVault {...roomProps} />,
   };
 
   function requestAccess(accessType, destination = 'dreamLab') {
