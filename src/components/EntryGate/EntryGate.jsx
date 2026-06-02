@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-function EntryGate({ onEnterDreamLab, onEnterMoneyTracker, onRequestClearance }) {
+function EntryGate({
+  onEnterDreamLab,
+  onEnterMoneyTracker,
+  onRequestClearance,
+  onFounderAccess,
+}) {
   const [soundEnabled, setSoundEnabled] = useState(false);
   const [accessCode, setAccessCode] = useState('');
   const [accessStatus, setAccessStatus] = useState('idle');
@@ -115,9 +120,9 @@ return (
           )}
 
           {accessStatus === 'granted' && (
-            <span className="text-[10px] text-green-400 tracking-[0.3em] uppercase drop-shadow-[0_0_8px_rgba(74,222,128,0.8)]">
-              Access Granted // Welcome
-            </span>
+            <button type="button" onClick={onFounderAccess}>
+              DREAM
+            </button>
           )}
 
           {accessStatus === 'denied' && (
