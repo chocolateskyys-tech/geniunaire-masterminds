@@ -91,7 +91,7 @@ function SoundscapeStudio({ onReturn }) {
       genre: form.genre || 'Custom',
       link: form.link || '',
       status: form.status || 'Concept Station',
-      prompt: form.prompt || 'Create a polished Dream Funnel soundscape for this station.',
+      prompt: form.prompt || 'Create a polished Admiration Funnel soundscape for this station.',
     };
 
     setStations([newStation, ...stations]);
@@ -122,7 +122,7 @@ function SoundscapeStudio({ onReturn }) {
 
   function buildStationCopy(station) {
     return [
-      'DREAM FUNNEL SOUNDSCAPE STATION',
+      'ADMIRATION FUNNEL SOUNDSCAPE STATION',
       '',
       `Station: ${station.title}`,
       `Genre: ${station.genre}`,

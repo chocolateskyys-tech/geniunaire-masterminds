@@ -20,7 +20,7 @@ import PreviewGallery from './components/PreviewGallery/PreviewGallery';
 import EStore from './components/EStore/EStore';
 function App() {
   const [currentView, setCurrentView] = useState('entryGate');
-  const [requestedAccess, setRequestedAccess] = useState('General Dream Funnel Access');
+  const [requestedAccess, setRequestedAccess] = useState('General Admiration Funnel Access');
   const [requestedDestination, setRequestedDestination] = useState('dreamLab');
   const [accessGranted, setAccessGranted] = useState(false);
 
@@ -33,7 +33,7 @@ function App() {
     ['Vault Releases', 'vaultReleaseLibrary'],
     ['Promo Vault', 'founderPromoVault'],
     ['Founder Rules', 'founderTierRules'],
-    ['Request Clearance', 'signupRequest'],
+    ['Enter The Rift', 'signupRequest'],
     ['Asset Vault', 'assetVault'],
     ['Checkout', 'checkoutRoom'],
     ['Domains', 'domainVault'],
@@ -111,7 +111,7 @@ function App() {
         <EntryGate
           onEnterDreamLab={() => requestAccess('Think Tank / Dream Lab Access', 'dreamLab')}
           onEnterMoneyTracker={() => requestAccess('Vault / Money Tracker Access', 'moneyTracker')}
-          onRequestClearance={() => requestAccess('General Dream Funnel Access', 'dreamLab')}
+          onRequestClearance={() => requestAccess('General Admiration Funnel Access', 'dreamLab')}
           onFounderAccess={founderAccess}
         />
       );
@@ -138,7 +138,7 @@ function App() {
                 Geniunaire MasterMinds
               </p>
               <p className="text-slate-500 text-xs mt-1">
-                Dream Funnel Command Navigation
+                Admiration Funnel: Rift Ride
               </p>
             </div>
 
@@ -152,7 +152,7 @@ function App() {
                       setAccessGranted(false);
                       setCurrentView('entryGate');
                     } else if (view === 'signupRequest') {
-                      requestAccess('General Dream Funnel Access', 'dreamLab');
+                      requestAccess('General Admiration Funnel Access', 'dreamLab');
                     } else {
                       setCurrentView(view);
                     }

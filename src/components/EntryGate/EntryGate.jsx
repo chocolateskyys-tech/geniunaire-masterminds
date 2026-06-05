@@ -87,11 +87,11 @@ return (
 
     <section className="relative z-10 max-w-5xl mx-auto text-center px-6 mt-20">
       <p className="text-xs md:text-sm text-purple-400 tracking-[0.45em] uppercase mb-6">
-        Dream Funnel Command Center
+        Admiration Funnel: Rift Ride
       </p>
 
       <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-300 via-purple-400 to-slate-300 mb-8 drop-shadow-[0_0_18px_rgba(168,85,247,0.6)] tracking-tight">
-        Enter The DREAM Funnel
+        Enter The Admiration Funnel
         <br />
         Command Center.
       </h1>
@@ -105,7 +105,7 @@ return (
       <form onSubmit={handleAccessCheck} className="mb-10 max-w-sm mx-auto">
         <input
           type="text"
-          placeholder="ENTER CLEARANCE CODE"
+          placeholder="ENTER RIFT CODE"
           value={accessCode}
           onChange={(event) => setAccessCode(event.target.value)}
           disabled={accessStatus === 'checking' || accessStatus === 'granted'}
@@ -150,7 +150,7 @@ return (
           className="group relative px-8 py-5 bg-purple-900/40 border border-purple-500 rounded overflow-hidden transition-all duration-500 hover:shadow-[0_0_28px_rgba(168,85,247,0.7)] hover:bg-purple-800/50 hover:-translate-y-1"
         >   
           <span className="relative z-10 text-white uppercase tracking-widest font-bold text-sm">
-            Request Clearance
+            Enter The Rift
           </span>
         </button>
   
@@ -179,7 +179,7 @@ return (
     <footer className="relative z-10 mt-10 pb-6 w-full text-center">
       <p className="text-[10px] text-slate-600 tracking-[0.3em] uppercase flex items-center justify-center gap-2">
         <span className="w-1.5 h-1.5 bg-purple-600 rounded-full animate-pulse" />
-        <span>Secure Connection Established // Dream Funnel Active</span>
+        <span>Secure Connection Established // Admiration Funnel Active</span>
       </p>
     </footer>
   </main>

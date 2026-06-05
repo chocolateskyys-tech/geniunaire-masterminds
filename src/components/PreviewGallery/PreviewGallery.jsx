@@ -68,7 +68,7 @@ function PreviewGallery({ onReturn }) {
 
   function buildPreviewCopy(preview) {
     return [
-      'DREAM FUNNEL PREVIEW RECORD',
+      'ADMIRATION FUNNEL PREVIEW RECORD',
       '',
       `Title: ${preview.title}`,
       `Client / Owner: ${preview.client}`,

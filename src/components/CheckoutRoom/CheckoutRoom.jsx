@@ -7,7 +7,7 @@ const starterOffers = [
   ['Website Sample Preview', '$49 - $99', 'One-Time Fee', 'Clients testing a niche/site idea before full build'],
   ['Starter Website + Hosting Support', '$29.99 - $99.99/month', 'Monthly Plan', 'Low-cash clients needing website, hosting, and updates'],
   ['Robot Rental', '$19.99 - $99.99/month', 'Monthly Rental', 'Clients wanting a programmed AI worker'],
-  ['Dream Funnel Consultation', '$25 - $149', 'One-Time Fee', 'Clients needing niche review, rebrand help, or launch direction'],
+  ['Admiration Funnel Consultation', '$25 - $149', 'One-Time Fee', 'Clients needing niche review, rebrand help, or launch direction'],
 ].map(([name, price, type, audience], index) => ({
   id: index + 1,
   name,
@@ -87,7 +87,7 @@ function CheckoutRoom({ onReturn }) {
 
   function buildOfferCopy(offer) {
     return [
-      'DREAM FUNNEL CHECKOUT OFFER',
+      'ADMIRATION FUNNEL CHECKOUT OFFER',
       '',
       `Offer: ${offer.name}`,
       `Price: ${offer.price}`,
@@ -112,7 +112,7 @@ function CheckoutRoom({ onReturn }) {
   }
 
   const checkoutRules = [
-    'DREAM FUNNEL CHECKOUT RULES',
+    'ADMIRATION FUNNEL CHECKOUT RULES',
     '',
     'Every paid offer needs a clear price, billing type, checkout link, and support notes before sharing.',
     '',
@@ -143,7 +143,7 @@ function CheckoutRoom({ onReturn }) {
         <div className="border border-purple-900 rounded-xl p-6 mb-8 bg-black/40">
           <h2 className="text-purple-300 mb-2">Payment Path Rule</h2>
           <p className="text-slate-500 text-sm mb-5">
-            Dream Funnel can route clients through cash, card, financing, pay-over-time, subscription, or custom monthly support. The checkout link handles payment while this room tracks the offer.
+            Admiration Funnel can route clients through cash, card, financing, pay-over-time, subscription, or custom monthly support. The checkout link handles payment while this room tracks the offer.
           </p>
 
           <button

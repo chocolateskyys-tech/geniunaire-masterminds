@@ -39,7 +39,7 @@ function FounderTierRules({ onReturn }) {
   ].join('\n');
 
   const hostingChecklist = [
-    'DREAM FUNNEL HOSTING / CREATOR TOOLKIT CHECKLIST',
+    'ADMIRATION FUNNEL HOSTING / CREATOR TOOLKIT CHECKLIST',
     '',
     '1. Create the product or niche idea inside Creator Studio.',
     '2. Mark it Draft, Ready, or Released.',

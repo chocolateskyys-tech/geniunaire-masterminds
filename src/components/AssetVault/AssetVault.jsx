@@ -104,7 +104,7 @@ function AssetVault({ onReturn }) {
   }
 
   const rulesCopy = [
-    'DREAM FUNNEL ASSET RULES',
+    'ADMIRATION FUNNEL ASSET RULES',
     '',
     'Only custom, co-created, Geniunaire MasterMinds/client-approved builds can become sellable assets.',
     '',
@@ -118,7 +118,7 @@ function AssetVault({ onReturn }) {
   async function copyRules() {
     try {
       await navigator.clipboard.writeText(rulesCopy);
-      setCopyStatus('Copied Dream Funnel asset rules.');
+      setCopyStatus('Copied Admiration Funnel asset rules.');
     } catch (error) {
       setCopyStatus('Copy failed. Select and copy manually.');
     }

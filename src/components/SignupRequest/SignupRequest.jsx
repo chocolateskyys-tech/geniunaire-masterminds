@@ -55,7 +55,7 @@ function SignupRequest({ onReturn }) {
 
   function buildRequestCopy(request) {
     return [
-      'DREAM FUNNEL ACCESS REQUEST',
+      'ADMIRATION FUNNEL ACCESS REQUEST',
       '',
       `Name: ${request.name}`,
       `Email: ${request.email}`,
@@ -83,11 +83,11 @@ function SignupRequest({ onReturn }) {
         </p>
 
         <h1 className="text-6xl font-bold text-purple-400 mb-4">
-          REQUEST CLEARANCE
+          ENTER THE RIFT
         </h1>
 
         <p className="text-slate-400 max-w-3xl mb-8">
-          Submit interest for Dream Funnel access, client niche builds, Vault releases, DormMageddon, or founder promo opportunities.
+          Submit interest for Admiration Funnel access, client niche builds, Vault releases, DormMageddon, or founder promo opportunities.
         </p>
 
         <form onSubmit={addRequest} className="border border-purple-900 rounded-xl p-6 mb-8 bg-black/40">
@@ -122,7 +122,7 @@ function SignupRequest({ onReturn }) {
             <option value="Founder Promo Program">Founder Promo Program</option>
             <option value="Vault Release Promotion">Vault Release Promotion</option>
             <option value="Creator Studio Access">Creator Studio Access</option>
-            <option value="General Dream Funnel Access">General Dream Funnel Access</option>
+            <option value="General Admiration Funnel Access">General Admiration Funnel Access</option>
           </select>
 
           <textarea
