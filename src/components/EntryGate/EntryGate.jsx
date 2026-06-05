@@ -87,19 +87,19 @@ return (
 
     <section className="relative z-10 max-w-5xl mx-auto text-center px-6 mt-20">
       <p className="text-xs md:text-sm text-purple-400 tracking-[0.45em] uppercase mb-6">
-        Admiration Funnel: Rift Ride
+        GENIUNAIRE MASTERMINDS PRESENTS
       </p>
 
       <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-300 via-purple-400 to-slate-300 mb-8 drop-shadow-[0_0_18px_rgba(168,85,247,0.6)] tracking-tight">
         Enter The Admiration Funnel
         <br />
-        Command Center.
+        Rift Tunnel.
       </h1>
 
       <div className="h-px bg-purple-500/80 max-w-2xl mx-auto mb-8" />
 
       <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-        Turn Dreams Into Diamonds. Turn Dreams Into Diamonds. Your idea found an opening. Stop drifting, enter the Rift, and build it in the Cloud.
+        Turn Dreams Into Diamonds. Your idea found an opening. Stop drifting, enter the Rift, and build it in the Cloud.
       </p>
 
       <form onSubmit={handleAccessCheck} className="mb-10 max-w-sm mx-auto">
