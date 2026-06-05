@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import "./EntryGate.css";
 
 function EntryGate({
   onEnterDreamLab,
@@ -74,7 +75,7 @@ return (
         </p>
       </div>
 
-      <button
+      <button onClick={(event) => { document.body.classList.remove("mine-rumble"); void document.body.offsetWidth; document.body.classList.add("mine-rumble"); setTimeout(() => document.body.classList.remove("mine-rumble"), 520); }}
         type="button"
         onClick={() => setSoundEnabled((currentValue) => !currentValue)}
         className="text-slate-400 hover:text-purple-300 transition-all duration-300 border border-slate-700 hover:border-purple-500 px-4 py-2 rounded bg-black/50"
@@ -99,7 +100,7 @@ return (
       <div className="h-px bg-purple-500/80 max-w-2xl mx-auto mb-8" />
 
       <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-        Turn Dreams Into Diamonds. Your idea found an opening. Stop drifting, enter the Rift, and build it in the Cloud.
+        ASPIRATION FUNNEL MINE. YOU BETTER COME IN.. We turn dreams into diamonds.
       </p>
 
       <form onSubmit={handleAccessCheck} className="mb-10 max-w-sm mx-auto">
