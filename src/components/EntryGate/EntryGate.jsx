@@ -99,7 +99,7 @@ return (
       <div className="h-px bg-purple-500/80 max-w-2xl mx-auto mb-8" />
 
       <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-        Create your dream, organize the build, track the money, and bring it to life inside the Vault.
+        Turn Dreams Into Diamonds. Turn Dreams Into Diamonds. Your idea found an opening. Stop drifting, enter the Rift, and build it in the Cloud.
       </p>
 
       <form onSubmit={handleAccessCheck} className="mb-10 max-w-sm mx-auto">
@@ -160,7 +160,7 @@ return (
           className="group relative px-8 py-5 bg-black border border-slate-700 hover:border-purple-500/70 rounded overflow-hidden transition-all duration-500 hover:shadow-[0_0_20px_rgba(168,85,247,0.25)] hover:-translate-y-1"
         >
           <span className="relative z-10 text-slate-400 uppercase tracking-widest font-semibold text-sm group-hover:text-purple-300">
-            Open Dream Lab
+            Open Build Lab
           </span>
         </button>
 
