@@ -162,3 +162,12 @@ body.mine-rumble .absolute {
     animation: none;
   }
 }
+
+/* Stage 19A-8: Strong two-line mine message */
+body:has(input[placeholder*="RIFT"]) p,
+body:has(input[value="ASPIRE!"]) p {
+  white-space: pre-line;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

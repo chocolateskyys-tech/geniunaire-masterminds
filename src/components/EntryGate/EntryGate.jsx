@@ -92,15 +92,16 @@ return (
       </p>
 
       <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-300 via-purple-400 to-slate-300 mb-8 drop-shadow-[0_0_18px_rgba(168,85,247,0.6)] tracking-tight">
-        Enter The Admiration Funnel
+        YOU BETTER COME IN
         <br />
-        Rift Tunnel.
+        YOU BETTER COME IN
       </h1>
 
       <div className="h-px bg-purple-500/80 max-w-2xl mx-auto mb-8" />
 
       <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-        ASPIRATION FUNNEL MINE. YOU BETTER COME IN.. We turn dreams into diamonds.
+        PICK THE RIFT TUNNEL
+WE MINE DREAMS INTO DIAMONDS
       </p>
 
       <form onSubmit={handleAccessCheck} className="mb-10 max-w-sm mx-auto">
@@ -180,7 +181,7 @@ return (
     <footer className="relative z-10 mt-10 pb-6 w-full text-center">
       <p className="text-[10px] text-slate-600 tracking-[0.3em] uppercase flex items-center justify-center gap-2">
         <span className="w-1.5 h-1.5 bg-purple-600 rounded-full animate-pulse" />
-        <span>Secure Connection Established // Admiration Funnel Active</span>
+        <span>Secure Connection Established // Aspiration Funnel Mine Active</span>
       </p>
     </footer>
   </main>
