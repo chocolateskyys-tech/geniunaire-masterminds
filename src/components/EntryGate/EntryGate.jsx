@@ -37,7 +37,7 @@ function EntryGate({
     setAccessStatus('checking');
 
     setTimeout(() => {
-      if (accessCode.trim().toUpperCase() === 'DREAM') {
+      if (accessCode.trim().toUpperCase() === 'ASPIRE!') {
         setAccessStatus('granted');
       } else {
         setAccessStatus('denied');
