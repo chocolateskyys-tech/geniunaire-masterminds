@@ -22,6 +22,7 @@ import PaymentDoors from './components/PaymentDoors/PaymentDoors';
 import ClientIntakeDashboard from './components/ClientIntakeDashboard/ClientIntakeDashboard';
 import MineLab from './components/MineLab/MineLab';
 import SourceSalesTracker from './components/SourceSalesTracker/SourceSalesTracker';
+import LaunchReadiness from './components/LaunchReadiness/LaunchReadiness';
 
 function App() {
   const [currentView, setCurrentView] = useState('entryGate');
@@ -38,6 +39,7 @@ function App() {
 ['Client Intake', 'clientIntake'],
 ['Mine Lab', 'mineLab'],
 ['Source + Sales', 'sourceSalesTracker'],
+['Launch Readiness', 'launchReadiness'],
     ['Enter The Mine', 'signupRequest'],
     ['Preview Gallery', 'previewGallery'],
     ['Checkout', 'checkoutRoom'],
@@ -70,6 +72,7 @@ function App() {
 clientIntake: <ClientIntakeDashboard {...roomProps} />,
 mineLab: <MineLab {...roomProps} />,
 sourceSalesTracker: <SourceSalesTracker {...roomProps} />,
+launchReadiness: <LaunchReadiness {...roomProps} />,
     checkoutRoom: <CheckoutRoom {...roomProps} />,
     dreamLab: <DreamLab {...roomProps} />,
     moneyTracker: <MoneyTracker {...roomProps} />,
