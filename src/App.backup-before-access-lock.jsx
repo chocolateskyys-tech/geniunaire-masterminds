@@ -18,18 +18,11 @@ import WebsiteRescueLab from './components/WebsiteRescueLab/WebsiteRescueLab';
 import ProductVault from './components/ProductVault/ProductVault';
 import PreviewGallery from './components/PreviewGallery/PreviewGallery';
 import EStore from './components/EStore/EStore';
-import {
-  ACCESS_ROLES,
-  canAccessRoom,
-  getStoredRole,
-  setStoredRole,
-} from './config/accessControl';
 function App() {
   const [currentView, setCurrentView] = useState('entryGate');
   const [requestedAccess, setRequestedAccess] = useState('General Admiration Funnel Access');
   const [requestedDestination, setRequestedDestination] = useState('dreamLab');
   const [accessGranted, setAccessGranted] = useState(false);
-const [accessRole, setAccessRole] = useState(() => getStoredRole());
 
   const navItems = [
     ['Entry Gate', 'entryGate'],
@@ -150,7 +143,7 @@ const [accessRole, setAccessRole] = useState(() => getStoredRole());
             </div>
 
             <div className="flex flex-wrap gap-3">
-              {visibleNavItems.map(([label, view]) => (
+              {navItems.map(([label, view]) => (
                 <button
                   key={view}
                   type="button"
