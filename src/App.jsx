@@ -28,7 +28,7 @@ import {
 function App() {
   const [currentView, setCurrentView] = useState('entryGate');
   const [requestedAccess, setRequestedAccess] = useState('General Admiration Funnel Access');
-  const [requestedDestination, setRequestedDestination] = useState('dreamLab');
+  const [requestedDestination, setRequestedDestination] = useState('paymentDoors');
   const [accessGranted, setAccessGranted] = useState(false);
 const [accessRole, setAccessRole] = useState(() => getStoredRole());
 
@@ -83,7 +83,7 @@ paymentDoors: <PaymentDoors {...roomProps} />,
     eStore: <EStore {...roomProps} />,
   };
 
-  function requestAccess(accessType, destination = 'dreamLab') {
+  function requestAccess(accessType, destination = 'paymentDoors') {
     setRequestedAccess(accessType);
     setRequestedDestination(destination);
     setAccessGranted(false);
@@ -92,7 +92,7 @@ paymentDoors: <PaymentDoors {...roomProps} />,
 
   function grantAccess() {
     setAccessGranted(true);
-    setCurrentView(requestedDestination || 'dreamLab');
+    setCurrentView(requestedDestination || 'paymentDoors');
   }
 
   function founderAccess() {
@@ -121,7 +121,7 @@ paymentDoors: <PaymentDoors {...roomProps} />,
         <EntryGate
           onEnterDreamLab={() => requestAccess('Think Tank / Dream Lab Access', 'dreamLab')}
           onEnterMoneyTracker={() => requestAccess('Vault / Money Tracker Access', 'moneyTracker')}
-          onRequestClearance={() => requestAccess('General Admiration Funnel Access', 'dreamLab')}
+          onRequestClearance={() => requestAccess('General Admiration Funnel Access', 'paymentDoors')}
           onFounderAccess={founderAccess}
         />
       );
@@ -162,7 +162,7 @@ paymentDoors: <PaymentDoors {...roomProps} />,
                       setAccessGranted(false);
                       setCurrentView('entryGate');
                     } else if (view === 'signupRequest') {
-                      requestAccess('General Admiration Funnel Access', 'dreamLab');
+                      requestAccess('General Admiration Funnel Access', 'paymentDoors');
                     } else {
                       setCurrentView(view);
                     }
