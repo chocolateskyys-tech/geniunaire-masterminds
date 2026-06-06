@@ -19,22 +19,21 @@ import ProductVault from './components/ProductVault/ProductVault';
 import PreviewGallery from './components/PreviewGallery/PreviewGallery';
 import EStore from './components/EStore/EStore';
 import PaymentDoors from './components/PaymentDoors/PaymentDoors';
-
+import {
+  ACCESS_ROLES,
+  canAccessRoom,
+  getStoredRole,
+  setStoredRole,
+} from './config/accessControl';
 function App() {
   const [currentView, setCurrentView] = useState('entryGate');
-  const [requestedAccess, setRequestedAccess] = useState(
-    'General Admiration Funnel Access'
-  );
-  const [requestedDestination, setRequestedDestination] =
-    useState('paymentDoors');
+  const [requestedAccess, setRequestedAccess] = useState('General Admiration Funnel Access');
+  const [requestedDestination, setRequestedDestination] = useState('paymentDoors');
   const [accessGranted, setAccessGranted] = useState(false);
+const [accessRole, setAccessRole] = useState(() => getStoredRole());
 
   const navItems = [
     ['Entry Gate', 'entryGate'],
-    ['Payment Doors', 'paymentDoors'],
-    ['Enter The Mine', 'signupRequest'],
-    ['Preview Gallery', 'previewGallery'],
-    ['Checkout', 'checkoutRoom'],
     ['Dream Lab', 'dreamLab'],
     ['Money Tracker', 'moneyTracker'],
     ['DormMageddon', 'dormMageddon'],
@@ -42,13 +41,17 @@ function App() {
     ['Vault Releases', 'vaultReleaseLibrary'],
     ['Promo Vault', 'founderPromoVault'],
     ['Founder Rules', 'founderTierRules'],
+    ['Enter The Rift', 'signupRequest'],
+['Payment Doors', 'paymentDoors'],
     ['Asset Vault', 'assetVault'],
+    ['Checkout', 'checkoutRoom'],
     ['Domains', 'domainVault'],
     ['Robots', 'robotStorefront'],
     ['Soundscape', 'soundscapeStudio'],
     ['AI Build Lab', 'aiBuildLab'],
     ['Website Rescue', 'websiteRescueLab'],
     ['Product Vault', 'productVault'],
+    ['Preview Gallery', 'previewGallery'],
     ['E-Store', 'eStore'],
   ];
 
@@ -60,8 +63,6 @@ function App() {
   };
 
   const views = {
-    paymentDoors: <PaymentDoors {...roomProps} />,
-    checkoutRoom: <CheckoutRoom {...roomProps} />,
     dreamLab: <DreamLab {...roomProps} />,
     moneyTracker: <MoneyTracker {...roomProps} />,
     dormMageddon: <DormMageddon {...roomProps} />,
@@ -70,6 +71,8 @@ function App() {
     founderPromoVault: <FounderPromoVault {...roomProps} />,
     founderTierRules: <FounderTierRules {...roomProps} />,
     assetVault: <AssetVault {...roomProps} />,
+    checkoutRoom: <CheckoutRoom {...roomProps} />,
+paymentDoors: <PaymentDoors {...roomProps} />,
     domainVault: <DomainVault {...roomProps} />,
     robotStorefront: <RobotStorefront {...roomProps} />,
     soundscapeStudio: <SoundscapeStudio {...roomProps} />,
@@ -82,7 +85,7 @@ function App() {
 
   function requestAccess(accessType, destination = 'paymentDoors') {
     setRequestedAccess(accessType);
-    setRequestedDestination(destination || 'paymentDoors');
+    setRequestedDestination(destination);
     setAccessGranted(false);
     setCurrentView('signupRequest');
   }
@@ -93,7 +96,7 @@ function App() {
   }
 
   function founderAccess() {
-    setRequestedAccess('ASPIRE / Owner Full Access');
+    setRequestedAccess('Founder / Owner Full Access');
     setRequestedDestination('aiBuildLab');
     setAccessGranted(true);
     setCurrentView('aiBuildLab');
@@ -116,15 +119,9 @@ function App() {
     if (currentView === 'entryGate') {
       return (
         <EntryGate
-          onEnterDreamLab={() =>
-            requestAccess('Think Tank / Dream Lab Access', 'paymentDoors')
-          }
-          onEnterMoneyTracker={() =>
-            requestAccess('Vault / Money Tracker Access', 'paymentDoors')
-          }
-          onRequestClearance={() =>
-            requestAccess('General Admiration Funnel Access', 'paymentDoors')
-          }
+          onEnterDreamLab={() => requestAccess('Think Tank / Dream Lab Access', 'dreamLab')}
+          onEnterMoneyTracker={() => requestAccess('Vault / Money Tracker Access', 'moneyTracker')}
+          onRequestClearance={() => requestAccess('General Admiration Funnel Access', 'paymentDoors')}
           onFounderAccess={founderAccess}
         />
       );
@@ -138,7 +135,7 @@ function App() {
       return renderSignup();
     }
 
-    return views[currentView] || views.paymentDoors;
+    return views[currentView] || views.dreamLab;
   }
 
   return (
@@ -151,12 +148,12 @@ function App() {
                 Geniunaire MasterMinds
               </p>
               <p className="text-slate-500 text-xs mt-1">
-                Admiration Funnel Mine
+                Admiration Funnel: Rift Ride
               </p>
             </div>
 
             <div className="flex flex-wrap gap-3">
-              {navItems.map(([label, view]) => (
+              {visibleNavItems.map(([label, view]) => (
                 <button
                   key={view}
                   type="button"
@@ -165,10 +162,7 @@ function App() {
                       setAccessGranted(false);
                       setCurrentView('entryGate');
                     } else if (view === 'signupRequest') {
-                      requestAccess(
-                        'General Admiration Funnel Access',
-                        'paymentDoors'
-                      );
+                      requestAccess('General Admiration Funnel Access', 'paymentDoors');
                     } else {
                       setCurrentView(view);
                     }
