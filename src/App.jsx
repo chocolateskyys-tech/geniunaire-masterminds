@@ -19,6 +19,7 @@ import ProductVault from './components/ProductVault/ProductVault';
 import PreviewGallery from './components/PreviewGallery/PreviewGallery';
 import EStore from './components/EStore/EStore';
 import PaymentDoors from './components/PaymentDoors/PaymentDoors';
+import ClientIntakeDashboard from './components/ClientIntakeDashboard/ClientIntakeDashboard';
 
 function App() {
   const [currentView, setCurrentView] = useState('entryGate');
@@ -26,12 +27,13 @@ function App() {
     'General Admiration Funnel Access'
   );
   const [requestedDestination, setRequestedDestination] =
-    useState('paymentDoors');
+    useState('clientIntake');
   const [accessGranted, setAccessGranted] = useState(false);
 
   const navItems = [
     ['Entry Gate', 'entryGate'],
     ['Payment Doors', 'paymentDoors'],
+['Client Intake', 'clientIntake'],
     ['Enter The Mine', 'signupRequest'],
     ['Preview Gallery', 'previewGallery'],
     ['Checkout', 'checkoutRoom'],
@@ -61,6 +63,7 @@ function App() {
 
   const views = {
     paymentDoors: <PaymentDoors {...roomProps} />,
+clientIntake: <ClientIntakeDashboard {...roomProps} />,
     checkoutRoom: <CheckoutRoom {...roomProps} />,
     dreamLab: <DreamLab {...roomProps} />,
     moneyTracker: <MoneyTracker {...roomProps} />,
@@ -80,7 +83,7 @@ function App() {
     eStore: <EStore {...roomProps} />,
   };
 
-  function requestAccess(accessType, destination = 'paymentDoors') {
+  function requestAccess(accessType, destination = 'clientIntake') {
     setRequestedAccess(accessType);
     setRequestedDestination(destination || 'paymentDoors');
     setAccessGranted(false);
@@ -89,7 +92,7 @@ function App() {
 
   function grantAccess() {
     setAccessGranted(true);
-    setCurrentView(requestedDestination || 'paymentDoors');
+    setCurrentView(requestedDestination || 'clientIntake');
   }
 
   function founderAccess() {
@@ -117,13 +120,13 @@ function App() {
       return (
         <EntryGate
           onEnterDreamLab={() =>
-            requestAccess('Think Tank / Dream Lab Access', 'paymentDoors')
+            requestAccess('Think Tank / Dream Lab Access', 'clientIntake')
           }
           onEnterMoneyTracker={() =>
-            requestAccess('Vault / Money Tracker Access', 'paymentDoors')
+            requestAccess('Vault / Money Tracker Access', 'clientIntake')
           }
           onRequestClearance={() =>
-            requestAccess('General Admiration Funnel Access', 'paymentDoors')
+            requestAccess('General Admiration Funnel Access', 'clientIntake')
           }
           onFounderAccess={founderAccess}
         />
