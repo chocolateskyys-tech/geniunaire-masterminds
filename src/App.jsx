@@ -18,7 +18,6 @@ import WebsiteRescueLab from './components/WebsiteRescueLab/WebsiteRescueLab';
 import ProductVault from './components/ProductVault/ProductVault';
 import PreviewGallery from './components/PreviewGallery/PreviewGallery';
 import EStore from './components/EStore/EStore';
-
 function App() {
   const [currentView, setCurrentView] = useState('entryGate');
   const [requestedAccess, setRequestedAccess] = useState('General Admiration Funnel Access');
@@ -71,7 +70,7 @@ function App() {
     websiteRescueLab: <WebsiteRescueLab {...roomProps} />,
     productVault: <ProductVault {...roomProps} />,
     previewGallery: <PreviewGallery {...roomProps} />,
-    eStore: <EStore />,
+    eStore: <EStore {...roomProps} />,
   };
 
   function requestAccess(accessType, destination = 'dreamLab') {
