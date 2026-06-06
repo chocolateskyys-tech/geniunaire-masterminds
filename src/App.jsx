@@ -18,6 +18,7 @@ import WebsiteRescueLab from './components/WebsiteRescueLab/WebsiteRescueLab';
 import ProductVault from './components/ProductVault/ProductVault';
 import PreviewGallery from './components/PreviewGallery/PreviewGallery';
 import EStore from './components/EStore/EStore';
+import PaymentDoors from './components/PaymentDoors/PaymentDoors';
 import {
   ACCESS_ROLES,
   canAccessRoom,
@@ -41,6 +42,7 @@ const [accessRole, setAccessRole] = useState(() => getStoredRole());
     ['Promo Vault', 'founderPromoVault'],
     ['Founder Rules', 'founderTierRules'],
     ['Enter The Rift', 'signupRequest'],
+['Payment Doors', 'paymentDoors'],
     ['Asset Vault', 'assetVault'],
     ['Checkout', 'checkoutRoom'],
     ['Domains', 'domainVault'],
@@ -70,6 +72,7 @@ const [accessRole, setAccessRole] = useState(() => getStoredRole());
     founderTierRules: <FounderTierRules {...roomProps} />,
     assetVault: <AssetVault {...roomProps} />,
     checkoutRoom: <CheckoutRoom {...roomProps} />,
+paymentDoors: <PaymentDoors {...roomProps} />,
     domainVault: <DomainVault {...roomProps} />,
     robotStorefront: <RobotStorefront {...roomProps} />,
     soundscapeStudio: <SoundscapeStudio {...roomProps} />,

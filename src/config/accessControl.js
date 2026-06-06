@@ -10,7 +10,8 @@ export const ROOM_ACCESS = {
   signupRequest: ["public", "lead", "client", "admin"],
   previewGallery: ["public", "lead", "client", "admin"],
 
-  checkoutRoom: ["lead", "client", "admin"],
+  paymentDoors: ["lead", "client", "admin"],
+checkoutRoom: ["lead", "client", "admin"],
   clientDashboard: ["client", "admin"],
 
   dreamLab: ["admin"],
@@ -40,6 +41,7 @@ export const LEAD_ROOMS = [
   "entryGate",
   "signupRequest",
   "previewGallery",
+  "paymentDoors",
   "checkoutRoom",
 ];
 
@@ -47,6 +49,7 @@ export const CLIENT_ROOMS = [
   "entryGate",
   "signupRequest",
   "previewGallery",
+  "paymentDoors",
   "checkoutRoom",
   "clientDashboard",
 ];
@@ -55,6 +58,7 @@ export const ADMIN_ROOMS = [
   "entryGate",
   "signupRequest",
   "previewGallery",
+  "paymentDoors",
   "checkoutRoom",
   "dreamLab",
   "aiBuildLab",
