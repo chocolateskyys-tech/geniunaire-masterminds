@@ -1,219 +1,181 @@
-import { useEffect, useState } from 'react';
+import { useState } from "react";
 
-const STORAGE_KEY = 'geniunaireSignupRequests';
-
-function SignupRequest({ onReturn }) {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [interest, setInterest] = useState('');
-  const [notes, setNotes] = useState('');
-  const [copyStatus, setCopyStatus] = useState('');
-
-  const [requests, setRequests] = useState(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    return saved ? JSON.parse(saved) : [];
+export default function SignupRequest({
+  requestedAccess = "General Admiration Funnel Access",
+  onAccessGranted,
+  onReturn,
+}) {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    projectType: "",
+    budgetRange: "",
+    notes: "",
   });
 
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(requests));
-  }, [requests]);
+  const [submitted, setSubmitted] = useState(false);
 
-  function addRequest(event) {
+  function updateField(field, value) {
+    setFormData((current) => ({
+      ...current,
+      [field]: value,
+    }));
+  }
+
+  function handleSubmit(event) {
     event.preventDefault();
 
-    const newRequest = {
-      id: Date.now(),
-      name: name || 'Unnamed Request',
-      email: email || 'No email added',
-      interest: interest || 'General Access',
-      notes: notes || '',
+    const leadRecord = {
+      ...formData,
+      requestedAccess,
+      submittedAt: new Date().toISOString(),
+      status: "lead-access-granted",
     };
 
-    setRequests([newRequest, ...requests]);
+    localStorage.setItem("gm_latest_lead_request", JSON.stringify(leadRecord));
+    localStorage.setItem("gm_access_role", "lead");
+    localStorage.setItem("gm_entry_status", "lead-request-submitted");
 
-    setName('');
-    setEmail('');
-    setInterest('');
-    setNotes('');
-    setCopyStatus('Access request saved.');
-  }
+    setSubmitted(true);
 
-  function deleteRequest(id) {
-    setRequests(requests.filter((request) => request.id !== id));
-  }
-
-  function clearRequests() {
-    const confirmed = window.confirm(
-      'Are you sure you want to clear all saved access requests? This cannot be undone.'
-    );
-
-    if (confirmed) {
-      setRequests([]);
-      setCopyStatus('');
-    }
-  }
-
-  function buildRequestCopy(request) {
-    return [
-      'ADMIRATION FUNNEL ACCESS REQUEST',
-      '',
-      `Name: ${request.name}`,
-      `Email: ${request.email}`,
-      `Interest: ${request.interest}`,
-      '',
-      'Notes:',
-      request.notes || 'No notes added.',
-    ].join('\n');
-  }
-
-  async function copyRequest(request) {
-    try {
-      await navigator.clipboard.writeText(buildRequestCopy(request));
-      setCopyStatus(`Copied request for ${request.name}.`);
-    } catch (error) {
-      setCopyStatus('Copy failed. Select and copy manually.');
+    if (typeof onAccessGranted === "function") {
+      onAccessGranted();
     }
   }
 
   return (
-    <main className="min-h-screen bg-black text-slate-300 px-6 py-10">
-      <section className="max-w-5xl mx-auto">
-        <p className="text-xs text-purple-400 tracking-[0.35em] uppercase mb-3">
-          Geniunaire MasterMinds // Access Portal
+    <main className="min-h-screen bg-black px-5 py-10 text-white">
+      <section className="mx-auto max-w-3xl rounded-3xl border border-purple-900 bg-purple-950/20 p-6 shadow-2xl shadow-purple-950/40">
+        <p className="mb-3 text-xs font-bold uppercase tracking-[0.35em] text-purple-300">
+          Admiration Funnel Mine
         </p>
 
-        <h1 className="text-6xl font-bold text-purple-400 mb-4">
-          ENTER THE RIFT
+        <h1 className="text-4xl font-black md:text-6xl">
+          Enter Your Build Info
         </h1>
 
-        <p className="text-slate-400 max-w-3xl mb-8">
-          Submit interest for Admiration Funnel access, client niche builds, Vault releases, DormMageddon, or founder promo opportunities.
+        <p className="mt-4 text-slate-300">
+          You are requesting:{" "}
+          <span className="font-bold text-purple-200">{requestedAccess}</span>
         </p>
 
-        <form onSubmit={addRequest} className="border border-purple-900 rounded-xl p-6 mb-8 bg-black/40">
-          <h2 className="text-purple-300 mb-2">Access Request</h2>
+        <p className="mt-3 text-slate-400">
+          Fill this out so the Mine knows what kind of material you are bringing
+          in. After submitting, you will be moved into the next available access
+          path.
+        </p>
 
-          <p className="text-slate-500 text-sm mb-6">
-            Save the request here first. Later, this can connect to email, Google Sheets, Stripe, or a real signup database.
-          </p>
-
-          <input
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-            placeholder="Name"
-            className="w-full mb-4 bg-black border border-slate-700 px-4 py-3 rounded"
-          />
-
-          <input
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            placeholder="Email"
-            className="w-full mb-4 bg-black border border-slate-700 px-4 py-3 rounded"
-          />
-
-          <select
-            value={interest}
-            onChange={(event) => setInterest(event.target.value)}
-            className="w-full mb-4 bg-black border border-slate-700 px-4 py-3 rounded"
-          >
-            <option value="">What are you interested in?</option>
-            <option value="Client Niche Build">Client Niche Build</option>
-            <option value="DormMageddon">DormMageddon</option>
-            <option value="Founder Promo Program">Founder Promo Program</option>
-            <option value="Vault Release Promotion">Vault Release Promotion</option>
-            <option value="Creator Studio Access">Creator Studio Access</option>
-            <option value="General Admiration Funnel Access">General Admiration Funnel Access</option>
-          </select>
-
-          <textarea
-            value={notes}
-            onChange={(event) => setNotes(event.target.value)}
-            placeholder="Tell us what you want to build, promote, or access."
-            rows="4"
-            className="w-full mb-5 bg-black border border-slate-700 px-4 py-3 rounded"
-          />
-
-          <button className="px-6 py-3 bg-purple-900 border border-purple-500 rounded">
-            Save Access Request
-          </button>
-        </form>
-
-        {copyStatus && (
-          <p className="mb-6 text-purple-300">
-            {copyStatus}
-          </p>
+        {submitted && (
+          <div className="mt-6 rounded-2xl border border-emerald-500 bg-emerald-950/30 p-4 text-emerald-200">
+            Request saved. Access granted.
+          </div>
         )}
 
-        <div className="border border-purple-900 rounded-xl p-6 mb-8 bg-black/40">
-          <h2 className="text-purple-300 mb-2">Saved Requests</h2>
+        <form className="mt-8 grid gap-4" onSubmit={handleSubmit}>
+          <label className="grid gap-2">
+            <span className="text-sm font-bold text-slate-300">Name</span>
+            <input
+              required
+              value={formData.name}
+              onChange={(event) => updateField("name", event.target.value)}
+              className="rounded-xl border border-purple-900 bg-black px-4 py-3 text-white outline-none focus:border-purple-400"
+              placeholder="Your name"
+            />
+          </label>
 
-          <p className="text-slate-500 text-sm mb-6">
-            These requests stay saved after refresh and can be copied for follow-up.
-          </p>
+          <label className="grid gap-2">
+            <span className="text-sm font-bold text-slate-300">Email</span>
+            <input
+              required
+              type="email"
+              value={formData.email}
+              onChange={(event) => updateField("email", event.target.value)}
+              className="rounded-xl border border-purple-900 bg-black px-4 py-3 text-white outline-none focus:border-purple-400"
+              placeholder="you@email.com"
+            />
+          </label>
 
-          {requests.length === 0 && (
-            <p className="text-slate-500">No access requests yet.</p>
-          )}
-
-          {requests.map((request) => (
-            <div key={request.id} className="border border-slate-800 rounded-xl p-5 mb-4">
-              <p className="text-xs uppercase tracking-widest text-slate-500 mb-2">
-                {request.interest}
-              </p>
-
-              <h2 className="text-2xl text-purple-300 font-bold mb-2">
-                {request.name}
-              </h2>
-
-              <p className="text-slate-500 text-sm mb-3">
-                {request.email}
-              </p>
-
-              <p className="text-slate-400 text-sm mb-5">
-                {request.notes || 'No notes added.'}
-              </p>
-
-              <div className="flex flex-wrap gap-3">
-                <button
-                  type="button"
-                  onClick={() => copyRequest(request)}
-                  className="px-4 py-2 bg-purple-900 border border-purple-500 rounded"
-                >
-                  Copy Request
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => deleteRequest(request.id)}
-                  className="px-4 py-2 border border-red-900 text-red-300 rounded hover:bg-red-950"
-                >
-                  Delete Request
-                </button>
-              </div>
-            </div>
-          ))}
-
-          {requests.length > 0 && (
-            <button
-              type="button"
-              onClick={clearRequests}
-              className="mt-4 px-6 py-3 border border-red-900 text-red-300 rounded hover:bg-red-950"
+          <label className="grid gap-2">
+            <span className="text-sm font-bold text-slate-300">
+              What are you trying to build?
+            </span>
+            <select
+              required
+              value={formData.projectType}
+              onChange={(event) =>
+                updateField("projectType", event.target.value)
+              }
+              className="rounded-xl border border-purple-900 bg-black px-4 py-3 text-white outline-none focus:border-purple-400"
             >
-              Clear Requests
-            </button>
-          )}
-        </div>
+              <option value="">Choose a path</option>
+              <option value="website-build">Website Build</option>
+              <option value="website-rescue">Website Rescue</option>
+              <option value="product-brand">Product Brand</option>
+              <option value="dropshipping-store">Dropshipping Store</option>
+              <option value="adult-novelty-store">
+                Adult Novelty Link Store
+              </option>
+              <option value="digital-product">Digital Product</option>
+              <option value="robot-worker">Robot Worker Setup</option>
+              <option value="domain-hosting">Domain / Hosting Help</option>
+              <option value="promo-campaign">Promo Campaign</option>
+              <option value="managed-launch">Managed Launch Support</option>
+            </select>
+          </label>
 
-        <button
-          type="button"
-          onClick={onReturn}
-          className="px-6 py-3 border border-slate-700 rounded hover:border-purple-500"
-        >
-          Return To Entry Gate
-        </button>
+          <label className="grid gap-2">
+            <span className="text-sm font-bold text-slate-300">
+              Budget range
+            </span>
+            <select
+              value={formData.budgetRange}
+              onChange={(event) =>
+                updateField("budgetRange", event.target.value)
+              }
+              className="rounded-xl border border-purple-900 bg-black px-4 py-3 text-white outline-none focus:border-purple-400"
+            >
+              <option value="">Choose one</option>
+              <option value="under-100">Under $100</option>
+              <option value="100-300">$100 - $300</option>
+              <option value="300-750">$300 - $750</option>
+              <option value="750-plus">$750+</option>
+              <option value="quote-needed">Need a quote</option>
+              <option value="payment-plan">Need payment plan</option>
+            </select>
+          </label>
+
+          <label className="grid gap-2">
+            <span className="text-sm font-bold text-slate-300">
+              Notes / what are you bringing into the Mine?
+            </span>
+            <textarea
+              value={formData.notes}
+              onChange={(event) => updateField("notes", event.target.value)}
+              className="min-h-32 rounded-xl border border-purple-900 bg-black px-4 py-3 text-white outline-none focus:border-purple-400"
+              placeholder="Tell us what you have, what is unfinished, what needs fixing, or what you want built."
+            />
+          </label>
+
+          <div className="mt-3 flex flex-wrap gap-3">
+            <button
+              type="submit"
+              className="rounded-full bg-purple-400 px-6 py-3 font-black text-black hover:bg-purple-300"
+            >
+              Submit + Enter Access Path
+            </button>
+
+            {onReturn && (
+              <button
+                type="button"
+                onClick={onReturn}
+                className="rounded-full border border-slate-700 px-6 py-3 font-bold text-slate-300 hover:border-purple-400"
+              >
+                Return To Entry
+              </button>
+            )}
+          </div>
+        </form>
       </section>
     </main>
   );
 }
-
-export default SignupRequest;
