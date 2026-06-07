@@ -18,6 +18,7 @@ import WebsiteRescueLab from './components/WebsiteRescueLab/WebsiteRescueLab';
 import ProductVault from './components/ProductVault/ProductVault';
 import PreviewGallery from './components/PreviewGallery/PreviewGallery';
 import EStore from './components/EStore/EStore';
+import ETVStore from './components/ETVStore/ETVStore';
 import PaymentDoors from './components/PaymentDoors/PaymentDoors';
 import ClientIntakeDashboard from './components/ClientIntakeDashboard/ClientIntakeDashboard';
 import MineLab from './components/MineLab/MineLab';
@@ -58,6 +59,7 @@ function App() {
     ['Website Rescue', 'websiteRescueLab'],
     ['Product Vault', 'productVault'],
     ['E-Store', 'eStore'],
+['E-TV Store', 'etvStore'],
   ];
 
   const roomProps = {
@@ -90,6 +92,7 @@ launchReadiness: <LaunchReadiness {...roomProps} />,
     productVault: <ProductVault {...roomProps} />,
     previewGallery: <PreviewGallery {...roomProps} />,
     eStore: <EStore {...roomProps} />,
+etvStore: <ETVStore {...roomProps} />,
   };
 
   function requestAccess(accessType, destination = 'clientIntake') {
