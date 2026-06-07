@@ -16,6 +16,7 @@ import SoundscapeStudio from './components/SoundscapeStudio/SoundscapeStudio';
 import SoundMine from './components/SoundMine/SoundMine';
 import BroadcastStudio from './components/BroadcastStudio/BroadcastStudio';
 import WardrobeCreator from './components/WardrobeCreator/WardrobeCreator';
+import ETVProgrammingConsole from './components/ETVProgrammingConsole/ETVProgrammingConsole';
 import AIBuildLab from './components/AIBuildLab/AIBuildLab';
 import WebsiteRescueLab from './components/WebsiteRescueLab/WebsiteRescueLab';
 import ProductVault from './components/ProductVault/ProductVault';
@@ -61,6 +62,7 @@ function App() {
     ['Sound Mine', 'soundMine'],
     ['Broadcast Studio', 'broadcastStudio'],
     ['Wardrobe Creator', 'wardrobeCreator'],
+    ['Programming Console', 'etvProgrammingConsole'],
     ['AI Build Lab', 'aiBuildLab'],
     ['Website Rescue', 'websiteRescueLab'],
     ['Product Vault', 'productVault'],
@@ -96,6 +98,7 @@ launchReadiness: <LaunchReadiness {...roomProps} />,
     soundMine: <SoundMine {...roomProps} />,
     broadcastStudio: <BroadcastStudio {...roomProps} />,
     wardrobeCreator: <WardrobeCreator {...roomProps} />,
+    etvProgrammingConsole: <ETVProgrammingConsole {...roomProps} />,
     aiBuildLab: <AIBuildLab {...roomProps} />,
     websiteRescueLab: <WebsiteRescueLab {...roomProps} />,
     productVault: <ProductVault {...roomProps} />,
