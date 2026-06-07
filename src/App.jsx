@@ -13,6 +13,7 @@ import CheckoutRoom from './components/CheckoutRoom/CheckoutRoom';
 import DomainVault from './components/DomainVault/DomainVault';
 import RobotStorefront from './components/RobotStorefront/RobotStorefront';
 import SoundscapeStudio from './components/SoundscapeStudio/SoundscapeStudio';
+import SoundMine from './components/SoundMine/SoundMine';
 import AIBuildLab from './components/AIBuildLab/AIBuildLab';
 import WebsiteRescueLab from './components/WebsiteRescueLab/WebsiteRescueLab';
 import ProductVault from './components/ProductVault/ProductVault';
@@ -55,6 +56,7 @@ function App() {
     ['Domains', 'domainVault'],
     ['Robots', 'robotStorefront'],
     ['Soundscape', 'soundscapeStudio'],
+    ['Sound Mine', 'soundMine'],
     ['AI Build Lab', 'aiBuildLab'],
     ['Website Rescue', 'websiteRescueLab'],
     ['Product Vault', 'productVault'],
@@ -87,6 +89,7 @@ launchReadiness: <LaunchReadiness {...roomProps} />,
     domainVault: <DomainVault {...roomProps} />,
     robotStorefront: <RobotStorefront {...roomProps} />,
     soundscapeStudio: <SoundscapeStudio {...roomProps} />,
+    soundMine: <SoundMine {...roomProps} />,
     aiBuildLab: <AIBuildLab {...roomProps} />,
     websiteRescueLab: <WebsiteRescueLab {...roomProps} />,
     productVault: <ProductVault {...roomProps} />,
