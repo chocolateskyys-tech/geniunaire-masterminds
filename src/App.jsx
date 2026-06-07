@@ -15,6 +15,7 @@ import RobotStorefront from './components/RobotStorefront/RobotStorefront';
 import SoundscapeStudio from './components/SoundscapeStudio/SoundscapeStudio';
 import SoundMine from './components/SoundMine/SoundMine';
 import BroadcastStudio from './components/BroadcastStudio/BroadcastStudio';
+import WardrobeCreator from './components/WardrobeCreator/WardrobeCreator';
 import AIBuildLab from './components/AIBuildLab/AIBuildLab';
 import WebsiteRescueLab from './components/WebsiteRescueLab/WebsiteRescueLab';
 import ProductVault from './components/ProductVault/ProductVault';
@@ -59,6 +60,7 @@ function App() {
     ['Soundscape', 'soundscapeStudio'],
     ['Sound Mine', 'soundMine'],
     ['Broadcast Studio', 'broadcastStudio'],
+    ['Wardrobe Creator', 'wardrobeCreator'],
     ['AI Build Lab', 'aiBuildLab'],
     ['Website Rescue', 'websiteRescueLab'],
     ['Product Vault', 'productVault'],
@@ -93,6 +95,7 @@ launchReadiness: <LaunchReadiness {...roomProps} />,
     soundscapeStudio: <SoundscapeStudio {...roomProps} />,
     soundMine: <SoundMine {...roomProps} />,
     broadcastStudio: <BroadcastStudio {...roomProps} />,
+    wardrobeCreator: <WardrobeCreator {...roomProps} />,
     aiBuildLab: <AIBuildLab {...roomProps} />,
     websiteRescueLab: <WebsiteRescueLab {...roomProps} />,
     productVault: <ProductVault {...roomProps} />,
