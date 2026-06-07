@@ -48,7 +48,7 @@ function App() {
     ['Enter The Mine', 'signupRequest'],
     ['Preview Gallery', 'previewGallery'],
     ['Checkout', 'checkoutRoom'],
-    ['Dream Lab', 'dreamLab'],
+    ['Aspire Lab', 'dreamLab'],
     ['Money Tracker', 'moneyTracker'],
     ['DormMageddon', 'dormMageddon'],
     ['Creator Studio', 'creatorStudio'],
@@ -144,7 +144,7 @@ etvStore: <ETVStore {...roomProps} />,
       return (
         <EntryGate
           onEnterDreamLab={() =>
-            requestAccess('Think Tank / Dream Lab Access', 'clientIntake')
+            requestAccess('Think Tank / Aspire Lab Access', 'clientIntake')
           }
           onEnterMoneyTracker={() =>
             requestAccess('Vault / Money Tracker Access', 'clientIntake')

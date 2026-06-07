@@ -34,7 +34,7 @@ function DreamLab({ onReturn }) {
 
   function clearProfiles() {
   const confirmed = window.confirm(
-    'Are you sure you want to clear all saved Dream Lab profiles? This cannot be undone.'
+    'Are you sure you want to clear all saved Aspire Lab profiles? This cannot be undone.'
   );
 
   if (confirmed) {
@@ -101,7 +101,7 @@ function DreamLab({ onReturn }) {
         <h2 className="text-purple-300 mb-2">Saved Profiles</h2>
 
         <p className="text-slate-500 text-sm mb-6">
-          These profiles stay saved after refresh and can be used as your early Dream Lab idea bank.
+          These profiles stay saved after refresh and can be used as your early Aspire Lab idea bank.
         </p>
 
         {saved.length === 0 && (
