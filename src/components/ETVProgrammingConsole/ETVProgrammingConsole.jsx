@@ -153,6 +153,8 @@ export default function ETVProgrammingConsole({ onReturn }) {
         <span>The Sound Mine builds the audio.</span>
         <span>The Broadcast Studio casts the show.</span>
         <span>The Console wires the signal.</span>
+        <span>No E-TV, no signal.</span>
+        <span>No active signal, no scheduled drops.</span>
       </section>
 
       <section className="sample-drop-panel">

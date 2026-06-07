@@ -122,10 +122,10 @@ export default function ETVStore({ onReturn }) {
         <p className="etv-store-kicker">Programmable E-TV Book Models</p>
         <h1>E-TV Store</h1>
         <p className="etv-store-lead">
-          A regular ebook opens. An E-TV Book turns on.
+          A regular ebook opens. An E-TV device turns the signal on.
         </p>
         <p className="etv-store-copy">
-          Choose your model, wire your signal, and enter the programming.
+          Choose your device, wire your signal, and enter the programming.
           Each E-TV Book Model unlocks different rooms, drops, screen sizes,
           bot features, broadcasts, archives, and living-book experiences
           inside the Admiration Funnel Mine.
