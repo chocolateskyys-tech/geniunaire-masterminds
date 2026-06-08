@@ -81,7 +81,7 @@ return (
         className="text-slate-400 hover:text-purple-300 transition-all duration-300 border border-slate-700 hover:border-purple-500 px-4 py-2 rounded bg-black/50"
       >
         <span className="text-[10px] md:text-xs tracking-widest uppercase">
-          {soundEnabled ? 'Soundscape: ON' : 'Soundscape: OFF'}
+          {soundEnabled ? "AI'ality Network: ON" : "AI'ality Network: OFF"}
         </span>
       </button>
     </header>
@@ -92,9 +92,9 @@ return (
       </p>
 
       <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-300 via-purple-400 to-slate-300 mb-8 drop-shadow-[0_0_18px_rgba(168,85,247,0.6)] tracking-tight">
-              ADMIRATION MINE
+              WE SHINE IN THIS MINE.
               <br />
-              INTEGRATOR
+              START DIGGING!
             </h1>
 
       <div className="h-px bg-purple-500/80 max-w-2xl mx-auto mb-8" />
