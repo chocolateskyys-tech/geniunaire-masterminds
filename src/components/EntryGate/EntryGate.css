@@ -280,3 +280,46 @@ body:has(input[placeholder*="RIFT"]) button:hover {
     animation: none !important;
   }
 }
+
+/* Stage 19Q-2: Moving top strip active brand label */
+body:has(input[placeholder*="RIFT"]) header button {
+  min-width: 330px;
+  font-size: clamp(0.72rem, 1.2vw, 1rem) !important;
+  letter-spacing: 0.24em !important;
+  font-weight: 950 !important;
+  color: #81e8df !important;
+  text-shadow:
+    0 0 10px rgba(129, 232, 223, 0.75),
+    0 0 22px rgba(168, 85, 247, 0.65),
+    0 0 34px rgba(255, 215, 120, 0.24);
+  border-color: rgba(129, 232, 223, 0.35) !important;
+  background:
+    linear-gradient(90deg, rgba(8, 6, 12, 0.88), rgba(31, 18, 45, 0.82), rgba(8, 6, 12, 0.88)) !important;
+  background-size: 220% auto !important;
+  animation: topStripSignal 4.8s ease-in-out infinite alternate;
+}
+
+@keyframes topStripSignal {
+  0% {
+    background-position: 0% center;
+    transform: translateX(-2px);
+    box-shadow:
+      0 0 16px rgba(129, 232, 223, 0.16),
+      0 0 28px rgba(168, 85, 247, 0.12);
+  }
+  100% {
+    background-position: 100% center;
+    transform: translateX(2px);
+    box-shadow:
+      0 0 24px rgba(129, 232, 223, 0.28),
+      0 0 42px rgba(168, 85, 247, 0.22);
+  }
+}
+
+@media (max-width: 650px) {
+  body:has(input[placeholder*="RIFT"]) header button {
+    min-width: 220px;
+    letter-spacing: 0.12em !important;
+    font-size: 0.68rem !important;
+  }
+}

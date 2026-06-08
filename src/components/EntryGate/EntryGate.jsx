@@ -81,7 +81,7 @@ return (
         className="text-slate-400 hover:text-purple-300 transition-all duration-300 border border-slate-700 hover:border-purple-500 px-4 py-2 rounded bg-black/50"
       >
         <span className="text-[10px] md:text-xs tracking-widest uppercase">
-          {soundEnabled ? "AI'ality: ON" : "AI'ality: OFF"}
+          "ADMIRATION MINE INTEGRATOR ACTIVE"
         </span>
       </button>
     </header>
