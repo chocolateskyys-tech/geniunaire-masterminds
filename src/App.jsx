@@ -23,6 +23,7 @@ import ProductVault from './components/ProductVault/ProductVault';
 import PreviewGallery from './components/PreviewGallery/PreviewGallery';
 import EStore from './components/EStore/EStore';
 import ETVStore from './components/ETVStore/ETVStore';
+import AICastingMembership from './components/AICastingMembership/AICastingMembership';
 import PaymentDoors from './components/PaymentDoors/PaymentDoors';
 import ClientIntakeDashboard from './components/ClientIntakeDashboard/ClientIntakeDashboard';
 import MineLab from './components/MineLab/MineLab';
@@ -68,6 +69,7 @@ function App() {
     ['Product Vault', 'productVault'],
     ['E-Store', 'eStore'],
 ['E-TV Store', 'etvStore'],
+    ["AI'ality Casting", 'aiCastingMembership'],
   ];
 
   const roomProps = {
@@ -105,6 +107,7 @@ launchReadiness: <LaunchReadiness {...roomProps} />,
     previewGallery: <PreviewGallery {...roomProps} />,
     eStore: <EStore {...roomProps} />,
 etvStore: <ETVStore {...roomProps} />,
+    aiCastingMembership: <AICastingMembership {...roomProps} />,
   };
 
   function requestAccess(accessType, destination = 'clientIntake') {
