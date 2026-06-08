@@ -323,3 +323,76 @@ body:has(input[placeholder*="RIFT"]) header button {
     font-size: 0.68rem !important;
   }
 }
+
+/* Stage 19Q-4: Make Admiration Mine Integrator Active pop when header bar breathes */
+body:has(input[placeholder*="RIFT"]) header .mine-active-notice {
+  color: #f7fbff !important;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(44, 44, 50, 0.46),
+      rgba(129, 232, 223, 0.24),
+      rgba(255, 215, 120, 0.22),
+      rgba(183, 92, 255, 0.24),
+      rgba(44, 44, 50, 0.46)
+    ) !important;
+  background-size: 260% auto !important;
+  border: 1px solid rgba(129, 232, 223, 0.45) !important;
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.95),
+    0 0 16px rgba(129, 232, 223, 0.95),
+    0 0 28px rgba(183, 92, 255, 0.85),
+    0 0 42px rgba(255, 215, 120, 0.45) !important;
+  box-shadow:
+    0 0 18px rgba(129, 232, 223, 0.28),
+    0 0 34px rgba(183, 92, 255, 0.18),
+    inset 0 0 18px rgba(255, 255, 255, 0.08) !important;
+  animation: mineNoticeGlowPop 4.8s ease-in-out infinite !important;
+}
+
+@keyframes mineNoticeGlowPop {
+  0% {
+    transform: translateX(-8px) scale(0.985);
+    opacity: 0.52;
+    filter: grayscale(0.45) brightness(0.72);
+    background-position: 0% center;
+    box-shadow:
+      0 0 6px rgba(129, 232, 223, 0.12),
+      inset 0 0 12px rgba(255, 255, 255, 0.03);
+  }
+
+  38% {
+    opacity: 0.78;
+    filter: grayscale(0.15) brightness(1);
+  }
+
+  50% {
+    transform: translateX(0) scale(1.035);
+    opacity: 1;
+    filter: grayscale(0) brightness(1.45);
+    background-position: 55% center;
+    box-shadow:
+      0 0 22px rgba(129, 232, 223, 0.52),
+      0 0 42px rgba(183, 92, 255, 0.42),
+      0 0 58px rgba(255, 215, 120, 0.22),
+      inset 0 0 24px rgba(255, 255, 255, 0.11);
+  }
+
+  100% {
+    transform: translateX(8px) scale(0.985);
+    opacity: 0.56;
+    filter: grayscale(0.5) brightness(0.78);
+    background-position: 100% center;
+    box-shadow:
+      0 0 6px rgba(129, 232, 223, 0.12),
+      inset 0 0 12px rgba(255, 255, 255, 0.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body:has(input[placeholder*="RIFT"]) header .mine-active-notice {
+    animation: none !important;
+    opacity: 1;
+    filter: none;
+  }
+}
