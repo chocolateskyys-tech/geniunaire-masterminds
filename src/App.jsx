@@ -153,6 +153,9 @@ etvStore: <ETVStore {...roomProps} />,
             requestAccess('General Admiration Funnel Access', 'clientIntake')
           }
           onFounderAccess={founderAccess}
+          onEnterAIality={() =>
+            requestAccess("AI'ality Network Access", "broadcastStudio")
+          }
         />
       );
     }

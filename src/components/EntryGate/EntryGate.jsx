@@ -75,20 +75,24 @@ return (
         </p>
       </div>
 
-      <button onClick={(event) => { document.body.classList.remove("mine-rumble"); void document.body.offsetWidth; document.body.classList.add("mine-rumble"); setTimeout(() => document.body.classList.remove("mine-rumble"), 520); }}
+      <div className="mine-active-notice" aria-label="Admiration Mine Integrator status">
+            Admiration Mine Integrator Active
+          </div>
+
+          <button onClick={(event) => { document.body.classList.remove("mine-rumble"); void document.body.offsetWidth; document.body.classList.add("mine-rumble"); setTimeout(() => document.body.classList.remove("mine-rumble"), 520); }}
         type="button"
         onClick={() => setSoundEnabled((currentValue) => !currentValue)}
         className="text-slate-400 hover:text-purple-300 transition-all duration-300 border border-slate-700 hover:border-purple-500 px-4 py-2 rounded bg-black/50"
       >
         <span className="text-[10px] md:text-xs tracking-widest uppercase">
-          "ADMIRATION MINE INTEGRATOR ACTIVE"
+          "GENIUNAIRE MASTERMINDS ACTIVE"
         </span>
       </button>
     </header>
 
     <section className="relative z-10 max-w-5xl mx-auto text-center px-6 mt-20">
       <p className="text-xs md:text-sm text-purple-400 tracking-[0.45em] uppercase mb-6">
-        ADMIRATION MINE INTEGRATOR
+        GENIUNAIRE MASTERMINDS
       </p>
 
       <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-300 via-purple-400 to-slate-300 mb-8 drop-shadow-[0_0_18px_rgba(168,85,247,0.6)] tracking-tight">
@@ -181,7 +185,7 @@ IT NEEDS A PLACE TO BE MINED, WIRED, INTEGRATED, AND LAUNCHED.
     <footer className="relative z-10 mt-10 pb-6 w-full text-center">
       <p className="text-[10px] text-slate-600 tracking-[0.3em] uppercase flex items-center justify-center gap-2">
         <span className="w-1.5 h-1.5 bg-purple-600 rounded-full animate-pulse" />
-        <span>Secure Connection Established // Admiration Mine Integrator Active</span>
+        <span>Secure Connection Established // AI'ality Network</span>
       </p>
     </footer>
   </main>

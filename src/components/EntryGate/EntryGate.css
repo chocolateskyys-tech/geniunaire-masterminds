@@ -396,3 +396,97 @@ body:has(input[placeholder*="RIFT"]) header .mine-active-notice {
     filter: none;
   }
 }
+
+/* Stage 19Q-5: Exact top bar layout
+   GENIUNAIRE MASTERMINDS [ Admiration Mine Integrator Active ] AI'ality Network */
+body:has(input[placeholder*="RIFT"]) header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 18px !important;
+}
+
+body:has(input[placeholder*="RIFT"]) header .mine-active-notice {
+  flex: 1 1 auto;
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-size: clamp(0.82rem, 1.35vw, 1.12rem);
+  font-weight: 950;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(48, 48, 54, 0.48),
+      rgba(129, 232, 223, 0.28),
+      rgba(255, 215, 120, 0.24),
+      rgba(183, 92, 255, 0.28),
+      rgba(48, 48, 54, 0.48)
+    );
+  background-size: 260% auto;
+  border: 1px solid rgba(129, 232, 223, 0.48);
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.95),
+    0 0 16px rgba(129, 232, 223, 0.95),
+    0 0 30px rgba(183, 92, 255, 0.85),
+    0 0 46px rgba(255, 215, 120, 0.48);
+  box-shadow:
+    0 0 18px rgba(129, 232, 223, 0.28),
+    0 0 34px rgba(183, 92, 255, 0.2),
+    inset 0 0 18px rgba(255, 255, 255, 0.08);
+  animation: mineNoticeGlowPop 4.8s ease-in-out infinite;
+}
+
+body:has(input[placeholder*="RIFT"]) header button {
+  flex: 0 0 auto !important;
+  width: auto !important;
+  min-width: unset !important;
+  white-space: nowrap !important;
+  letter-spacing: 0.11em !important;
+  font-size: 0.72rem !important;
+  color: #ffffff !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+@keyframes mineNoticeGlowPop {
+  0% {
+    transform: translateX(-6px) scale(0.985);
+    opacity: 0.55;
+    filter: grayscale(0.5) brightness(0.72);
+    background-position: 0% center;
+  }
+
+  50% {
+    transform: translateX(0) scale(1.04);
+    opacity: 1;
+    filter: grayscale(0) brightness(1.5);
+    background-position: 55% center;
+  }
+
+  100% {
+    transform: translateX(6px) scale(0.985);
+    opacity: 0.58;
+    filter: grayscale(0.48) brightness(0.78);
+    background-position: 100% center;
+  }
+}
+
+@media (max-width: 760px) {
+  body:has(input[placeholder*="RIFT"]) header {
+    flex-wrap: wrap !important;
+  }
+
+  body:has(input[placeholder*="RIFT"]) header .mine-active-notice {
+    order: 3;
+    flex-basis: 100%;
+    max-width: none;
+    margin: 8px 0 0;
+    font-size: 0.68rem;
+    letter-spacing: 0.09em;
+  }
+}
