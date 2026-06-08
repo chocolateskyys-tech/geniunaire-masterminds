@@ -104,8 +104,7 @@ return (
       <div className="h-px bg-purple-500/80 max-w-2xl mx-auto mb-8" />
 
       <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-        YOUR IDEA DOESN'T NEED ANOTHER FUNNEL.
-IT NEEDS A PLACE TO BE MINED, WIRED, INTEGRATED, AND LAUNCHED.
+        Where drifters become builders and ideas get mined into diamonds.
       </p>
 
       <form onSubmit={handleAccessCheck} className="mb-10 max-w-sm mx-auto">
@@ -146,7 +145,7 @@ IT NEEDS A PLACE TO BE MINED, WIRED, INTEGRATED, AND LAUNCHED.
           className="group relative px-8 py-5 bg-black border border-purple-500/50 hover:border-purple-400 rounded overflow-hidden transition-all duration-500 hover:shadow-[0_0_24px_rgba(168,85,247,0.45)] hover:-translate-y-1"
         >
           <span className="relative z-10 text-slate-200 uppercase tracking-widest font-semibold text-sm group-hover:text-white">
-            Enter The Think Tank
+           MINE "YOUR" DREAM PROJECT
           </span>
         </button>
 
@@ -156,7 +155,7 @@ IT NEEDS A PLACE TO BE MINED, WIRED, INTEGRATED, AND LAUNCHED.
           className="group relative px-8 py-5 bg-purple-900/40 border border-purple-500 rounded overflow-hidden transition-all duration-500 hover:shadow-[0_0_28px_rgba(168,85,247,0.7)] hover:bg-purple-800/50 hover:-translate-y-1"
         >   
           <span className="relative z-10 text-white uppercase tracking-widest font-bold text-sm">
-            Enter The Rift
+            START YOUR DIG!
           </span>
         </button>
   
@@ -166,7 +165,7 @@ IT NEEDS A PLACE TO BE MINED, WIRED, INTEGRATED, AND LAUNCHED.
           className="group relative px-8 py-5 bg-black border border-slate-700 hover:border-purple-500/70 rounded overflow-hidden transition-all duration-500 hover:shadow-[0_0_20px_rgba(168,85,247,0.25)] hover:-translate-y-1"
         >
           <span className="relative z-10 text-slate-400 uppercase tracking-widest font-semibold text-sm group-hover:text-purple-300">
-            Open Build Lab
+           AI'ality Tv Network Sign Up REQUEST
           </span>
         </button>
 
@@ -176,7 +175,7 @@ IT NEEDS A PLACE TO BE MINED, WIRED, INTEGRATED, AND LAUNCHED.
           className="group relative px-8 py-5 bg-black border border-slate-700 hover:border-slate-300 rounded overflow-hidden transition-all duration-500 hover:shadow-[0_0_30px_rgba(203,213,225,0.55)] hover:-translate-y-1"
         >
           <span className="relative z-10 text-slate-400 uppercase tracking-widest font-semibold text-sm group-hover:text-white">
-            Access The Vault
+          VERIFIED GENIUNAIRE PASSAGEWAY
           </span>
         </button>
       </div>
