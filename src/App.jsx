@@ -23,6 +23,7 @@ import ProductVault from './components/ProductVault/ProductVault';
 import PreviewGallery from './components/PreviewGallery/PreviewGallery';
 import EStore from './components/EStore/EStore';
 import ETVStore from './components/ETVStore/ETVStore';
+import ETVLounge from './components/ETVLounge/ETVLounge';
 import AICastingMembership from './components/AICastingMembership/AICastingMembership';
 import PaymentDoors from './components/PaymentDoors/PaymentDoors';
 import ClientIntakeDashboard from './components/ClientIntakeDashboard/ClientIntakeDashboard';
@@ -69,6 +70,7 @@ function App() {
     ['Product Vault', 'productVault'],
     ['E-Store', 'eStore'],
 ['E-TV Store', 'etvStore'],
+    ['E-TV Lounge', 'etvLounge'],
     ["AI'ality Casting", 'aiCastingMembership'],
   ];
 
@@ -107,6 +109,7 @@ launchReadiness: <LaunchReadiness {...roomProps} />,
     previewGallery: <PreviewGallery {...roomProps} />,
     eStore: <EStore {...roomProps} />,
 etvStore: <ETVStore {...roomProps} />,
+    etvLounge: <ETVLounge {...roomProps} />,
     aiCastingMembership: <AICastingMembership {...roomProps} />,
   };
 
