@@ -92,10 +92,10 @@ return (
       </p>
 
       <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-300 via-purple-400 to-slate-300 mb-8 drop-shadow-[0_0_18px_rgba(168,85,247,0.6)] tracking-tight">
-        YOU BETTER COME IN
-        <br />
-        YOU BETTER COME IN
-      </h1>
+              ADMIRATION MINE
+              <br />
+              INTEGRATOR
+            </h1>
 
       <div className="h-px bg-purple-500/80 max-w-2xl mx-auto mb-8" />
 
