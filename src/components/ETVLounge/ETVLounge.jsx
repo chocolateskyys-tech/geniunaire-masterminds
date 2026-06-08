@@ -139,7 +139,8 @@ export default function ETVLounge({ onNavigate }) {
       <section className="my-etv-panel">
         <article className="etv-card main-model-card">
           <p className="etv-kicker">MY E-TV</p>
-          <h2>{selectedModel.name}</h2>
+          <h2>{selectedModel.deviceDisplay || selectedModel.name}</h2>
+          <p className="device-type-pill">{selectedModel.deviceType}</p>
           <p>{selectedModel.accessNote}</p>
 
           <div className="model-selector">

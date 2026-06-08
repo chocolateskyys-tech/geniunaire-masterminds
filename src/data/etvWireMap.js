@@ -1,6 +1,75 @@
+
+export const etvDeviceLadder = [
+  {
+    id: "etvPhone",
+    name: "E-TV Phone",
+    pairedModel: "Pocket Signal",
+    deviceUse: "Starter mobile signal access, quick previews, pocket drops, and limited visitor viewing.",
+    publicLine: "Your pocket signal for starter programming inside the Mine.",
+  },
+  {
+    id: "etvTablet",
+    name: "E-TV Tablet",
+    pairedModel: "DormScreen Book",
+    deviceUse: "Student/tablet-style viewing, campus drops, DormMageddon access, and portable creator previews.",
+    publicLine: "A portable screen for student, campus, and creator-friendly programming.",
+  },
+  {
+    id: "etvBook",
+    name: "E-TV Book",
+    pairedModel: "RiftView",
+    deviceUse: "Core living-book viewing, AI'ality episodes, scheduled drops, and E-TV Lounge access.",
+    publicLine: "A regular ebook opens. An E-TV Book turns on.",
+  },
+  {
+    id: "etvProductionBook",
+    name: "E-TV Production Book",
+    pairedModel: "CastWire",
+    deviceUse: "Casting, audition, voice, writer, actor, callback, and production access.",
+    publicLine: "Wire into production when you are ready to audition, write, perform, or build a cast profile.",
+  },
+  {
+    id: "etvBotBox",
+    name: "E-TV BotBox",
+    pairedModel: "BotBox Book",
+    deviceUse: "Bot rentals, bot training, AI worker setup, and business bot operations.",
+    publicLine: "The bot-ready model for renting, wiring, and managing approved AI workers.",
+  },
+  {
+    id: "etvDiamondFrame",
+    name: "E-TV DiamondFrame",
+    pairedModel: "DiamondFrame",
+    deviceUse: "Premium viewing, upgraded screen experiences, creator drops, and diamond-level lounge access.",
+    publicLine: "Premium signal. Bigger shine. Higher-level programming.",
+  },
+  {
+    id: "etvBroadcast",
+    name: "E-TV Broadcast",
+    pairedModel: "Broadcast Bible",
+    deviceUse: "Live rooms, interviews, classes, watch parties, network events, and broadcast-level programming.",
+    publicLine: "The live-screen model for broadcast experiences and network programming.",
+  },
+  {
+    id: "etvVault",
+    name: "E-TV Vault",
+    pairedModel: "VaultScreen",
+    deviceUse: "Replay vaults, archives, saved courses, premium replays, and licensed drops.",
+    publicLine: "The archive screen for saved drops, replays, and vault programming.",
+  },
+  {
+    id: "etvGhost",
+    name: "E-TV Ghost",
+    pairedModel: "GhostSignal",
+    deviceUse: "Private founder drops, beta rooms, approved private programming, and admin-approved access.",
+    publicLine: "Private signal. Founder-level access. Admin approval required.",
+  },
+];
+
 export const etvModels = [
   {
     id: "pocketSignal",
+    deviceType: "E-TV Phone",
+    deviceDisplay: "E-TV Phone / Pocket Signal",
     name: "Pocket Signal",
     category: "Programmable E-TV Book",
     label: "Starter Screen",
@@ -20,6 +89,8 @@ export const etvModels = [
   },
   {
     id: "dormScreenBook",
+    deviceType: "E-TV Tablet",
+    deviceDisplay: "E-TV Tablet / DormScreen Book",
     name: "DormScreen Book",
     category: "Programmable E-TV Book",
     label: "Student Screen",
@@ -39,6 +110,8 @@ export const etvModels = [
   },
   {
     id: "riftView",
+    deviceType: "E-TV Book",
+    deviceDisplay: "E-TV Book / RiftView",
     name: "RiftView",
     category: "Programmable E-TV Book",
     label: "Core Screen",
@@ -59,6 +132,8 @@ export const etvModels = [
   },
   {
     id: "castWire",
+    deviceType: "E-TV Production Book",
+    deviceDisplay: "E-TV Production Book / CastWire",
     name: "CastWire",
     category: "Programmable E-TV Book",
     label: "Production Screen",
@@ -80,6 +155,8 @@ export const etvModels = [
   },
   {
     id: "botBoxBook",
+    deviceType: "E-TV BotBox",
+    deviceDisplay: "E-TV BotBox / BotBox Book",
     name: "BotBox Book",
     category: "Programmable E-TV Book",
     label: "Bot Rental Screen",
@@ -100,6 +177,8 @@ export const etvModels = [
   },
   {
     id: "diamondFrame",
+    deviceType: "E-TV DiamondFrame",
+    deviceDisplay: "E-TV DiamondFrame / DiamondFrame",
     name: "DiamondFrame",
     category: "Programmable E-TV Book",
     label: "Premium Screen",
@@ -120,6 +199,8 @@ export const etvModels = [
   },
   {
     id: "broadcastBible",
+    deviceType: "E-TV Broadcast",
+    deviceDisplay: "E-TV Broadcast / Broadcast Bible",
     name: "Broadcast Bible",
     category: "Programmable E-TV Book",
     label: "Live Screen",
@@ -141,6 +222,8 @@ export const etvModels = [
   },
   {
     id: "vaultScreen",
+    deviceType: "E-TV Vault",
+    deviceDisplay: "E-TV Vault / VaultScreen",
     name: "VaultScreen",
     category: "Programmable E-TV Book",
     label: "Archive Screen",
@@ -161,6 +244,8 @@ export const etvModels = [
   },
   {
     id: "ghostSignal",
+    deviceType: "E-TV Ghost",
+    deviceDisplay: "E-TV Ghost / GhostSignal",
     name: "GhostSignal",
     category: "Programmable E-TV Book",
     label: "Private Screen",

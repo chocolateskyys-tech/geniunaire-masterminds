@@ -289,3 +289,16 @@
     grid-template-columns: 1fr;
   }
 }
+
+.device-type-pill {
+  display: inline-flex;
+  width: fit-content;
+  margin: 4px 0 10px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  color: #061019 !important;
+  background: linear-gradient(135deg, #79f4ff, #ffdc86);
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
