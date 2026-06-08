@@ -100,8 +100,8 @@ return (
       <div className="h-px bg-purple-500/80 max-w-2xl mx-auto mb-8" />
 
       <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-        PICK THE RIFT TUNNEL
-WE MINE DREAMS INTO DIAMONDS
+        YOUR IDEA DOESN'T NEED ANOTHER FUNNEL.
+IT NEEDS A PLACE TO BE MINED, WIRED, INTEGRATED, AND LAUNCHED.
       </p>
 
       <form onSubmit={handleAccessCheck} className="mb-10 max-w-sm mx-auto">
@@ -181,7 +181,7 @@ WE MINE DREAMS INTO DIAMONDS
     <footer className="relative z-10 mt-10 pb-6 w-full text-center">
       <p className="text-[10px] text-slate-600 tracking-[0.3em] uppercase flex items-center justify-center gap-2">
         <span className="w-1.5 h-1.5 bg-purple-600 rounded-full animate-pulse" />
-        <span>Secure Connection Established // Aspiration Funnel Mine Active</span>
+        <span>Secure Connection Established // Admiration Mine Integrator Active</span>
       </p>
     </footer>
   </main>

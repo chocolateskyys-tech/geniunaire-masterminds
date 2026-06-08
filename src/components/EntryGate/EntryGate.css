@@ -171,3 +171,112 @@ body:has(input[value="ASPIRE!"]) p {
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+
+/* Stage 19Q: Admiration Mine Integrator front-page atmosphere */
+body:has(input[placeholder*="RIFT"]) main {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(255, 215, 120, 0.18), transparent 24%),
+    radial-gradient(circle at 78% 18%, rgba(129, 232, 223, 0.16), transparent 22%),
+    radial-gradient(circle at 50% 80%, rgba(168, 85, 247, 0.22), transparent 32%),
+    linear-gradient(135deg, #030204 0%, #09020f 42%, #12071b 68%, #020202 100%) !important;
+}
+
+body:has(input[placeholder*="RIFT"]) main::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  opacity: 0.68;
+  background:
+    linear-gradient(115deg, transparent 0 18%, rgba(255, 215, 120, 0.18) 19%, transparent 21% 42%, rgba(129, 232, 223, 0.14) 43%, transparent 45% 100%),
+    linear-gradient(35deg, transparent 0 28%, rgba(255, 255, 255, 0.08) 29%, transparent 31% 100%),
+    radial-gradient(circle at 30% 35%, rgba(255, 215, 120, 0.16), transparent 6%),
+    radial-gradient(circle at 65% 58%, rgba(129, 232, 223, 0.13), transparent 7%);
+  filter: blur(0.2px);
+  animation: mineShimmer 8s ease-in-out infinite alternate;
+}
+
+body:has(input[placeholder*="RIFT"]) main::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.8;
+  background-image:
+    radial-gradient(circle, rgba(129, 232, 223, 0.75) 0 2px, transparent 3px),
+    radial-gradient(circle, rgba(255, 215, 120, 0.65) 0 1px, transparent 2px),
+    radial-gradient(circle, rgba(168, 85, 247, 0.7) 0 2px, transparent 3px);
+  background-size: 260px 260px, 180px 180px, 340px 340px;
+  background-position: 20px 40px, 120px 90px, 60px 180px;
+  animation: minePulseDots 5s ease-in-out infinite alternate;
+}
+
+/* Glittered purple + Tiffany-blue hero finish */
+body:has(input[placeholder*="RIFT"]) h1 {
+  color: transparent !important;
+  background-image: linear-gradient(90deg, #b76dff, #81e8df, #ffffff, #b76dff) !important;
+  background-size: 220% auto !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  text-shadow:
+    0 0 18px rgba(129, 232, 223, 0.52),
+    0 0 34px rgba(168, 85, 247, 0.58),
+    0 0 54px rgba(255, 215, 120, 0.18) !important;
+  animation: mineTextGlint 5.5s linear infinite;
+}
+
+/* Make click/tap feel like the Mine reacted */
+body:has(input[placeholder*="RIFT"]) button:active {
+  animation: mineRumble 0.42s ease-in-out;
+}
+
+/* Stronger button glow, still preserving existing button structure */
+body:has(input[placeholder*="RIFT"]) button {
+  box-shadow:
+    0 0 0 rgba(129, 232, 223, 0),
+    0 0 18px rgba(168, 85, 247, 0.13);
+}
+
+body:has(input[placeholder*="RIFT"]) button:hover {
+  box-shadow:
+    0 0 22px rgba(129, 232, 223, 0.25),
+    0 0 34px rgba(168, 85, 247, 0.24) !important;
+}
+
+@keyframes mineShimmer {
+  0% {
+    transform: translate3d(-1.5%, -1%, 0) scale(1);
+    opacity: 0.46;
+  }
+  100% {
+    transform: translate3d(1.5%, 1%, 0) scale(1.04);
+    opacity: 0.78;
+  }
+}
+
+@keyframes minePulseDots {
+  0% {
+    opacity: 0.42;
+    filter: drop-shadow(0 0 2px rgba(129, 232, 223, 0.35));
+  }
+  100% {
+    opacity: 0.86;
+    filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.55));
+  }
+}
+
+@keyframes mineTextGlint {
+  0% { background-position: 0% center; }
+  100% { background-position: 220% center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body:has(input[placeholder*="RIFT"]) main::before,
+  body:has(input[placeholder*="RIFT"]) main::after,
+  body:has(input[placeholder*="RIFT"]) h1,
+  body:has(input[placeholder*="RIFT"]) button:active {
+    animation: none !important;
+  }
+}
