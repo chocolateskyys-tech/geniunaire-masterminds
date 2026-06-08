@@ -58,7 +58,7 @@ function App() {
     ['Asset Vault', 'assetVault'],
     ['Domains', 'domainVault'],
     ['Robots', 'robotStorefront'],
-    ['AI\'ality Network', 'broadcastStudio'],
+    ['AI\'ality', 'broadcastStudio'],
     ['Sound Mine', 'soundMine'],
     ['Broadcast Studio', 'broadcastStudio'],
     ['Wardrobe Creator', 'wardrobeCreator'],
