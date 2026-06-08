@@ -154,7 +154,7 @@ etvStore: <ETVStore {...roomProps} />,
           }
           onFounderAccess={founderAccess}
           onEnterAIality={() =>
-            requestAccess("AI'ality Network Access", "broadcastStudio")
+            requestAccess("AI'ality Tv Network Access", "broadcastStudio")
           }
         />
       );
