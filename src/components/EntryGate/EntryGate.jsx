@@ -79,7 +79,7 @@ return (
             Admiration Mine Integrator Active
           </div>
 
-          <button onClick={(event) => { document.body.classList.remove("mine-rumble"); void document.body.offsetWidth; document.body.classList.add("mine-rumble"); setTimeout(() => document.body.classList.remove("mine-rumble"), 520); }}
+          <button onClick={onEnterTryAccess}
         type="button"
         onClick={() => setSoundEnabled((currentValue) => !currentValue)}
         className="text-slate-400 hover:text-purple-300 transition-all duration-300 border border-slate-700 hover:border-purple-500 px-4 py-2 rounded bg-black/50"
@@ -161,7 +161,7 @@ return (
   
         <button
           type="button"
-          onClick={onEnterDreamLab}
+          onClick={onEnterTryAccess}
           className="group relative px-8 py-5 bg-black border border-slate-700 hover:border-purple-500/70 rounded overflow-hidden transition-all duration-500 hover:shadow-[0_0_20px_rgba(168,85,247,0.25)] hover:-translate-y-1"
         >
           <span className="relative z-10 text-slate-400 uppercase tracking-widest font-semibold text-sm group-hover:text-purple-300">
