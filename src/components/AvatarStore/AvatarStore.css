@@ -1,0 +1,309 @@
+.avatar-store-room {
+  min-height: 100vh;
+  padding: 48px clamp(18px, 4vw, 64px);
+  color: #fffaff;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(255, 92, 190, 0.22), transparent 28%),
+    radial-gradient(circle at 86% 10%, rgba(116, 240, 255, 0.18), transparent 26%),
+    radial-gradient(circle at 50% 100%, rgba(255, 220, 120, 0.12), transparent 35%),
+    linear-gradient(135deg, #08020c 0%, #18041f 46%, #03030b 100%);
+}
+
+.avatar-hero,
+.avatar-card,
+.avatar-request-section,
+.wardrobe-card,
+.avatar-worker-bots article,
+.flow-card,
+.avatar-rules article {
+  border: 1px solid rgba(255, 147, 222, 0.3);
+  border-radius: 28px;
+  background: rgba(12, 4, 20, 0.84);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+}
+
+.avatar-hero {
+  max-width: 1160px;
+  margin: 0 auto 30px;
+  padding: clamp(28px, 5vw, 56px);
+  text-align: center;
+}
+
+.avatar-kicker {
+  margin: 0 0 12px;
+  color: #ffdc78;
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.avatar-hero h1 {
+  margin: 0;
+  color: #ff93de;
+  font-size: clamp(2.7rem, 8vw, 7rem);
+  line-height: 0.92;
+  text-transform: uppercase;
+  text-shadow:
+    0 0 18px rgba(255, 147, 222, 0.7),
+    0 0 44px rgba(116, 240, 255, 0.35);
+}
+
+.avatar-hero h2,
+.request-copy h2,
+.section-heading h2 {
+  margin: 14px 0;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.avatar-store-room p,
+.avatar-store-room li {
+  color: #eadfeb;
+  line-height: 1.65;
+}
+
+.avatar-alert {
+  max-width: 920px;
+  margin: 26px auto 0;
+  padding: 16px 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 220, 120, 0.44);
+  background: rgba(255, 220, 120, 0.09);
+}
+
+.avatar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.avatar-actions button,
+.avatar-card button,
+.avatar-request-form button {
+  border: 1px solid rgba(255, 147, 222, 0.72);
+  border-radius: 14px;
+  padding: 13px 18px;
+  color: #16051b;
+  background: linear-gradient(135deg, #ff93de, #74f0ff, #ffdc78);
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  font-weight: 950;
+  cursor: pointer;
+}
+
+.avatar-shelf {
+  max-width: 1220px;
+  margin: 0 auto 30px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.avatar-card {
+  overflow: hidden;
+}
+
+.avatar-image-placeholder {
+  position: relative;
+  min-height: 240px;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.24), transparent 24%),
+    linear-gradient(135deg, rgba(255, 147, 222, 0.28), rgba(116, 240, 255, 0.14));
+}
+
+.avatar-image-placeholder span {
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 96px;
+  border-radius: 999px;
+  color: #16051b;
+  background: linear-gradient(135deg, #ff93de, #74f0ff);
+  font-size: 3rem;
+  font-weight: 950;
+}
+
+.avatar-status-ribbon {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  color: #16051b;
+  background: #ffdc78;
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+}
+
+.status-booked .avatar-image-placeholder,
+.status-rented .avatar-image-placeholder,
+.status-casted .avatar-image-placeholder {
+  filter: grayscale(0.25) brightness(0.8);
+}
+
+.status-booked .avatar-status-ribbon,
+.status-rented .avatar-status-ribbon,
+.status-casted .avatar-status-ribbon {
+  background: #ff5c8a;
+  color: #ffffff;
+}
+
+.avatar-card-body {
+  padding: 22px;
+}
+
+.avatar-category {
+  color: #ffdc78 !important;
+  font-size: 0.76rem;
+  font-weight: 950;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.avatar-card h3 {
+  margin: 8px 0 10px;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.avatar-meta {
+  margin: 12px 0;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.avatar-meta span {
+  display: block;
+  color: #ff93de;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.avatar-meta strong {
+  display: block;
+  margin-top: 6px;
+  color: #ffffff;
+}
+
+.avatar-request-section {
+  max-width: 1220px;
+  margin: 0 auto 30px;
+  padding: clamp(22px, 4vw, 38px);
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 26px;
+}
+
+.selected-avatar-box {
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(116, 240, 255, 0.09);
+  border: 1px solid rgba(116, 240, 255, 0.34);
+}
+
+.avatar-request-form {
+  display: grid;
+  gap: 14px;
+}
+
+.avatar-request-form label {
+  display: grid;
+  gap: 8px;
+  color: #ffffff;
+  font-weight: 850;
+}
+
+.avatar-request-form input,
+.avatar-request-form select,
+.avatar-request-form textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 147, 222, 0.32);
+  border-radius: 14px;
+  padding: 12px 13px;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.42);
+  outline: none;
+}
+
+.section-heading {
+  max-width: 1220px;
+  margin: 0 auto 18px;
+  text-align: center;
+}
+
+.wardrobe-options,
+.avatar-flow {
+  max-width: 1220px;
+  margin: 0 auto 30px;
+}
+
+.wardrobe-grid,
+.avatar-worker-bots,
+.flow-grid,
+.avatar-rules {
+  max-width: 1220px;
+  margin: 0 auto 30px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.wardrobe-card,
+.avatar-worker-bots article,
+.flow-card,
+.avatar-rules article {
+  padding: 22px;
+}
+
+.wardrobe-card h3,
+.avatar-worker-bots h3,
+.flow-card h3,
+.avatar-rules h3 {
+  margin: 0 0 10px;
+  color: #74f0ff;
+  text-transform: uppercase;
+}
+
+.wardrobe-card h4 {
+  margin: 18px 0 8px;
+  color: #ffdc78;
+  text-transform: uppercase;
+}
+
+.wardrobe-card ul,
+.avatar-rules ul {
+  padding-left: 18px;
+}
+
+.flow-card span {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  color: #16051b;
+  background: #ffdc78;
+  font-weight: 950;
+}
+
+@media (max-width: 980px) {
+  .avatar-shelf,
+  .avatar-request-section,
+  .wardrobe-grid,
+  .avatar-worker-bots,
+  .flow-grid,
+  .avatar-rules {
+    grid-template-columns: 1fr;
+  }
+}

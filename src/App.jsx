@@ -12,6 +12,7 @@ import AssetVault from './components/AssetVault/AssetVault';
 import CheckoutRoom from './components/CheckoutRoom/CheckoutRoom';
 import DomainVault from './components/DomainVault/DomainVault';
 import RobotStorefront from './components/RobotStorefront/RobotStorefront';
+import AvatarStore from './components/AvatarStore/AvatarStore';
 import SoundscapeStudio from './components/SoundscapeStudio/SoundscapeStudio';
 import SoundMine from './components/SoundMine/SoundMine';
 import BroadcastStudio from './components/BroadcastStudio/BroadcastStudio';
@@ -98,6 +99,7 @@ launchReadiness: <LaunchReadiness {...roomProps} />,
     assetVault: <AssetVault {...roomProps} />,
     domainVault: <DomainVault {...roomProps} />,
     robotStorefront: <RobotStorefront {...roomProps} />,
+    avatarStore: <AvatarStore {...roomProps} />,
     soundscapeStudio: <SoundscapeStudio {...roomProps} />,
     soundMine: <SoundMine {...roomProps} />,
     broadcastStudio: <BroadcastStudio {...roomProps} />,
