@@ -68,7 +68,7 @@ export default function SoundMine({ onReturn }) {
   return (
     <main className="sound-mine-page">
       <section className="sound-mine-hero">
-        <p className="sound-mine-kicker">Admiration Funnel Mine</p>
+        <p className="sound-mine-kicker">Admiration Mine Integrator</p>
         <h1>The Sound Mine</h1>
         <p className="sound-mine-lead">
           Every show needs a signal. Every signal needs a sound.

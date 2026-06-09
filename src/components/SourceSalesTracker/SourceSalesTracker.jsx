@@ -60,7 +60,7 @@ export default function SourceSalesTracker({ onReturn }) {
   return (
     <main className="source-sales-page">
       <section className="source-sales-hero">
-        <p className="source-sales-kicker">Admiration Funnel Mine</p>
+        <p className="source-sales-kicker">Admiration Mine Integrator</p>
         <h1>Source + Sales Tracker</h1>
         <p>
           This room holds the product sourcing, dropshipping, adult novelty,

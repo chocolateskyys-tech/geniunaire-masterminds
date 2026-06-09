@@ -156,7 +156,7 @@ export default function BroadcastStudio({ onReturn }) {
           This is the production environment for Living E-TV Books, AI’ALITY
           series, bot celebrities, scripted scenes, casting calls, commercial
           breaks, Sound Mine assignments, and private broadcast drops inside the
-          Admiration Funnel Mine.
+          Admiration Mine Integrator.
         </p>
       </section>
 

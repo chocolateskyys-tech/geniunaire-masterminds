@@ -71,7 +71,7 @@ export default function PaymentDoors({ onReturn }) {
   return (
     <main className="payment-doors-page">
       <section className="payment-doors-hero">
-        <p className="payment-kicker">Admiration Funnel Mine</p>
+        <p className="payment-kicker">Admiration Mine Integrator</p>
         <h1>Payment Doors</h1>
         <p>
           Choose the door that matches what you are trying to build, repair,

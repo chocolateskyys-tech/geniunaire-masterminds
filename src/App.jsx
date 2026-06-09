@@ -189,7 +189,7 @@ etvStore: <ETVStore {...roomProps} />,
                 Geniunaire MasterMinds
               </p>
               <p className="text-slate-500 text-xs mt-1">
-                Admiration Funnel Mine
+                Admiration Mine Integrator
               </p>
             </div>
 

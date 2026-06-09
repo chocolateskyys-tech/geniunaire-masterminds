@@ -128,7 +128,7 @@ export default function ETVStore({ onReturn }) {
           Choose your device, wire your signal, and enter the programming.
           Each E-TV Book Model unlocks different rooms, drops, screen sizes,
           bot features, broadcasts, archives, and living-book experiences
-          inside the Admiration Funnel Mine.
+          inside the Admiration Mine Integrator.
         </p>
       </section>
 

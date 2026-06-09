@@ -56,7 +56,7 @@ export default function MineLab({ onReturn }) {
   return (
     <main className="mine-lab-page">
       <section className="mine-lab-hero">
-        <p className="mine-lab-kicker">Inside The Admiration Funnel Mine</p>
+        <p className="mine-lab-kicker">Inside The Admiration Mine Integrator</p>
         <h1>Mine Lab</h1>
         <p>
           This is the beta shelf for future apps, experiments, service lanes,

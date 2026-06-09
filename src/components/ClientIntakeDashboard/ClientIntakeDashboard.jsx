@@ -96,7 +96,7 @@ export default function ClientIntakeDashboard({ onReturn }) {
   return (
     <main className="client-intake-page">
       <section className="client-intake-hero">
-        <p className="client-intake-kicker">Admiration Funnel Mine</p>
+        <p className="client-intake-kicker">Admiration Mine Integrator</p>
         <h1>Choose Your Build Path</h1>
         <p>
           Pick the path that matches what you are bringing into the Mine. This

@@ -47,7 +47,7 @@ export default function SignupRequest({
     <main className="min-h-screen bg-black px-5 py-10 text-white">
       <section className="mx-auto max-w-3xl rounded-3xl border border-purple-900 bg-purple-950/20 p-6 shadow-2xl shadow-purple-950/40">
         <p className="mb-3 text-xs font-bold uppercase tracking-[0.35em] text-purple-300">
-          Admiration Funnel Mine
+          Admiration Mine Integrator
         </p>
 
         <h1 className="text-4xl font-black md:text-6xl">
