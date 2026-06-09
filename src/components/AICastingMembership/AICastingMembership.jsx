@@ -12,6 +12,36 @@ import {
 } from "../../data/adminAccessMap";
 import "./AICastingMembership.css";
 
+
+const castMonetizationPaths = [
+  {
+    title: "Promote Your Episodes",
+    detail:
+      "Use approved AI'ality episode clips, character moments, show teasers, and cast announcements to build attention on TikTok, Instagram, YouTube Shorts, Facebook, and other creator platforms.",
+  },
+  {
+    title: "Grow Your Character Audience",
+    detail:
+      "Your avatar lane can become a recognizable persona. The goal is to help cast members grow followers around their character, show role, host identity, or episode appearances.",
+  },
+  {
+    title: "Build Creator Money Around Your Role",
+    detail:
+      "Cast members may use their approved content strategy to pursue outside monetization such as creator platform revenue, affiliate offers, bookings, sponsorship attention, tips, merch, services, or audience-supported opportunities.",
+  },
+  {
+    title: "Request Promo Strategy",
+    detail:
+      "Higher tiers can request guidance on how to post, clip, caption, promote, and position their AI'ality appearances so the membership feels like a media-growth lane, not just a profile form.",
+  },
+];
+
+const castValueRules = [
+  "Geniunaire MasterMinds does not guarantee income, fame, followers, casting, screen time, employment, or platform monetization.",
+  "Membership gives access to submit a cast profile, choose eligible avatar lanes, request review, and receive approved casting/promotion opportunities based on tier and admin approval.",
+  "Cast members are responsible for building their own audience, posting approved materials properly, following platform rules, and using their content strategy consistently.",
+];
+
 const defaultForm = {
   name: "",
   email: "",
@@ -250,6 +280,39 @@ export default function AICastingMembership({ onNavigate }) {
 
           <button type="submit">Submit Casting Profile For Review</button>
         </form>
+      </section>
+
+
+      <section className="cast-monetization-section">
+        <div className="cast-monetization-copy">
+          <p className="ai-casting-kicker">CAST MEMBER GROWTH STRATEGY</p>
+          <h2>How Cast Members Can Build Their Own Money Lane</h2>
+          <p>
+            AI'ality casting membership is not a guaranteed job. It is a paid
+            media-positioning lane where approved cast members can build a cast
+            profile, grow a character identity, request promotional guidance,
+            and use approved appearances to help build their own creator
+            audience.
+          </p>
+        </div>
+
+        <div className="cast-money-grid">
+          {castMonetizationPaths.map((path) => (
+            <article key={path.title} className="cast-money-card">
+              <h3>{path.title}</h3>
+              <p>{path.detail}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="cast-value-rules">
+          <h3>Worthwhile, But Honest</h3>
+          <ul>
+            {castValueRules.map((rule) => (
+              <li key={rule}>{rule}</li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       <section className="ai-casting-rules">
