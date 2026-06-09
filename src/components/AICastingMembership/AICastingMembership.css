@@ -392,3 +392,73 @@
     grid-template-columns: 1fr;
   }
 }
+
+.character-rights-section {
+  max-width: 1220px;
+  margin: 0 auto 34px;
+  padding: clamp(22px, 4vw, 38px);
+  border: 1px solid rgba(255, 215, 120, 0.34);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at top right, rgba(255, 215, 120, 0.14), transparent 34%),
+    rgba(10, 6, 22, 0.84);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+}
+
+.character-rights-copy {
+  max-width: 920px;
+  margin-bottom: 24px;
+}
+
+.character-rights-copy h2 {
+  margin: 10px 0 12px;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.character-rights-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.character-right-card {
+  padding: 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 215, 120, 0.22);
+  background: rgba(255, 215, 120, 0.07);
+}
+
+.character-right-card h3 {
+  margin: 0 0 10px;
+  color: #ffd978;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
+.character-rights-notice {
+  margin-top: 22px;
+  padding: 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 128, 128, 0.32);
+  background: rgba(255, 80, 80, 0.08);
+}
+
+.character-rights-notice h3 {
+  margin: 0 0 10px;
+  color: #ff9c9c;
+  text-transform: uppercase;
+}
+
+.character-rights-notice p {
+  color: #f4eaff;
+  line-height: 1.65;
+}
+
+@media (max-width: 980px) {
+  .character-rights-grid {
+    grid-template-columns: 1fr;
+  }
+}

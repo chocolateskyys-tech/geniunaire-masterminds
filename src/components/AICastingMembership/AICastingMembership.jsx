@@ -13,6 +13,33 @@ import {
 import "./AICastingMembership.css";
 
 
+
+const characterRightsRules = [
+  {
+    title: "Characters Stay Inside The Network",
+    detail:
+      "AI'ality characters, avatars, cast identities, show concepts, episode roles, and production assets must remain inside the approved Geniunaire MasterMinds / AI'ality TV Network system unless written approval says otherwise.",
+  },
+  {
+    title: "Submit Ideas, Do Not Self-Release",
+    detail:
+      "Cast members may submit character, merch, comic, product, show, and business ideas for review. They may not independently produce, sell, distribute, license, or release AI'ality-related merch or character products outside the site without written approval.",
+  },
+  {
+    title: "Business Must Be Created Or Approved Through Us",
+    detail:
+      "If a cast member wants a character business, merch shelf, comic book, shirt line, cup, keychain, sticker pack, or promo product, it must be submitted for admin review and created, approved, licensed, or packaged through Geniunaire MasterMinds.",
+  },
+  {
+    title: "Approved Monetization Can Be Built",
+    detail:
+      "Approved cast members may be offered paid packages, licensing terms, promotional support, merch setup, business setup, revenue-share terms, or custom agreements based on their tier, character, and approval status.",
+  },
+];
+
+const characterRightsNotice =
+  "Geniunaire MasterMinds / AI'ality TV Network controls the approved use of AI'ality shows, characters, avatars, cast identities, episodes, clips, artwork, merch concepts, production assets, and related brand materials. Cast members may submit ideas and request business or merch setup, but they may not independently sell, distribute, license, recreate, copy, repackage, or monetize AI'ality-related characters, shows, merch, clips, or assets outside the platform without written approval.";
+
 const castMonetizationPaths = [
   {
     title: "Promote Your Episodes",
@@ -282,6 +309,36 @@ export default function AICastingMembership({ onNavigate }) {
         </form>
       </section>
 
+
+
+      <section className="character-rights-section">
+        <div className="character-rights-copy">
+          <p className="ai-casting-kicker">CHARACTER RIGHTS + MERCH APPROVAL</p>
+          <h2>Your character can become a business — but it must be approved.</h2>
+          <p>
+            Cast members can design character concepts, submit merch ideas, ask
+            for comics, cups, shirts, keychains, stickers, promo products, and
+            character business setup. But AI'ality-related characters, shows,
+            merch, clips, avatars, and brand assets must be reviewed and
+            approved through Geniunaire MasterMinds before anyone sells,
+            distributes, or monetizes them.
+          </p>
+        </div>
+
+        <div className="character-rights-grid">
+          {characterRightsRules.map((rule) => (
+            <article key={rule.title} className="character-right-card">
+              <h3>{rule.title}</h3>
+              <p>{rule.detail}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="character-rights-notice">
+          <h3>Network Ownership / Approval Notice</h3>
+          <p>{characterRightsNotice}</p>
+        </div>
+      </section>
 
       <section className="cast-monetization-section">
         <div className="cast-monetization-copy">
