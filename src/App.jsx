@@ -37,17 +37,16 @@ function App() {
   const [requestedAccess, setRequestedAccess] = useState(
     'General Admiration Funnel Access'
   );
-  const [requestedDestination, setRequestedDestination] =
-    useState('clientIntake');
+  const [requestedDestination, setRequestedDestination] = useState('clientIntake');
   const [accessGranted, setAccessGranted] = useState(false);
 
   const navItems = [
     ['Entry Gate', 'entryGate'],
     ['Payment Doors', 'paymentDoors'],
-['Client Intake', 'clientIntake'],
-['Mine Lab', 'mineLab'],
-['Source + Sales', 'sourceSalesTracker'],
-['Launch Readiness', 'launchReadiness'],
+    ['Client Intake', 'clientIntake'],
+    ['Mine Lab', 'mineLab'],
+    ['Source + Sales', 'sourceSalesTracker'],
+    ['Launch Readiness', 'launchReadiness'],
     ['Enter The Mine', 'signupRequest'],
     ['Preview Gallery', 'previewGallery'],
     ['Checkout', 'checkoutRoom'],
@@ -61,7 +60,7 @@ function App() {
     ['Asset Vault', 'assetVault'],
     ['Domains', 'domainVault'],
     ['Robots', 'robotStorefront'],
-    ['AI\'ality', 'broadcastStudio'],
+    ["AI'ality", 'broadcastStudio'],
     ['Sound Mine', 'soundMine'],
     ['Broadcast Studio', 'broadcastStudio'],
     ['Wardrobe Creator', 'wardrobeCreator'],
@@ -70,24 +69,24 @@ function App() {
     ['Website Rescue', 'websiteRescueLab'],
     ['Product Vault', 'productVault'],
     ['E-Store', 'eStore'],
-['E-TV Store', 'etvStore'],
+    ['E-TV Store', 'etvStore'],
     ['E-TV Lounge', 'etvLounge'],
     ["AI'ality Casting", 'aiCastingMembership'],
   ];
 
-  const roomProps = {
-    onReturn: () => {
-      setAccessGranted(false);
-      setCurrentView('entryGate');
-    },
+  const returnToGate = () => {
+    setAccessGranted(false);
+    setCurrentView('entryGate');
   };
+
+  const roomProps = { onReturn: returnToGate };
 
   const views = {
     paymentDoors: <PaymentDoors {...roomProps} />,
-clientIntake: <ClientIntakeDashboard {...roomProps} />,
-mineLab: <MineLab {...roomProps} />,
-sourceSalesTracker: <SourceSalesTracker {...roomProps} />,
-launchReadiness: <LaunchReadiness {...roomProps} />,
+    clientIntake: <ClientIntakeDashboard {...roomProps} />,
+    mineLab: <MineLab {...roomProps} />,
+    sourceSalesTracker: <SourceSalesTracker {...roomProps} />,
+    launchReadiness: <LaunchReadiness {...roomProps} />,
     checkoutRoom: <CheckoutRoom {...roomProps} />,
     dreamLab: <DreamLab {...roomProps} />,
     moneyTracker: <MoneyTracker {...roomProps} />,
@@ -110,7 +109,7 @@ launchReadiness: <LaunchReadiness {...roomProps} />,
     productVault: <ProductVault {...roomProps} />,
     previewGallery: <PreviewGallery {...roomProps} />,
     eStore: <EStore {...roomProps} />,
-etvStore: <ETVStore {...roomProps} />,
+    etvStore: <ETVStore {...roomProps} />,
     etvLounge: <ETVLounge {...roomProps} />,
     aiCastingMembership: <AICastingMembership {...roomProps} />,
   };
@@ -120,6 +119,11 @@ etvStore: <ETVStore {...roomProps} />,
     setRequestedDestination(destination || 'paymentDoors');
     setAccessGranted(false);
     setCurrentView('signupRequest');
+  }
+
+  function openPublicRoom(destination) {
+    setAccessGranted(true);
+    setCurrentView(destination);
   }
 
   function grantAccess() {
@@ -137,10 +141,7 @@ etvStore: <ETVStore {...roomProps} />,
   function renderSignup() {
     return (
       <SignupRequest
-        onReturn={() => {
-          setAccessGranted(false);
-          setCurrentView('entryGate');
-        }}
+        onReturn={returnToGate}
         requestedAccess={requestedAccess}
         onAccessGranted={grantAccess}
       />
@@ -161,9 +162,12 @@ etvStore: <ETVStore {...roomProps} />,
             requestAccess('General Admiration Funnel Access', 'clientIntake')
           }
           onFounderAccess={founderAccess}
-          onEnterAIality={() =>
-            requestAccess("AI'ality Tv Network Access", "broadcastStudio")
-          }
+          onEnterAIality={() => openPublicRoom('broadcastStudio')}
+          onEnterDormMageddon={() => openPublicRoom('dormMageddon')}
+          onEnterETVStore={() => openPublicRoom('etvStore')}
+          onEnterETVLounge={() => openPublicRoom('etvLounge')}
+          onEnterCheckout={() => openPublicRoom('checkoutRoom')}
+          onEnterRobotStore={() => openPublicRoom('robotStorefront')}
         />
       );
     }
@@ -182,39 +186,35 @@ etvStore: <ETVStore {...roomProps} />,
   return (
     <div className="min-h-screen bg-black">
       {currentView !== 'entryGate' && accessGranted && (
-        <nav className="sticky top-0 z-50 border-b border-purple-900 bg-black/90 backdrop-blur px-6 py-4">
-          <div className="max-w-6xl mx-auto flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+        <nav className="sticky top-0 z-50 border-b border-purple-900 bg-black/90 px-6 py-4 backdrop-blur">
+          <div className="mx-auto flex max-w-6xl flex-col gap-3 md:flex-row md:items-center md:justify-between">
             <div>
-              <p className="text-purple-400 text-xs uppercase tracking-[0.35em]">
+              <p className="text-xs uppercase tracking-[0.35em] text-purple-400">
                 Geniunaire MasterMinds
               </p>
-              <p className="text-slate-500 text-xs mt-1">
+              <p className="mt-1 text-xs text-slate-500">
                 Admiration Mine Integrator
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-3">
+            <div className="flex max-h-32 flex-wrap gap-2 overflow-y-auto md:max-h-none">
               {navItems.map(([label, view]) => (
                 <button
-                  key={view}
+                  key={`${label}-${view}`}
                   type="button"
                   onClick={() => {
                     if (view === 'entryGate') {
-                      setAccessGranted(false);
-                      setCurrentView('entryGate');
+                      returnToGate();
                     } else if (view === 'signupRequest') {
-                      requestAccess(
-                        'General Admiration Funnel Access',
-                        'paymentDoors'
-                      );
+                      requestAccess('General Admiration Funnel Access', 'paymentDoors');
                     } else {
                       setCurrentView(view);
                     }
                   }}
                   className={
                     currentView === view
-                      ? 'px-4 py-2 border border-purple-500 text-purple-300 rounded bg-purple-950'
-                      : 'px-4 py-2 border border-slate-700 text-slate-300 rounded hover:border-purple-500'
+                      ? 'rounded border border-purple-500 bg-purple-950 px-3 py-2 text-xs text-purple-300'
+                      : 'rounded border border-slate-700 px-3 py-2 text-xs text-slate-300 hover:border-purple-500'
                   }
                 >
                   {label}
