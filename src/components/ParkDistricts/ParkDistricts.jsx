@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./ParkDistricts.css";
 import ParkStore from "../ParkStore/ParkStore";
+import ETVLounge from "../ETVLounge/ETVLounge";
 
 const roomData = {
   threadfolio: {
@@ -70,7 +71,9 @@ export default function ParkDistricts({ activeKey, onBack }) {
   const [activity, setActivity] = useState("Waiting for guest action.");
   const [saved, setSaved] = useState([]);
   const [storeOpen, setStoreOpen] = useState(false);
+  const [etvOpen, setEtvOpen] = useState(false);
 
+  if (etvOpen) return <ETVLounge onBack={() => setEtvOpen(false)} />;
   if (storeOpen) return <ParkStore onBack={() => setStoreOpen(false)} />;
 
   const runAction = (action) => {
@@ -85,6 +88,7 @@ export default function ParkDistricts({ activeKey, onBack }) {
     setSaved((current) => [record, ...current].slice(0, 5));
     localStorage.setItem("gm_last_room_action", JSON.stringify(record));
     if (action.toLowerCase().includes("checkout") || action.toLowerCase().includes("store") || action.toLowerCase().includes("rental")) setStoreOpen(true);
+    if (action.toLowerCase().includes("watch") || action.toLowerCase().includes("e-tv") || action.toLowerCase().includes("stream")) setEtvOpen(true);
   };
 
   return (
