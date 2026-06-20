@@ -298,3 +298,23 @@
     height: 120px;
   }
 }
+
+.status-box input{
+  width:100%;
+  margin:6px 0;
+  border:1px solid rgba(34,211,238,.45);
+  background:#050505;
+  color:white;
+  border-radius:10px;
+  padding:12px;
+}
+.radio-line{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  margin:8px 0;
+  color:#cbd5e1;
+}
+.radio-line input{
+  width:auto;
+}
