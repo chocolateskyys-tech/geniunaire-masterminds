@@ -368,3 +368,10 @@
   border:1px solid #fde68a!important;
   box-shadow:0 0 18px rgba(250,204,21,.45);
 }
+
+.play-gate-btn{
+  background:linear-gradient(135deg,#facc15,#f97316)!important;
+  color:#000!important;
+  border:1px solid #fde68a!important;
+  box-shadow:0 0 18px rgba(250,204,21,.45);
+}
