@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import MainStreetPlaza from "../MainStreetPlaza/MainStreetPlaza";
 import CrowdControl from "../CrowdControl/CrowdControl";
 import CrowdControl from "../CrowdControl/CrowdControl";
+import CrowdControl from "../CrowdControl/CrowdControl";
 import CloneRoam from "../CloneRoam/CloneRoam";
 import "./EntryGate.css";
 
@@ -95,6 +96,7 @@ export default function EntryGate({
   if (cloneRoam) return <CloneRoam onBack={() => setCloneRoam(false)} />;
   if (crowdConsole) return <CrowdControl onBack={() => setCrowdConsole(false)} />;
   if (crowdConsole) return <CrowdControl onBack={() => setCrowdConsole(false)} />;
+  if (crowdConsole) return <CrowdControl onBack={() => setCrowdConsole(false)} />;
   if (insidePark) return <MainStreetPlaza />;
 
   const chooseGate = (item) => {
@@ -179,7 +181,6 @@ export default function EntryGate({
 
     setGateStatus("Secret access denied");
   };
-
   return (
     <main className="gm-front-gate">
       <section className="gm-gate-shell">
@@ -305,7 +306,7 @@ export default function EntryGate({
             <div className="status-box">
               <span>Secret Access</span>
               <input
-                placeholder="Secret word"
+                placeholder="GM PLAY DAY!"
                 value={secretBox}
                 onChange={(e) => setSecretBox(e.target.value)}
               />
