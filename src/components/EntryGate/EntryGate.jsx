@@ -47,7 +47,7 @@ export default function EntryGate({
 
   const chooseGate = (item) => {
     setSelected(item);
-    setGateStatus(`${item.label} ticket booth active`);
+    setGateStatus(`${item.label} booth loaded — complete sign in, then open gate`);
     localStorage.setItem("gm_selected_gate", JSON.stringify(item));
 
     if (item.key === "free") {
@@ -178,6 +178,14 @@ export default function EntryGate({
             <p className="panel-kicker">Front Gate Ticket Booth</p>
             <h2>{selected ? selected.destination : "Choose Your Entrance"}</h2>
             <p>{selected ? selected.info : "Pick a gate button above. Every guest goes through a booth before the gate opens."}</p>
+
+            {selected && (
+              <div className="status-box">
+                <span>Active Top Button</span>
+                <strong>{selected.label}</strong>
+                <small>This button is wired to this booth.</small>
+              </div>
+            )}
 
             <div className="status-box">
               <span>Pass Type</span>
