@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./ParkDistricts.css";
 import ParkStore from "../ParkStore/ParkStore";
 import ETVLounge from "../ETVLounge/ETVLounge";
+import CastingSecurity from "../CastingSecurity/CastingSecurity";
 
 const roomData = {
   threadfolio: {
@@ -72,7 +73,9 @@ export default function ParkDistricts({ activeKey, onBack }) {
   const [saved, setSaved] = useState([]);
   const [storeOpen, setStoreOpen] = useState(false);
   const [etvOpen, setEtvOpen] = useState(false);
+  const [securityOpen, setSecurityOpen] = useState("");
 
+  if (securityOpen) return <CastingSecurity type={securityOpen} onBack={() => setSecurityOpen("")} />;
   if (etvOpen) return <ETVLounge onBack={() => setEtvOpen(false)} />;
   if (storeOpen) return <ParkStore onBack={() => setStoreOpen(false)} />;
 
@@ -89,6 +92,8 @@ export default function ParkDistricts({ activeKey, onBack }) {
     localStorage.setItem("gm_last_room_action", JSON.stringify(record));
     if (action.toLowerCase().includes("checkout") || action.toLowerCase().includes("store") || action.toLowerCase().includes("rental")) setStoreOpen(true);
     if (action.toLowerCase().includes("watch") || action.toLowerCase().includes("e-tv") || action.toLowerCase().includes("stream")) setEtvOpen(true);
+    if (action.toLowerCase().includes("casting") || action.toLowerCase().includes("talent") || action.toLowerCase().includes("agreement") || action.toLowerCase().includes("verify")) setSecurityOpen(activeKey === "celeb" ? "celeb" : "casting");
+    if (activeKey === "celeb" && (action.toLowerCase().includes("security") || action.toLowerCase().includes("placement"))) setSecurityOpen("celeb");
   };
 
   return (
