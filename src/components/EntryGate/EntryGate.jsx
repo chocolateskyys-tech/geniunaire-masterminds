@@ -85,7 +85,6 @@ export default function EntryGate({
   const [insidePark, setInsidePark] = useState(false);
   const [crowdConsole, setCrowdConsole] = useState(false);
   const [cloneRoam, setCloneRoam] = useState(false);
-  const [cloneRoam, setCloneRoam] = useState(false);
   const [secretBox, setSecretBox] = useState("");
   const [gateStatus, setGateStatus] = useState("Closed");
   const [musicMode, setMusicMode] = useState("Crowd Mix 01");
