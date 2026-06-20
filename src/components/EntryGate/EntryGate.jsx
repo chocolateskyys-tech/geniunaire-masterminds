@@ -8,14 +8,14 @@ const SECRET_ADMIN = "ASPIRE!";
 const SECRET_PLAY = "ORBIT!";
 
 const gateButtons = [
-  { key: "free", label: "Free Sign Up", destination: "Limited Guest Access", price: "Free", info: "Create a limited guest pass to browse the park before buying." },
-  { key: "etv", label: "E-TV Lounge", destination: "E-TV Lounge Preview", price: "Free Preview / Paid Signal", info: "Watch commercials, TV drops, ads, and E-TV Book previews." },
-  { key: "walk", label: "Walk The Park", destination: "Main Street Plaza", price: "Ticket / Clone Optional", info: "Enter the tunnel and browse the park." },
-  { key: "chill", label: "Chill In E-TV Lounge", destination: "E-TV Lounge", price: "Signal Plan", info: "Sit in the lounge, watch programmed screens, ads, commercials, and drops." },
-  { key: "casting", label: "Casting / E-TV Network", destination: "Casting Security", price: "Verification Required", info: "Talent must sign in, verify, agree to rules, and accept network terms." },
-  { key: "subscribers", label: "Subscribers", destination: "Subscriber Entrance", price: "Monthly Signal", info: "Subscriber access for E-TV Book, signal plans, and monthly streams." },
-  { key: "thread", label: "Thread Clients", destination: "Thread Client Onboarding", price: "Client Setup", info: "Thread clients sign in for onboarding, admin handoff, website/business setup." },
-  { key: "celeb", label: "Celeb Verification", destination: "Celebrity Security", price: "Security Review", info: "High-security verification, marketplace placement, promo TV, booking review." }
+  { key: "free", label: "Free Sign Up", destination: "Limited Guest Access", price: "Free", info: "Free limited browsing pass. Guest can look around before upgrading." },
+  { key: "etv", label: "E-TV Lounge", destination: "E-TV Lounge Ticket Booth", price: "Preview / Signal Plan", info: "Watch commercials, TV drops, ads, E-TV Book previews, and monthly stream offers." },
+  { key: "walk", label: "Walk The Park", destination: "Park Walk Ticket Booth", price: "Ticket / Clone Optional", info: "Open the gate tunnel and enter Main Street Plaza." },
+  { key: "chill", label: "Chill In E-TV Lounge", destination: "E-TV Chill Lounge Booth", price: "Signal Plan", info: "Sit in the lounge, watch screens, commercials, programmed drops, and affiliate ads." },
+  { key: "casting", label: "Casting / E-TV Network", destination: "Casting Network Booth", price: "Verification Required", info: "Talent signs in, accepts agreements, reviews rules/bylaws, and enters broadcast review." },
+  { key: "subscribers", label: "Subscribers", destination: "Subscriber Booth", price: "Monthly Signal", info: "Subscribers enter E-TV Book, stream plans, programmed drops, and signal access." },
+  { key: "thread", label: "Thread Clients", destination: "Thread Client Booth", price: "Client Setup", info: "Thread clients enter onboarding, admin handoff, website/business setup, and prepaid builds." },
+  { key: "celeb", label: "Celeb Verification", destination: "Celebrity Security Booth", price: "Security Review", info: "Celebrities enter identity/security verification, marketplace placement, and promo TV review." }
 ];
 
 export default function EntryGate({
@@ -138,8 +138,30 @@ export default function EntryGate({
     <main className="gm-front-gate">
       <section className="gm-gate-shell">
         <nav className="gm-gate-nav">
-          {gateButtons.map((item) => (
-            <button key={item.key} onClick={() => chooseGate(item)}>
+                    {gateButtons.map((item) => (
+            <button
+              key={item.key}
+              type="button"
+              className={selected?.key === item.key ? "active-gate-btn" : ""}
+              onClick={(event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                setSelected(item);
+                setGateStatus(item.label + " booth loaded");
+                setPassType(
+                  item.key === "thread" ? "Thread Client Pass" :
+                  item.key === "celeb" ? "Celebrity Pass" :
+                  item.key === "casting" ? "Casting Pass" :
+                  item.key === "subscribers" || item.key === "etv" || item.key === "chill" ? "Subscriber Pass" :
+                  item.key === "walk" ? "Ticket Pass" :
+                  "Guest Pass"
+                );
+                localStorage.setItem("gm_selected_gate", JSON.stringify(item));
+              }}
+            >
+              {item.label}
+            </button>
+          ))}>
               {item.label}
             </button>
           ))}
@@ -149,6 +171,10 @@ export default function EntryGate({
           <button className="ghost-admin" onClick={() => setCrowdConsole(true)}>◇</button>
           <button className="ghost-admin" onClick={onFounderAccess}>◌</button>
         </nav>
+
+        <div className="selected-gate-strip">
+          <strong>SELECTED:</strong> {selected ? selected.label + " → " + selected.destination : "No booth selected yet"}
+        </div>
 
         <section className="gm-hero-gate">
           <div className="gate-topline">GENIUNAIRE MASTERMINDS ONLINE VIRTUAL THEME PARK — ATLANTA, GA</div>
