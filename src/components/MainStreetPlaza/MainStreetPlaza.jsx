@@ -1,27 +1,30 @@
 import React, { useState } from "react";
+import ParkDistricts from "../ParkDistricts/ParkDistricts";
 
 const districts = [
-  ["ThreadFolio Tower", "Thread Set brain: imports, scans, business plans, E-Folio, E-Map."],
-  ["E-TV District", "E-TV Book, Lounge, signals, commercials, streaming, subscriptions."],
-  ["Production Studio", "Shows, episodes, commercials, scripts, schedules, releases."],
-  ["Casting Hall", "Auditions, contracts, verification, rules, bylaws, agreements."],
-  ["Sound Mine", "Music, audio, voice, sound effects, commercial audio."],
-  ["E-Mall", "Stores, products, services, affiliate shelves, checkout doors."],
-  ["Celebrity Marketplace", "Verification, security, promo packages, marketplace placement."],
-  ["DormMageddon House", "College horror attraction, campus creators, watch rooms, events."],
-  ["Clone Center", "Clone rentals, day passes, monthly passes, roaming visitor bodies."],
-  ["Kiddie Land Portal", "Separate partner park shell. Moved to new location."],
-  ["Pay Desk", "Stripe doors, subscriptions, tickets, passes, prepaid builds."],
-  ["Park Map", "Find your way around GM Theme Park."],
+  ["threadfolio", "ThreadFolio Tower", "Thread Set brain: imports, scans, business plans, E-Folio, E-Map."],
+  ["etv", "E-TV Lounge", "E-TV Book, Lounge, signals, commercials, streaming, subscriptions."],
+  ["production", "Production Studio", "Shows, episodes, commercials, scripts, schedules, releases."],
+  ["casting", "Casting / E-TV Network", "Auditions, contracts, verification, rules, bylaws, agreements."],
+  ["sound", "Sound Mine", "Music, audio, voice, sound effects, commercial audio."],
+  ["mall", "E-Mall", "Stores, products, services, affiliate shelves, checkout doors."],
+  ["celeb", "Celebrity Marketplace", "Verification, security, promo packages, marketplace placement."],
+  ["dorm", "DormMageddon House", "College haunted attraction, campus creators, watch rooms, events."],
+  ["clone", "Clone Center", "Clone rentals, day passes, monthly passes, roaming visitor bodies."],
+  ["paydesk", "Pay Desk", "Stripe doors, subscriptions, tickets, passes, prepaid builds."],
 ];
 
 export default function MainStreetPlaza() {
-  const [activeRoom, setActiveRoom] = useState("Main Street Plaza");
+  const [activeRoom, setActiveRoom] = useState(null);
   const [botMessage, setBotMessage] = useState("Mini clone guide online. Choose a building to enter.");
 
+  if (activeRoom) {
+    return <ParkDistricts activeKey={activeRoom} onBack={() => setActiveRoom(null)} />;
+  }
+
   const enterRoom = (room) => {
+    setBotMessage(`Clone guide routed you to ${room[1]}.`);
     setActiveRoom(room[0]);
-    setBotMessage(`Clone guide routed you to ${room[0]}. This room is staged for wiring.`);
   };
 
   return (
@@ -41,8 +44,8 @@ export default function MainStreetPlaza() {
           </p>
 
           <div className="mt-5 rounded-2xl border border-cyan-500 bg-black/70 p-4">
-            <p className="text-xs text-cyan-300 uppercase tracking-[0.35em]">Active Room</p>
-            <h2 className="text-3xl font-black mt-2">{activeRoom}</h2>
+            <p className="text-xs text-cyan-300 uppercase tracking-[0.35em]">Clone Guide</p>
+            <h2 className="text-2xl font-black mt-2">Park Hub Active</h2>
             <p className="text-slate-400 mt-2">{botMessage}</p>
           </div>
         </section>
@@ -54,8 +57,8 @@ export default function MainStreetPlaza() {
               onClick={() => enterRoom(room)}
               className="text-left rounded-3xl border border-purple-700 bg-black/80 p-6 hover:border-cyan-400 hover:bg-purple-950/40 transition"
             >
-              <h2 className="text-2xl font-black text-purple-300">{room[0]}</h2>
-              <p className="text-slate-400 mt-3">{room[1]}</p>
+              <h2 className="text-2xl font-black text-purple-300">{room[1]}</h2>
+              <p className="text-slate-400 mt-3">{room[2]}</p>
               <div className="mt-5 rounded-xl bg-purple-700 py-3 text-center font-black">
                 Enter Building
               </div>

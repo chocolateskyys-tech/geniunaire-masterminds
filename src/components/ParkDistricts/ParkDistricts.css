@@ -1,0 +1,112 @@
+.park-room-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(14, 165, 233, .22), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(168, 85, 247, .24), transparent 35%),
+    #020202;
+  color: white;
+  padding: 24px;
+}
+
+.park-room-hero {
+  max-width: 1200px;
+  margin: 0 auto 24px;
+  border: 1px solid rgba(168,85,247,.65);
+  border-radius: 28px;
+  padding: 28px;
+  background: rgba(0,0,0,.75);
+  text-align: center;
+}
+
+.back-btn {
+  float: left;
+  border: 1px solid #22d3ee;
+  background: #000;
+  color: #22d3ee;
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.park-room-hero p,
+.eyebrow {
+  color: #22d3ee;
+  text-transform: uppercase;
+  letter-spacing: .32em;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.park-room-hero h1 {
+  font-size: clamp(42px, 7vw, 88px);
+  margin: 16px 0;
+}
+
+.park-room-hero h2 {
+  color: #cbd5e1;
+  font-size: clamp(18px, 2vw, 26px);
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.4;
+}
+
+.park-room-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 18px;
+}
+
+.park-room-card {
+  border: 1px solid rgba(168,85,247,.65);
+  border-radius: 24px;
+  padding: 24px;
+  background: rgba(0,0,0,.74);
+}
+
+.park-room-card.big {
+  grid-row: span 2;
+}
+
+.room-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.room-actions button,
+.park-room-card button {
+  border: 0;
+  border-radius: 12px;
+  padding: 13px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #7e22ce, #06b6d4);
+  color: white;
+  cursor: pointer;
+}
+
+.activity-line {
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.activity-line span {
+  color: #facc15;
+}
+
+@media (max-width: 850px) {
+  .park-room-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .back-btn {
+    float: none;
+    margin-bottom: 14px;
+  }
+}
