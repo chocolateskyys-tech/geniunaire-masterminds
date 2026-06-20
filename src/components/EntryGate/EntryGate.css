@@ -1,492 +1,300 @@
-/* Stage 19A-6: Aspiration Funnel Mine entrance polish */
-
-body:has(input[placeholder*="RIFT"]) h1,
-body:has(input[placeholder*="CLEARANCE"]) h1,
-body:has(input[value="ASPIRE!"]) h1 {
-  color: #d8bbff;
-  -webkit-text-stroke: 1.5px #81d8d0;
-  text-shadow:
-    0 2px 0 #2c0b4f,
-    0 4px 0 #160527,
-    0 0 8px rgba(129, 216, 208, 0.95),
-    0 0 18px rgba(129, 216, 208, 0.7),
-    0 0 34px rgba(191, 120, 255, 0.65),
-    0 0 58px rgba(255, 255, 255, 0.24);
-  animation: mineTitlePulse 2.3s ease-in-out infinite;
+.gm-front-gate {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(126, 34, 206, 0.5), transparent 34%),
+    linear-gradient(180deg, #050008 0%, #020202 55%, #000 100%);
+  color: white;
+  padding: 18px;
+  overflow-x: hidden;
 }
 
-body:has(input[placeholder*="RIFT"]) h1::before,
-body:has(input[placeholder*="CLEARANCE"]) h1::before,
-body:has(input[value="ASPIRE!"]) h1::before {
-  content: "✦ ";
-  color: #81d8d0;
-  -webkit-text-stroke: 0;
-  text-shadow:
-    0 0 8px rgba(129, 216, 208, 1),
-    0 0 18px rgba(255, 255, 255, 0.95),
-    0 0 32px rgba(191, 120, 255, 0.75);
-  animation: diamondTwinkle 1.4s ease-in-out infinite alternate;
+.gm-gate-shell {
+  max-width: 1500px;
+  margin: 0 auto;
+  border: 1px solid rgba(168, 85, 247, 0.75);
+  border-radius: 28px;
+  padding: 18px;
+  background: rgba(0, 0, 0, 0.62);
+  box-shadow: 0 0 40px rgba(168, 85, 247, 0.2);
 }
 
-body:has(input[placeholder*="RIFT"]) h1::after,
-body:has(input[placeholder*="CLEARANCE"]) h1::after,
-body:has(input[value="ASPIRE!"]) h1::after {
-  content: " ✦";
-  color: #81d8d0;
-  -webkit-text-stroke: 0;
-  text-shadow:
-    0 0 8px rgba(129, 216, 208, 1),
-    0 0 18px rgba(255, 255, 255, 0.95),
-    0 0 32px rgba(191, 120, 255, 0.75);
-  animation: diamondTwinkle 1.8s ease-in-out infinite alternate;
+.gm-gate-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid rgba(168, 85, 247, 0.55);
+  border-radius: 18px;
+  margin-bottom: 22px;
 }
 
-body:has(input[placeholder*="RIFT"]) p,
-body:has(input[placeholder*="CLEARANCE"]) p,
-body:has(input[value="ASPIRE!"]) p {
-  text-shadow:
-    0 0 6px rgba(129, 216, 208, 0.45),
-    0 0 14px rgba(191, 120, 255, 0.25);
-}
-
-body:has(input[placeholder*="RIFT"]) .absolute,
-body:has(input[placeholder*="CLEARANCE"]) .absolute,
-body:has(input[value="ASPIRE!"]) .absolute {
-  filter:
-    drop-shadow(0 0 7px rgba(129, 216, 208, 0.95))
-    drop-shadow(0 0 16px rgba(255, 255, 255, 0.45));
-  animation: diamondFloat 2.2s ease-in-out infinite alternate;
-}
-
-body.mine-rumble {
-  animation: mineRumble 0.52s ease-in-out;
-}
-
-body.mine-rumble h1 {
-  animation:
-    mineRumble 0.52s ease-in-out,
-    mineTitlePulse 1.1s ease-in-out infinite;
-}
-
-body.mine-rumble .absolute {
-  animation:
-    diamondBurst 0.52s ease-in-out,
-    diamondFloat 1.2s ease-in-out infinite alternate;
-}
-
-@keyframes mineTitlePulse {
-  0%, 100% {
-    transform: scale(1);
-    text-shadow:
-      0 2px 0 #2c0b4f,
-      0 4px 0 #160527,
-      0 0 8px rgba(129, 216, 208, 0.95),
-      0 0 18px rgba(129, 216, 208, 0.7),
-      0 0 34px rgba(191, 120, 255, 0.65),
-      0 0 58px rgba(255, 255, 255, 0.24);
-  }
-
-  50% {
-    transform: scale(1.025);
-    text-shadow:
-      0 2px 0 #2c0b4f,
-      0 5px 0 #160527,
-      0 0 12px rgba(129, 216, 208, 1),
-      0 0 26px rgba(129, 216, 208, 0.9),
-      0 0 48px rgba(191, 120, 255, 0.9),
-      0 0 78px rgba(255, 255, 255, 0.35);
-  }
-}
-
-@keyframes diamondTwinkle {
-  0% {
-    opacity: 0.58;
-    transform: scale(0.9) rotate(-3deg);
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1.12) rotate(3deg);
-  }
-}
-
-@keyframes diamondFloat {
-  0% {
-    opacity: 0.45;
-    transform: translateY(0) scale(0.94);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(-6px) scale(1.08);
-  }
-}
-
-@keyframes diamondBurst {
-  0% {
-    opacity: 0.5;
-    transform: scale(1);
-  }
-
-  45% {
-    opacity: 1;
-    transform: scale(1.45);
-  }
-
-  100% {
-    opacity: 0.9;
-    transform: scale(1);
-  }
-}
-
-@keyframes mineRumble {
-  0% { transform: translate(0, 0); }
-  12% { transform: translate(-3px, 2px); }
-  24% { transform: translate(3px, -2px); }
-  36% { transform: translate(-4px, 1px); }
-  48% { transform: translate(4px, 2px); }
-  60% { transform: translate(-2px, -3px); }
-  72% { transform: translate(2px, 2px); }
-  84% { transform: translate(-1px, 1px); }
-  100% { transform: translate(0, 0); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  body:has(input[placeholder*="RIFT"]) h1,
-  body:has(input[placeholder*="CLEARANCE"]) h1,
-  body:has(input[value="ASPIRE!"]) h1,
-  body:has(input[placeholder*="RIFT"]) .absolute,
-  body:has(input[placeholder*="CLEARANCE"]) .absolute,
-  body:has(input[value="ASPIRE!"]) .absolute,
-  body.mine-rumble {
-    animation: none;
-  }
-}
-
-/* Stage 19A-8: Strong two-line mine message */
-body:has(input[placeholder*="RIFT"]) p,
-body:has(input[value="ASPIRE!"]) p {
-  white-space: pre-line;
+.gm-gate-nav button,
+.clone-machine button,
+.open-gate-btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 16px;
   font-weight: 900;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  color: white;
+  background: linear-gradient(135deg, #7e22ce, #a855f7);
+  cursor: pointer;
 }
 
-/* Stage 19Q: Admiration Mine Integrator front-page atmosphere */
-body:has(input[placeholder*="RIFT"]) main {
+.gm-gate-nav .music-btn {
+  background: #050505;
+  border: 1px solid #eab308;
+  color: #fde047;
+}
+
+.gm-gate-nav .ghost-admin {
+  background: rgba(0, 0, 0, 0.15);
+  color: transparent;
+  border: 1px solid transparent;
+  width: 44px;
+}
+
+.gm-gate-nav .ghost-admin:hover {
+  color: #fde047;
+  border-color: #fde047;
+  width: auto;
+}
+
+.gm-hero-gate {
+  text-align: center;
+  padding: 16px 0 8px;
+}
+
+.gate-topline {
+  color: #d6b36a;
+  letter-spacing: 0.18em;
+  font-weight: 900;
+  font-size: clamp(14px, 2vw, 28px);
+  margin-bottom: 18px;
+}
+
+.gate-visual {
+  min-height: 420px;
+  display: grid;
+  grid-template-columns: 1fr 2.2fr 1fr;
+  align-items: end;
+  gap: 18px;
+  background:
+    linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,.75)),
+    radial-gradient(circle at center, rgba(59, 130, 246, 0.35), transparent 32%),
+    linear-gradient(135deg, #132012, #050505 40%, #12051e);
+  border-radius: 24px;
+  border: 1px solid rgba(214, 179, 106, 0.55);
+  padding: 24px;
+}
+
+.gate-tower {
+  height: 260px;
+  border: 2px solid rgba(214, 179, 106, 0.75);
+  border-radius: 16px 16px 4px 4px;
+  background: linear-gradient(145deg, #171717, #3b2a14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  color: #f7d98b;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.gate-arch {
+  min-height: 330px;
+  border: 3px solid rgba(214, 179, 106, .9);
+  border-radius: 34px 34px 10px 10px;
+  background: linear-gradient(180deg, #2f1d0b, #050505 38%, #050008);
+  padding: 24px;
   position: relative;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 18% 22%, rgba(255, 215, 120, 0.18), transparent 24%),
-    radial-gradient(circle at 78% 18%, rgba(129, 232, 223, 0.16), transparent 22%),
-    radial-gradient(circle at 50% 80%, rgba(168, 85, 247, 0.22), transparent 32%),
-    linear-gradient(135deg, #030204 0%, #09020f 42%, #12071b 68%, #020202 100%) !important;
+  box-shadow: inset 0 0 45px rgba(214, 179, 106, .22), 0 0 45px rgba(168, 85, 247, .25);
 }
 
-body:has(input[placeholder*="RIFT"]) main::before {
-  content: "";
-  position: absolute;
-  inset: -20%;
-  pointer-events: none;
-  opacity: 0.68;
-  background:
-    linear-gradient(115deg, transparent 0 18%, rgba(255, 215, 120, 0.18) 19%, transparent 21% 42%, rgba(129, 232, 223, 0.14) 43%, transparent 45% 100%),
-    linear-gradient(35deg, transparent 0 28%, rgba(255, 255, 255, 0.08) 29%, transparent 31% 100%),
-    radial-gradient(circle at 30% 35%, rgba(255, 215, 120, 0.16), transparent 6%),
-    radial-gradient(circle at 65% 58%, rgba(129, 232, 223, 0.13), transparent 7%);
-  filter: blur(0.2px);
-  animation: mineShimmer 8s ease-in-out infinite alternate;
+.gate-arch h1 {
+  font-size: clamp(34px, 5vw, 76px);
+  color: #d6b36a;
+  margin: 18px 0 0;
+  letter-spacing: .06em;
 }
 
-body:has(input[placeholder*="RIFT"]) main::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.8;
-  background-image:
-    radial-gradient(circle, rgba(129, 232, 223, 0.75) 0 2px, transparent 3px),
-    radial-gradient(circle, rgba(255, 215, 120, 0.65) 0 1px, transparent 2px),
-    radial-gradient(circle, rgba(168, 85, 247, 0.7) 0 2px, transparent 3px);
-  background-size: 260px 260px, 180px 180px, 340px 340px;
-  background-position: 20px 40px, 120px 90px, 60px 180px;
-  animation: minePulseDots 5s ease-in-out infinite alternate;
-}
-
-/* Glittered purple + Tiffany-blue hero finish */
-body:has(input[placeholder*="RIFT"]) h1 {
-  color: transparent !important;
-  background-image: linear-gradient(90deg, #b76dff, #81e8df, #ffffff, #b76dff) !important;
-  background-size: 220% auto !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  text-shadow:
-    0 0 18px rgba(129, 232, 223, 0.52),
-    0 0 34px rgba(168, 85, 247, 0.58),
-    0 0 54px rgba(255, 215, 120, 0.18) !important;
-  animation: mineTextGlint 5.5s linear infinite;
-}
-
-/* Make click/tap feel like the Mine reacted */
-body:has(input[placeholder*="RIFT"]) button:active {
-  animation: mineRumble 0.42s ease-in-out;
-}
-
-/* Stronger button glow, still preserving existing button structure */
-body:has(input[placeholder*="RIFT"]) button {
-  box-shadow:
-    0 0 0 rgba(129, 232, 223, 0),
-    0 0 18px rgba(168, 85, 247, 0.13);
-}
-
-body:has(input[placeholder*="RIFT"]) button:hover {
-  box-shadow:
-    0 0 22px rgba(129, 232, 223, 0.25),
-    0 0 34px rgba(168, 85, 247, 0.24) !important;
-}
-
-@keyframes mineShimmer {
-  0% {
-    transform: translate3d(-1.5%, -1%, 0) scale(1);
-    opacity: 0.46;
-  }
-  100% {
-    transform: translate3d(1.5%, 1%, 0) scale(1.04);
-    opacity: 0.78;
-  }
-}
-
-@keyframes minePulseDots {
-  0% {
-    opacity: 0.42;
-    filter: drop-shadow(0 0 2px rgba(129, 232, 223, 0.35));
-  }
-  100% {
-    opacity: 0.86;
-    filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.55));
-  }
-}
-
-@keyframes mineTextGlint {
-  0% { background-position: 0% center; }
-  100% { background-position: 220% center; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  body:has(input[placeholder*="RIFT"]) main::before,
-  body:has(input[placeholder*="RIFT"]) main::after,
-  body:has(input[placeholder*="RIFT"]) h1,
-  body:has(input[placeholder*="RIFT"]) button:active {
-    animation: none !important;
-  }
-}
-
-/* Stage 19Q-2: Moving top strip active brand label */
-body:has(input[placeholder*="RIFT"]) header button {
-  min-width: 330px;
-  font-size: clamp(0.72rem, 1.2vw, 1rem) !important;
-  letter-spacing: 0.24em !important;
-  font-weight: 950 !important;
-  color: #81e8df !important;
-  text-shadow:
-    0 0 10px rgba(129, 232, 223, 0.75),
-    0 0 22px rgba(168, 85, 247, 0.65),
-    0 0 34px rgba(255, 215, 120, 0.24);
-  border-color: rgba(129, 232, 223, 0.35) !important;
-  background:
-    linear-gradient(90deg, rgba(8, 6, 12, 0.88), rgba(31, 18, 45, 0.82), rgba(8, 6, 12, 0.88)) !important;
-  background-size: 220% auto !important;
-  animation: topStripSignal 4.8s ease-in-out infinite alternate;
-}
-
-@keyframes topStripSignal {
-  0% {
-    background-position: 0% center;
-    transform: translateX(-2px);
-    box-shadow:
-      0 0 16px rgba(129, 232, 223, 0.16),
-      0 0 28px rgba(168, 85, 247, 0.12);
-  }
-  100% {
-    background-position: 100% center;
-    transform: translateX(2px);
-    box-shadow:
-      0 0 24px rgba(129, 232, 223, 0.28),
-      0 0 42px rgba(168, 85, 247, 0.22);
-  }
-}
-
-@media (max-width: 650px) {
-  body:has(input[placeholder*="RIFT"]) header button {
-    min-width: 220px;
-    letter-spacing: 0.12em !important;
-    font-size: 0.68rem !important;
-  }
-}
-
-/* Stage 19Q-4: Make Admiration Mine Integrator Active pop when header bar breathes */
-body:has(input[placeholder*="RIFT"]) header .mine-active-notice {
-  color: #f7fbff !important;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(44, 44, 50, 0.46),
-      rgba(129, 232, 223, 0.24),
-      rgba(255, 215, 120, 0.22),
-      rgba(183, 92, 255, 0.24),
-      rgba(44, 44, 50, 0.46)
-    ) !important;
-  background-size: 260% auto !important;
-  border: 1px solid rgba(129, 232, 223, 0.45) !important;
-  text-shadow:
-    0 0 8px rgba(255, 255, 255, 0.95),
-    0 0 16px rgba(129, 232, 223, 0.95),
-    0 0 28px rgba(183, 92, 255, 0.85),
-    0 0 42px rgba(255, 215, 120, 0.45) !important;
-  box-shadow:
-    0 0 18px rgba(129, 232, 223, 0.28),
-    0 0 34px rgba(183, 92, 255, 0.18),
-    inset 0 0 18px rgba(255, 255, 255, 0.08) !important;
-  animation: mineNoticeGlowPop 4.8s ease-in-out infinite !important;
-}
-
-@keyframes mineNoticeGlowPop {
-  0% {
-    transform: translateX(-8px) scale(0.985);
-    opacity: 0.52;
-    filter: grayscale(0.45) brightness(0.72);
-    background-position: 0% center;
-    box-shadow:
-      0 0 6px rgba(129, 232, 223, 0.12),
-      inset 0 0 12px rgba(255, 255, 255, 0.03);
-  }
-
-  38% {
-    opacity: 0.78;
-    filter: grayscale(0.15) brightness(1);
-  }
-
-  50% {
-    transform: translateX(0) scale(1.035);
-    opacity: 1;
-    filter: grayscale(0) brightness(1.45);
-    background-position: 55% center;
-    box-shadow:
-      0 0 22px rgba(129, 232, 223, 0.52),
-      0 0 42px rgba(183, 92, 255, 0.42),
-      0 0 58px rgba(255, 215, 120, 0.22),
-      inset 0 0 24px rgba(255, 255, 255, 0.11);
-  }
-
-  100% {
-    transform: translateX(8px) scale(0.985);
-    opacity: 0.56;
-    filter: grayscale(0.5) brightness(0.78);
-    background-position: 100% center;
-    box-shadow:
-      0 0 6px rgba(129, 232, 223, 0.12),
-      inset 0 0 12px rgba(255, 255, 255, 0.03);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  body:has(input[placeholder*="RIFT"]) header .mine-active-notice {
-    animation: none !important;
-    opacity: 1;
-    filter: none;
-  }
-}
-
-/* Stage 19Q-5: Exact top bar layout
-   GENIUNAIRE MASTERMINDS [ Admiration Mine Integrator Active ] AI'ality Network */
-body:has(input[placeholder*="RIFT"]) header {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 18px !important;
-}
-
-body:has(input[placeholder*="RIFT"]) header .mine-active-notice {
-  flex: 1 1 auto;
-  max-width: 620px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 10px 22px;
-  border-radius: 999px;
-  font-size: clamp(0.82rem, 1.35vw, 1.12rem);
-  font-weight: 950;
-  letter-spacing: 0.16em;
+.gate-arch p {
   text-transform: uppercase;
-  color: #ffffff;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(48, 48, 54, 0.48),
-      rgba(129, 232, 223, 0.28),
-      rgba(255, 215, 120, 0.24),
-      rgba(183, 92, 255, 0.28),
-      rgba(48, 48, 54, 0.48)
-    );
-  background-size: 260% auto;
-  border: 1px solid rgba(129, 232, 223, 0.48);
-  text-shadow:
-    0 0 8px rgba(255, 255, 255, 0.95),
-    0 0 16px rgba(129, 232, 223, 0.95),
-    0 0 30px rgba(183, 92, 255, 0.85),
-    0 0 46px rgba(255, 215, 120, 0.48);
-  box-shadow:
-    0 0 18px rgba(129, 232, 223, 0.28),
-    0 0 34px rgba(183, 92, 255, 0.2),
-    inset 0 0 18px rgba(255, 255, 255, 0.08);
-  animation: mineNoticeGlowPop 4.8s ease-in-out infinite;
+  font-size: clamp(18px, 2vw, 32px);
+  margin: 8px 0;
+  font-weight: 900;
 }
 
-body:has(input[placeholder*="RIFT"]) header button {
-  flex: 0 0 auto !important;
-  width: auto !important;
-  min-width: unset !important;
-  white-space: nowrap !important;
-  letter-spacing: 0.11em !important;
-  font-size: 0.72rem !important;
-  color: #ffffff !important;
-  animation: none !important;
-  transform: none !important;
+.gate-arch small {
+  color: #f3e4bd;
+  letter-spacing: .2em;
+  text-transform: uppercase;
 }
 
-@keyframes mineNoticeGlowPop {
-  0% {
-    transform: translateX(-6px) scale(0.985);
-    opacity: 0.55;
-    filter: grayscale(0.5) brightness(0.72);
-    background-position: 0% center;
-  }
-
-  50% {
-    transform: translateX(0) scale(1.04);
-    opacity: 1;
-    filter: grayscale(0) brightness(1.5);
-    background-position: 55% center;
-  }
-
-  100% {
-    transform: translateX(6px) scale(0.985);
-    opacity: 0.58;
-    filter: grayscale(0.48) brightness(0.78);
-    background-position: 100% center;
-  }
+.gate-doors {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  right: 20%;
+  height: 145px;
 }
 
-@media (max-width: 760px) {
-  body:has(input[placeholder*="RIFT"]) header {
-    flex-wrap: wrap !important;
+.gate-doors span {
+  flex: 1;
+  background: linear-gradient(90deg, #0a0a0a, #27123d);
+  border: 1px solid rgba(168, 85, 247, .7);
+  transition: transform .8s ease;
+}
+
+.gate-open .gate-doors span:first-child {
+  transform: translateX(-90%);
+}
+
+.gate-open .gate-doors span:last-child {
+  transform: translateX(90%);
+}
+
+.crowd-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: -44px auto 18px;
+  position: relative;
+  z-index: 5;
+}
+
+.crowd-person {
+  width: 14px;
+  height: 34px;
+  border-radius: 999px 999px 6px 6px;
+  background: linear-gradient(#f7d98b, #8b5cf6);
+  box-shadow: 0 0 12px rgba(168,85,247,.7);
+}
+
+.gate-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  margin-top: 22px;
+}
+
+.ticket-booth,
+.clone-machine {
+  border: 1px solid rgba(168, 85, 247, .75);
+  border-radius: 24px;
+  background: rgba(0,0,0,.76);
+  padding: 28px;
+}
+
+.clone-machine {
+  border-color: rgba(34, 211, 238, .75);
+}
+
+.panel-kicker {
+  color: #c084fc;
+  text-transform: uppercase;
+  letter-spacing: .35em;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.panel-kicker.cyan {
+  color: #22d3ee;
+}
+
+.ticket-booth h2,
+.clone-machine h2 {
+  font-size: clamp(30px, 4vw, 54px);
+  margin: 8px 0;
+}
+
+.ticket-booth p,
+.clone-machine p {
+  color: #cbd5e1;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.status-box {
+  border: 1px solid rgba(34, 211, 238, .6);
+  border-radius: 18px;
+  padding: 18px;
+  margin: 22px 0;
+  display: grid;
+  gap: 6px;
+}
+
+.status-box span {
+  color: #22d3ee;
+  text-transform: uppercase;
+  letter-spacing: .3em;
+  font-size: 12px;
+}
+
+.status-box strong {
+  font-size: 28px;
+}
+
+.status-box small {
+  color: #facc15;
+}
+
+.open-gate-btn {
+  background: #06b6d4;
+  color: #000;
+  min-width: 260px;
+}
+
+.open-gate-btn:disabled {
+  opacity: .35;
+}
+
+.clone-machine {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.clone-machine button:nth-of-type(1) {
+  background: #06b6d4;
+  color: #000;
+}
+
+.clone-machine button:nth-of-type(2) {
+  background: #9333ea;
+}
+
+.clone-machine button:nth-of-type(3) {
+  background: #d97706;
+  color: #000;
+}
+
+.gate-bottom-bar {
+  margin-top: 18px;
+  border: 1px solid rgba(168,85,247,.55);
+  border-radius: 18px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-around;
+  gap: 12px;
+  color: #a5b4fc;
+  text-align: center;
+  flex-wrap: wrap;
+  font-weight: 800;
+}
+
+@media (max-width: 900px) {
+  .gate-visual,
+  .gate-grid {
+    grid-template-columns: 1fr;
   }
 
-  body:has(input[placeholder*="RIFT"]) header .mine-active-notice {
-    order: 3;
-    flex-basis: 100%;
-    max-width: none;
-    margin: 8px 0 0;
-    font-size: 0.68rem;
-    letter-spacing: 0.09em;
+  .gate-tower {
+    height: 120px;
   }
 }
