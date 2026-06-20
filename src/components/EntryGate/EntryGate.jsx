@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import MainStreetPlaza from "../MainStreetPlaza/MainStreetPlaza";
 import CrowdControl from "../CrowdControl/CrowdControl";
+import CrowdControl from "../CrowdControl/CrowdControl";
 import CloneRoam from "../CloneRoam/CloneRoam";
 import "./EntryGate.css";
 
@@ -92,6 +93,7 @@ export default function EntryGate({
   const [signup, setSignup] = useState({ name: "", email: "", phone: "" });
 
   if (cloneRoam) return <CloneRoam onBack={() => setCloneRoam(false)} />;
+  if (crowdConsole) return <CrowdControl onBack={() => setCrowdConsole(false)} />;
   if (crowdConsole) return <CrowdControl onBack={() => setCrowdConsole(false)} />;
   if (insidePark) return <MainStreetPlaza />;
 
