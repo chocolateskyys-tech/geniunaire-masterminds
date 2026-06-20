@@ -1,194 +1,288 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from "react";
 import "./EntryGate.css";
 
-function EntryGate({
+const ticketOptions = [
+  {
+    id: "free",
+    label: "Free Sign Up",
+    subtitle: "Limited access pass",
+    booth: "Free Guest Ticket Booth",
+    action: "onRequestClearance",
+  },
+  {
+    id: "etv",
+    label: "E-TV Lounge",
+    subtitle: "Watch commercials, TV, drops, ads",
+    booth: "E-TV Lounge Ticket Booth",
+    action: "onEnterAiality",
+  },
+  {
+    id: "walk",
+    label: "Walk The Park",
+    subtitle: "Browse through the tunnel",
+    booth: "Park Walk Ticket Booth",
+    action: "walkPark",
+  },
+  {
+    id: "chill",
+    label: "Chill In E-TV Lounge",
+    subtitle: "Sit down and watch programmed screens",
+    booth: "E-TV Chill Pass Booth",
+    action: "onEnterAiality",
+  },
+  {
+    id: "casting",
+    label: "Casting / E-TV Network",
+    subtitle: "Contracts, rules, verification, broadcast access",
+    booth: "Casting & Network Clearance",
+    action: "onEnterAiality",
+  },
+  {
+    id: "subscribers",
+    label: "Subscribers",
+    subtitle: "Monthly signal access",
+    booth: "Subscriber Signal Booth",
+    action: "onEnterAiality",
+  },
+  {
+    id: "thread",
+    label: "Thread Clients",
+    subtitle: "Onboarding, admin, business setup",
+    booth: "Thread Set Client Booth",
+    action: "onEnterDreamLab",
+  },
+  {
+    id: "celeb",
+    label: "Celeb Verification",
+    subtitle: "Security, ID, marketplace placement",
+    booth: "Celebrity Security Booth",
+    action: "onRequestClearance",
+  },
+];
+
+export default function EntryGate({
   onEnterDreamLab,
   onEnterMoneyTracker,
   onRequestClearance,
   onFounderAccess,
+  onEnterAiality,
 }) {
-  const [soundEnabled, setSoundEnabled] = useState(false);
-  const [accessCode, setAccessCode] = useState('');
-  const [accessStatus, setAccessStatus] = useState('idle');
-  const [logIndex, setLogIndex] = useState(0);
+  const [selectedTicket, setSelectedTicket] = useState(null);
+  const [gateStatus, setGateStatus] = useState("closed");
+  const [musicMode, setMusicMode] = useState("Gate Music: Crowd Mix 01");
+  const [message, setMessage] = useState("Choose your booth. The gate opens after your pass is handled.");
 
-  const systemLogs = [
-    'Awaiting user input...',
-    'Scanning creator ecosystem...',
-    'Routing neural pathways...',
-    'Vault systems locked and secured.',
-    'Ready for creative deployment.',
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setLogIndex((previousIndex) => (previousIndex + 1) % systemLogs.length);
-    }, 3500);
-
-    return () => clearInterval(interval);
-  }, [systemLogs.length]);
-
-  const handleAccessCheck = (event) => {
-    event.preventDefault();
-
-    if (!accessCode.trim()) {
-      return;
-    }
-
-    setAccessStatus('checking');
-
-    setTimeout(() => {
-      if (accessCode.trim().toUpperCase() === 'ASPIRE!') {
-        setAccessStatus('granted');
-      } else {
-        setAccessStatus('denied');
-
-        setTimeout(() => {
-          setAccessStatus('idle');
-        }, 3000);
-      }
-    }, 1200);
+  const runAction = (action) => {
+    if (action === "onEnterDreamLab") onEnterDreamLab?.();
+    if (action === "onEnterMoneyTracker") onEnterMoneyTracker?.();
+    if (action === "onRequestClearance") onRequestClearance?.();
+    if (action === "onFounderAccess") onFounderAccess?.();
+    if (action === "onEnterAiality") onEnterAiality?.();
+    if (action === "walkPark") walkPark();
   };
 
-return (
-  <main className="min-h-screen bg-black text-slate-300 font-sans relative overflow-hidden flex flex-col items-center justify-center">
-    <div className="absolute inset-0 pointer-events-none">
-      <div className="absolute top-[20%] left-[15%] w-2 h-2 bg-purple-500 rounded-full animate-ping opacity-40" />
-      <div className="absolute top-[60%] left-[80%] w-2 h-2 bg-slate-300 rounded-full animate-pulse opacity-30" />
-      <div className="absolute top-[80%] left-[25%] w-1 h-1 bg-purple-400 rounded-full animate-ping opacity-50" />
-      <div className="absolute top-[30%] left-[75%] w-2 h-2 bg-slate-400 rounded-full animate-pulse opacity-40" />
-    </div>
+  const openTicketBooth = (ticket) => {
+    setSelectedTicket(ticket);
+    setGateStatus("ticket");
+    setMessage(`Now serving: ${ticket.booth}. Handle ticket, signup, payment, agreement, or verification.`);
+  };
 
-    <div className="absolute top-1/2 left-1/2 w-[700px] h-[700px] -translate-x-1/2 -translate-y-1/2 bg-purple-900/20 rounded-full blur-[120px] pointer-events-none animate-pulse" />
+  const activateGate = () => {
+    if (!selectedTicket) return;
+    setGateStatus("opening");
+    setMessage("Ticket accepted. Gate opening. Tunnel rumble starting...");
+    setTimeout(() => {
+      setGateStatus("open");
+      setMessage("Gate open. Entering park...");
+      setTimeout(() => runAction(selectedTicket.action), 700);
+    }, 900);
+  };
 
-    <header className="absolute top-0 left-0 w-full px-6 py-5 flex items-center justify-between border-b border-purple-900/30 bg-black/50 backdrop-blur-sm z-10">
-      <div>
-        <div className="flex items-center gap-3">
-          <span className="w-3 h-3 bg-purple-500 rounded-full animate-ping" />
-          <span className="tracking-widest text-xs md:text-sm text-purple-400 font-bold uppercase">
-            Geniunaire MasterMinds
-          </span>
-        </div>
+  const walkPark = () => {
+    setGateStatus("rumble");
+    setMessage("Tunnel rumbling. Rails glowing. Moving into the park...");
+    setTimeout(() => onRequestClearance?.(), 900);
+  };
 
-        <p className="mt-2 text-[10px] text-slate-500 font-mono tracking-widest">
-          {'>_ ' + systemLogs[logIndex]}
-        </p>
-      </div>
+  const changeMusic = () => {
+    const mixes = [
+      "Gate Music: Crowd Mix 01",
+      "Gate Music: Tunnel Rumble",
+      "Gate Music: E-TV Lounge Ads",
+      "Gate Music: Park Walk Loop",
+      "Gate Music: Clone Bot Parade",
+      "Gate Music: Founder Signal",
+    ];
+    setMusicMode(mixes[Math.floor(Math.random() * mixes.length)]);
+  };
 
-      <div className="mine-active-notice" aria-label="Admiration Mine Integrator status">
-            Admiration Mine Integrator Active
+  const rentClone = (plan) => {
+    setSelectedTicket({
+      id: "clone",
+      label: plan,
+      subtitle: "Mini clone body rental",
+      booth: "Mini Clone Bot Machine",
+      action: "onRequestClearance",
+    });
+    setGateStatus("ticket");
+    setMessage(`${plan} selected. Rent a mini clone body to come inside the screen and roam the park.`);
+  };
+
+  return (
+    <main className={`min-h-screen bg-black text-white overflow-hidden ${gateStatus === "rumble" || gateStatus === "opening" ? "animate-pulse" : ""}`}>
+      <section className="min-h-screen relative px-4 py-6">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,.35),transparent_55%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-950/30 to-black" />
+
+        <div className="relative z-10 max-w-7xl mx-auto">
+          <div className="mb-5 rounded-2xl border border-purple-700 bg-black/80 p-3 flex flex-wrap justify-center gap-2">
+            {ticketOptions.map((ticket) => (
+              <button
+                key={ticket.id}
+                onClick={() => openTicketBooth(ticket)}
+                className="px-3 py-2 rounded-lg bg-purple-800 hover:bg-purple-700 text-xs md:text-sm font-black"
+              >
+                {ticket.label}
+              </button>
+            ))}
+
+            <button
+              onClick={changeMusic}
+              className="px-3 py-2 rounded-lg bg-black border border-yellow-500 text-yellow-300 text-xs md:text-sm font-black"
+            >
+              Change Park Music
+            </button>
+
+            <button
+              onClick={onFounderAccess}
+              className="px-3 py-2 rounded-lg border border-transparent text-black/0 bg-black/20 hover:text-yellow-400 hover:border-yellow-500 text-xs md:text-sm"
+            >
+              Admin
+            </button>
+
+            <button
+              onClick={onRequestClearance}
+              className="px-3 py-2 rounded-lg border border-transparent text-black/0 bg-black/20 hover:text-purple-300 hover:border-purple-500 text-xs md:text-sm"
+            >
+              Crowd Control
+            </button>
           </div>
 
-          <button onClick={onEnterTryAccess}
-        type="button"
-        onClick={() => setSoundEnabled((currentValue) => !currentValue)}
-        className="text-slate-400 hover:text-purple-300 transition-all duration-300 border border-slate-700 hover:border-purple-500 px-4 py-2 rounded bg-black/50"
-      >
-        <span className="text-[10px] md:text-xs tracking-widest uppercase">
-          "AI'ality Tv Network"
-        </span>
-      </button>
-    </header>
+          <div className="text-center pt-8">
+            <p className="text-purple-300 tracking-[0.35em] uppercase text-xs mb-4">
+              Geniunaire MasterMinds Theme Park — Atlanta GA
+            </p>
 
-    <section className="relative z-10 max-w-5xl mx-auto text-center px-6 mt-20">
-      <p className="text-xs md:text-sm text-purple-400 tracking-[0.45em] uppercase mb-6">
-        GENIUNAIRE MASTERMINDS
-      </p>
-
-      <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-300 via-purple-400 to-slate-300 mb-8 drop-shadow-[0_0_18px_rgba(168,85,247,0.6)] tracking-tight">
-              WE SHINE IN THIS MINE.
-              <br />
-              START DIGGING!
+            <h1 className="text-5xl md:text-7xl font-black mb-4">
+              YOU BETTER COME IN.
             </h1>
 
-      <div className="h-px bg-purple-500/80 max-w-2xl mx-auto mb-8" />
+            <p className="text-slate-300 text-lg md:text-xl max-w-3xl mx-auto mb-8">
+              Pick your ticket booth. Rent a mini clone body. Activate the gate. Walk into the park.
+            </p>
+          </div>
 
-      <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-        Where drifters become builders and ideas get mined into diamonds.
-      </p>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+            <section className="lg:col-span-2 rounded-3xl border border-purple-700 bg-black/75 p-6 shadow-2xl">
+              <div className="rounded-2xl border border-purple-500 bg-gradient-to-b from-purple-950/80 to-black p-6 min-h-[360px] flex flex-col items-center justify-center text-center">
+                <p className="text-xs uppercase tracking-[0.35em] text-purple-300 mb-3">
+                  Front Gate Ticket Booth
+                </p>
 
-      <form onSubmit={handleAccessCheck} className="mb-10 max-w-sm mx-auto">
-        <input
-          type="text"
-          placeholder="ENTER RIFT CODE"
-          value={accessCode}
-          onChange={(event) => setAccessCode(event.target.value)}
-          disabled={accessStatus === 'checking' || accessStatus === 'granted'}
-          className="w-full bg-black/60 border border-purple-900 focus:border-purple-400 text-center text-purple-300 tracking-widest uppercase py-3 rounded outline-none transition-all duration-500 shadow-[0_0_10px_rgba(168,85,247,0.15)] focus:shadow-[0_0_22px_rgba(168,85,247,0.5)] disabled:opacity-60"
-        />
+                <h2 className="text-3xl md:text-5xl font-black mb-4">
+                  {selectedTicket ? selectedTicket.booth : "Choose A Gate Button"}
+                </h2>
 
-        <div className="h-7 mt-3 flex justify-center items-center">
-          {accessStatus === 'checking' && (
-            <span className="text-[10px] text-purple-400 tracking-[0.3em] uppercase animate-pulse">
-              Verifying Signature...
-            </span>
-          )}
+                <p className="text-slate-300 max-w-2xl mb-6">
+                  {selectedTicket
+                    ? selectedTicket.subtitle
+                    : "Free guests, subscribers, Thread clients, casting talent, celebrities, and park walkers all enter through the booth first."}
+                </p>
 
-          {accessStatus === 'granted' && (
-            <button type="button" onClick={onFounderAccess}>
-              DREAM
-            </button>
-          )}
+                <div className="w-full max-w-2xl rounded-2xl border border-cyan-500/50 bg-black/70 p-5 mb-5">
+                  <p className="text-cyan-300 text-xs uppercase tracking-[0.3em] mb-2">
+                    Gate Status
+                  </p>
+                  <p className="text-xl font-black uppercase">{gateStatus}</p>
+                  <p className="text-sm text-slate-400 mt-2">{message}</p>
+                </div>
 
-          {accessStatus === 'denied' && (
-            <span className="text-[10px] text-red-500 tracking-[0.3em] uppercase drop-shadow-[0_0_8px_rgba(239,68,68,0.8)]">
-              Access Denied // Invalid Signature
-            </span>
-          )}
+                <div className="flex flex-wrap justify-center gap-3">
+                  <button
+                    onClick={activateGate}
+                    disabled={!selectedTicket}
+                    className="px-6 py-3 rounded-xl bg-cyan-500 text-black font-black disabled:opacity-40"
+                  >
+                    Pay / Verify / Accept Ticket
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setGateStatus("closed");
+                      setSelectedTicket(null);
+                      setMessage("Gate reset. Choose your booth.");
+                    }}
+                    className="px-6 py-3 rounded-xl border border-purple-500"
+                  >
+                    Close Gate
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <aside className="rounded-3xl border border-cyan-500/60 bg-black/75 p-6">
+              <p className="text-cyan-300 text-xs tracking-[0.35em] uppercase mb-2">
+                Mini Clone Bot Machine
+              </p>
+
+              <h2 className="text-3xl font-black mb-3">
+                Come Inside The Screen
+              </h2>
+
+              <p className="text-slate-300 mb-5">
+                Rent a mini clone body to roam the park, sit in E-TV Lounge, browse stores, visit rooms,
+                and return to the hub when time expires.
+              </p>
+
+              <div className="grid grid-cols-1 gap-3">
+                <button onClick={() => rentClone("$5 / Hour Clone Rental")} className="rounded bg-cyan-500 text-black font-black py-3">
+                  $5 / Hour
+                </button>
+                <button onClick={() => rentClone("Day Pass Clone Rental")} className="rounded bg-purple-700 font-black py-3">
+                  Day Pass
+                </button>
+                <button onClick={() => rentClone("Monthly Clone Pass")} className="rounded bg-yellow-600 text-black font-black py-3">
+                  Monthly Clone Pass
+                </button>
+                <button onClick={walkPark} className="rounded border border-cyan-400 py-3">
+                  Try Park Walk
+                </button>
+              </div>
+
+              <p className="mt-4 text-xs text-slate-500 uppercase tracking-widest">
+                Roaming recommendation bots may approach guests who are not inside a clone body.
+              </p>
+            </aside>
+          </div>
+
+          <section className="mt-5 rounded-3xl border border-purple-700 bg-black/70 p-5 grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+            <div>
+              <h3 className="font-black text-purple-300">E-TV Book</h3>
+              <p className="text-sm text-slate-400">Runs media, signal plans, commercials, casting, streaming, and lounge programming.</p>
+            </div>
+            <div>
+              <h3 className="font-black text-cyan-300">Thread Set</h3>
+              <p className="text-sm text-slate-400">Runs ThreadFolio, E-Folio, E-Map, business plans, onboarding, and prepaid builds.</p>
+            </div>
+            <div>
+              <h3 className="font-black text-yellow-300">Clone Bots</h3>
+              <p className="text-sm text-slate-400">Operate rooms, route guests, recommend passes, and keep the park moving.</p>
+            </div>
+          </section>
+
+          <p className="mt-5 text-center text-xs text-cyan-300 tracking-widest uppercase">{musicMode}</p>
         </div>
-      </form>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-        <button
-          type="button"
-          onClick={onEnterDreamLab}
-          className="group relative px-8 py-5 bg-black border border-purple-500/50 hover:border-purple-400 rounded overflow-hidden transition-all duration-500 hover:shadow-[0_0_24px_rgba(168,85,247,0.45)] hover:-translate-y-1"
-        >
-          <span className="relative z-10 text-slate-200 uppercase tracking-widest font-semibold text-sm group-hover:text-white">
-           MINE "YOUR" DREAM PROJECT
-          </span>
-        </button>
-
-        <button
-          type="button"
-          onClick={onRequestClearance}
-          className="group relative px-8 py-5 bg-purple-900/40 border border-purple-500 rounded overflow-hidden transition-all duration-500 hover:shadow-[0_0_28px_rgba(168,85,247,0.7)] hover:bg-purple-800/50 hover:-translate-y-1"
-        >   
-          <span className="relative z-10 text-white uppercase tracking-widest font-bold text-sm">
-            START YOUR DIG!
-          </span>
-        </button>
-  
-        <button
-          type="button"
-          onClick={onEnterTryAccess}
-          className="group relative px-8 py-5 bg-black border border-slate-700 hover:border-purple-500/70 rounded overflow-hidden transition-all duration-500 hover:shadow-[0_0_20px_rgba(168,85,247,0.25)] hover:-translate-y-1"
-        >
-          <span className="relative z-10 text-slate-400 uppercase tracking-widest font-semibold text-sm group-hover:text-purple-300">
-           AI'ality Tv Network Sign Up REQUEST
-          </span>
-        </button>
-
-        <button
-          type="button"
-          onClick={onEnterMoneyTracker}
-          className="group relative px-8 py-5 bg-black border border-slate-700 hover:border-slate-300 rounded overflow-hidden transition-all duration-500 hover:shadow-[0_0_30px_rgba(203,213,225,0.55)] hover:-translate-y-1"
-        >
-          <span className="relative z-10 text-slate-400 uppercase tracking-widest font-semibold text-sm group-hover:text-white">
-          VERIFIED GENIUNAIRE PASSAGEWAY
-          </span>
-        </button>
-      </div>
-    </section>
-
-    <footer className="relative z-10 mt-10 pb-6 w-full text-center">
-      <p className="text-[10px] text-slate-600 tracking-[0.3em] uppercase flex items-center justify-center gap-2">
-        <span className="w-1.5 h-1.5 bg-purple-600 rounded-full animate-pulse" />
-        <span>Do not copy the Mine. Do not leak the structure. Do not clone the workers. Do not repackage the diamonds.</span>
-      </p>
-    </footer>
-  </main>
-);
+      </section>
+    </main>
+  );
 }
-
-export default EntryGate;
