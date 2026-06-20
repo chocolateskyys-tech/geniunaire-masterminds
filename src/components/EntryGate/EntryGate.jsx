@@ -8,14 +8,70 @@ const SECRET_ADMIN = "ASPIRE!";
 const SECRET_PLAY = "ORBIT!";
 
 const gateButtons = [
-  { key: "free", label: "Free Sign Up", destination: "Limited Guest Access", price: "Free", info: "Free limited browsing pass. Guest can look around before upgrading." },
-  { key: "etv", label: "E-TV Lounge", destination: "E-TV Lounge Ticket Booth", price: "Preview / Signal Plan", info: "Watch commercials, TV drops, ads, E-TV Book previews, and monthly stream offers." },
-  { key: "walk", label: "Walk The Park", destination: "Park Walk Ticket Booth", price: "Ticket / Clone Optional", info: "Open the gate tunnel and enter Main Street Plaza." },
-  { key: "chill", label: "Chill In E-TV Lounge", destination: "E-TV Chill Lounge Booth", price: "Signal Plan", info: "Sit in the lounge, watch screens, commercials, programmed drops, and affiliate ads." },
-  { key: "casting", label: "Casting / E-TV Network", destination: "Casting Network Booth", price: "Verification Required", info: "Talent signs in, accepts agreements, reviews rules/bylaws, and enters broadcast review." },
-  { key: "subscribers", label: "Subscribers", destination: "Subscriber Booth", price: "Monthly Signal", info: "Subscribers enter E-TV Book, stream plans, programmed drops, and signal access." },
-  { key: "thread", label: "Thread Clients", destination: "Thread Client Booth", price: "Client Setup", info: "Thread clients enter onboarding, admin handoff, website/business setup, and prepaid builds." },
-  { key: "celeb", label: "Celeb Verification", destination: "Celebrity Security Booth", price: "Security Review", info: "Celebrities enter identity/security verification, marketplace placement, and promo TV review." }
+  {
+    key: "free",
+    label: "Free Sign Up",
+    title: "Free Limited Guest Pass",
+    pass: "Guest Pass",
+    price: "Free",
+    info: "Create a limited access guest pass. Browse the park, preview rooms, and upgrade when ready."
+  },
+  {
+    key: "etv",
+    label: "E-TV Lounge",
+    title: "E-TV Lounge Preview",
+    pass: "E-TV Preview Pass",
+    price: "Preview / Monthly Signal",
+    info: "Enter the E-TV Lounge to watch commercials, TV drops, ads, affiliate previews, and E-TV Book programming."
+  },
+  {
+    key: "walk",
+    label: "Walk The Park",
+    title: "Walk The Park Ticket",
+    pass: "Park Walk Pass",
+    price: "Ticket / Clone Optional",
+    info: "Open the front gate tunnel and enter Main Street Plaza to walk the full virtual theme park."
+  },
+  {
+    key: "chill",
+    label: "Chill In E-TV Lounge",
+    title: "Chill Lounge Access",
+    pass: "E-TV Lounge Pass",
+    price: "Signal Plan",
+    info: "Sit in the lounge, watch programmed screens, commercials, affiliate ads, and entertainment drops."
+  },
+  {
+    key: "casting",
+    label: "Casting / E-TV Network",
+    title: "Casting & Network Verification",
+    pass: "Casting Pass",
+    price: "Verification Required",
+    info: "Talent signs in, accepts agreements, reviews rules and bylaws, verifies identity, then enters broadcast review."
+  },
+  {
+    key: "subscribers",
+    label: "Subscribers",
+    title: "Subscriber Entrance",
+    pass: "Subscriber Pass",
+    price: "Monthly Signal",
+    info: "Subscribers enter E-TV Book, monthly stream plans, programmed drops, and signal access."
+  },
+  {
+    key: "thread",
+    label: "Thread Clients",
+    title: "Thread Client Onboarding",
+    pass: "Thread Client Pass",
+    price: "Client Setup",
+    info: "Thread clients enter onboarding, admin handoff, website setup, business setup, and prepaid build requests."
+  },
+  {
+    key: "celeb",
+    label: "Celeb Verification",
+    title: "Celebrity Security Booth",
+    pass: "Celebrity Pass",
+    price: "Security Review",
+    info: "Celebrities enter tight verification, marketplace placement, promo TV, booking review, and security approval."
+  }
 ];
 
 export default function EntryGate({
@@ -33,64 +89,50 @@ export default function EntryGate({
   const [gateStatus, setGateStatus] = useState("Closed");
   const [musicMode, setMusicMode] = useState("Crowd Mix 01");
   const [crowdLevel, setCrowdLevel] = useState("Normal");
-  const [passType, setPassType] = useState("Guest Pass");
   const [signup, setSignup] = useState({ name: "", email: "", phone: "" });
 
   if (cloneRoam) return <CloneRoam onBack={() => setCloneRoam(false)} />;
   if (crowdConsole) return <CrowdControl onBack={() => setCrowdConsole(false)} />;
   if (insidePark) return <MainStreetPlaza />;
 
-  const changeMusic = () => {
-    const mixes = ["Crowd Mix 01", "Tunnel Rumble", "Clone Parade", "E-TV Lounge Ads", "Park Walk Loop", "Atlanta Gate Brass"];
-    setMusicMode(mixes[Math.floor(Math.random() * mixes.length)]);
-  };
-
   const chooseGate = (item) => {
     setSelected(item);
-    setGateStatus(`${item.label} booth loaded — complete sign in, then open gate`);
+    setGateStatus(`${item.label} booth loaded`);
     localStorage.setItem("gm_selected_gate", JSON.stringify(item));
+  };
 
-    if (item.key === "free") {
-      setPassType("Guest Pass");
-    }
-
-    if (item.key === "etv" || item.key === "chill") {
-      setPassType("Subscriber Pass");
-    }
-
-    if (item.key === "walk") {
-      setPassType("Ticket Pass");
-    }
-
-    if (item.key === "casting") {
-      setPassType("Casting Pass");
-    }
-
-    if (item.key === "subscribers") {
-      setPassType("Subscriber Pass");
-    }
-
-    if (item.key === "thread") {
-      setPassType("Thread Client Pass");
-    }
-
-    if (item.key === "celeb") {
-      setPassType("Celebrity Pass");
-    }
+  const changeMusic = () => {
+    const mixes = [
+      "Crowd Mix 01",
+      "Tunnel Rumble",
+      "Clone Parade",
+      "E-TV Lounge Ads",
+      "Park Walk Loop",
+      "Atlanta Gate Brass"
+    ];
+    const next = mixes[Math.floor(Math.random() * mixes.length)];
+    setMusicMode(next);
+    localStorage.setItem("gm_gate_music", next);
   };
 
   const submitTicket = () => {
-    if (!selected) return;
+    if (!selected) {
+      setGateStatus("Choose a gate button first");
+      return;
+    }
 
-    localStorage.setItem("gm_gate_signup", JSON.stringify({
-      selected,
-      passType,
-      signup,
-      time: new Date().toISOString()
-    }));
+    localStorage.setItem(
+      "gm_gate_signup",
+      JSON.stringify({
+        selected,
+        signup,
+        time: new Date().toISOString()
+      })
+    );
 
     setGateStatus("Ticket accepted. Gate opening...");
-    setTimeout(() => setGateStatus("Tunnel rumble active..."), 550);
+    setTimeout(() => setGateStatus("Tunnel rumble active..."), 500);
+
     setTimeout(() => {
       if (selected.key === "subscribers") {
         onEnterMoneyTracker?.();
@@ -113,7 +155,7 @@ export default function EntryGate({
       }
 
       setInsidePark(true);
-    }, 1200);
+    }, 1000);
   };
 
   const rentClone = (pass) => {
@@ -127,10 +169,12 @@ export default function EntryGate({
       onFounderAccess?.();
       return;
     }
+
     if (secretBox === SECRET_PLAY) {
       setCrowdConsole(true);
       return;
     }
+
     setGateStatus("Secret access denied");
   };
 
@@ -138,58 +182,65 @@ export default function EntryGate({
     <main className="gm-front-gate">
       <section className="gm-gate-shell">
         <nav className="gm-gate-nav">
-                    {gateButtons.map((item) => (
+          {gateButtons.map((item) => (
             <button
               key={item.key}
               type="button"
               className={selected?.key === item.key ? "active-gate-btn" : ""}
-              onClick={(event) => {
-                event.preventDefault();
-                event.stopPropagation();
-                setSelected(item);
-                setGateStatus(item.label + " booth loaded");
-                setPassType(
-                  item.key === "thread" ? "Thread Client Pass" :
-                  item.key === "celeb" ? "Celebrity Pass" :
-                  item.key === "casting" ? "Casting Pass" :
-                  item.key === "subscribers" || item.key === "etv" || item.key === "chill" ? "Subscriber Pass" :
-                  item.key === "walk" ? "Ticket Pass" :
-                  "Guest Pass"
-                );
-                localStorage.setItem("gm_selected_gate", JSON.stringify(item));
-              }}
+              onClick={() => chooseGate(item)}
             >
-              {item.label}
-            </button>
-          ))}>
               {item.label}
             </button>
           ))}
 
-          <button className="music-btn" onClick={changeMusic}>Park Music</button>
+          <button type="button" className="music-btn" onClick={changeMusic}>
+            Park Music
+          </button>
 
-          <button className="ghost-admin" onClick={() => setCrowdConsole(true)}>◇</button>
-          <button className="ghost-admin" onClick={onFounderAccess}>◌</button>
+          <button type="button" className="ghost-admin" onClick={() => setCrowdConsole(true)}>
+            ◇
+          </button>
+
+          <button type="button" className="ghost-admin" onClick={onFounderAccess}>
+            ◌
+          </button>
         </nav>
 
         <div className="selected-gate-strip">
-          <strong>SELECTED:</strong> {selected ? selected.label + " → " + selected.destination : "No booth selected yet"}
+          <strong>SELECTED:</strong>{" "}
+          {selected ? `${selected.label} → ${selected.title}` : "No booth selected yet"}
         </div>
 
         <section className="gm-hero-gate">
-          <div className="gate-topline">GENIUNAIRE MASTERMINDS ONLINE VIRTUAL THEME PARK — ATLANTA, GA</div>
+          <div className="gate-topline">
+            GENIUNAIRE MASTERMINDS ONLINE VIRTUAL THEME PARK — ATLANTA, GA
+          </div>
 
           <div className="gate-visual">
-            <div className="gate-tower left"><span>Tickets & Entry</span></div>
+            <div className="gate-tower left">
+              <span>Tickets & Entry</span>
+            </div>
 
-            <div className={`gate-arch ${gateStatus.includes("opening") || gateStatus.includes("rumble") ? "gate-open" : ""}`}>
+            <div
+              className={`gate-arch ${
+                gateStatus.toLowerCase().includes("opening") ||
+                gateStatus.toLowerCase().includes("rumble")
+                  ? "gate-open"
+                  : ""
+              }`}
+            >
               <h1>GENIUNAIRE MASTERMINDS</h1>
               <p>Virtual Theme Park</p>
               <small>Atlanta, GA</small>
-              <div className="gate-doors"><span /><span /></div>
+              <div className="gate-doors">
+                <span />
+                <span />
+              </div>
             </div>
 
-            <div className="gate-tower right"><span>Clone Rental</span></div>
+            <div className="gate-tower right">
+              <span>Clone Rental</span>
+            </div>
           </div>
 
           <div className="crowd-row">
@@ -202,45 +253,39 @@ export default function EntryGate({
         <section className="gate-grid">
           <article className="ticket-booth">
             <p className="panel-kicker">Front Gate Ticket Booth</p>
-            <h2>{selected ? selected.destination : "Choose Your Entrance"}</h2>
-            <p>{selected ? selected.info : "Pick a gate button above. Every guest goes through a booth before the gate opens."}</p>
+            <h2>{selected ? selected.title : "Choose Your Entrance"}</h2>
+            <p>
+              {selected
+                ? selected.info
+                : "Pick a gate button above. Every guest goes through a booth before the gate opens."}
+            </p>
 
             {selected && (
               <div className="status-box">
-                <span>Active Top Button</span>
+                <span>Active Booth</span>
                 <strong>{selected.label}</strong>
-                <small>This button is wired to this booth.</small>
-              </div>
-            )}
-
-            <div className="status-box">
-              <span>Pass Type</span>
-              {["Guest Pass", "Ticket Pass", "Subscriber Pass", "Thread Client Pass", "Casting Pass", "Celebrity Pass"].map((pass) => (
-                <label key={pass} className="radio-line">
-                  <input
-                    type="radio"
-                    name="passType"
-                    checked={passType === pass}
-                    onChange={() => setPassType(pass)}
-                  />
-                  {pass}
-                </label>
-              ))}
-            </div>
-
-            {selected && (
-              <div className="status-box">
-                <span>Selected Booth</span>
-                <strong>{selected.label}</strong>
+                <small>Pass: {selected.pass}</small>
                 <small>Price / Requirement: {selected.price}</small>
               </div>
             )}
 
             <div className="status-box">
               <span>Guest Sign Up / Check In</span>
-              <input placeholder="Name / Stage Name" value={signup.name} onChange={(e) => setSignup({ ...signup, name: e.target.value })} />
-              <input placeholder="Email" value={signup.email} onChange={(e) => setSignup({ ...signup, email: e.target.value })} />
-              <input placeholder="Phone / Optional" value={signup.phone} onChange={(e) => setSignup({ ...signup, phone: e.target.value })} />
+              <input
+                placeholder="Name / Stage Name"
+                value={signup.name}
+                onChange={(e) => setSignup({ ...signup, name: e.target.value })}
+              />
+              <input
+                placeholder="Email"
+                value={signup.email}
+                onChange={(e) => setSignup({ ...signup, email: e.target.value })}
+              />
+              <input
+                placeholder="Phone / Optional"
+                value={signup.phone}
+                onChange={(e) => setSignup({ ...signup, phone: e.target.value })}
+              />
             </div>
 
             <div className="status-box">
@@ -248,28 +293,52 @@ export default function EntryGate({
               <strong>{gateStatus}</strong>
               <small>Music: {musicMode}</small>
               <small>Crowd: {crowdLevel}</small>
-              <small>Pass: {passType}</small>
+              <small>Pass: {selected ? selected.pass : "None selected"}</small>
             </div>
 
-            <button className="open-gate-btn" onClick={submitTicket} disabled={!selected}>
+            <button className="open-gate-btn" type="button" onClick={submitTicket}>
               Sign / Verify / Open Gate
             </button>
 
             <div className="status-box">
               <span>Secret Access</span>
-              <input placeholder="Secret word" value={secretBox} onChange={(e) => setSecretBox(e.target.value)} />
-              <button className="open-gate-btn" onClick={unlockSecret}>Unlock</button>
+              <input
+                placeholder="Secret word"
+                value={secretBox}
+                onChange={(e) => setSecretBox(e.target.value)}
+              />
+              <button className="open-gate-btn" type="button" onClick={unlockSecret}>
+                Unlock
+              </button>
             </div>
           </article>
 
           <article className="clone-machine">
             <p className="panel-kicker cyan">Mini Clone Bot Machine</p>
             <h2>Come Inside The Screen</h2>
-            <p>Rent a mini clone body to walk, shop, sit, chill, watch TV, and roam the park virtually.</p>
+            <p>
+              Rent a mini clone body to walk, shop, sit, chill, watch TV, and roam the park virtually.
+            </p>
 
-            <button onClick={() => rentClone("$5 / Hour Clone Rental")}>$5 / Hour</button>
-            <button onClick={() => rentClone("Day Pass Clone Rental")}>Day Pass</button>
-            <button onClick={() => rentClone("Monthly Clone Pass")}>Monthly Clone Pass</button>
+            <button type="button" onClick={() => rentClone("$5 / Hour Clone Rental")}>
+              $5 / Hour
+            </button>
+            <button type="button" onClick={() => rentClone("Day Pass Clone Rental")}>
+              Day Pass
+            </button>
+            <button type="button" onClick={() => rentClone("Monthly Clone Pass")}>
+              Monthly Clone Pass
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                setCrowdLevel(crowdLevel === "Maximum" ? "Normal" : "Maximum");
+                setGateStatus("Crowd level changed");
+              }}
+            >
+              Test Crowd
+            </button>
           </article>
         </section>
 

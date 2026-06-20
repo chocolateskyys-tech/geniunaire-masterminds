@@ -334,3 +334,30 @@
   text-align:center;
   font-weight:900;
 }
+
+.active-gate-btn{
+  background:linear-gradient(135deg,#facc15,#d97706)!important;
+  color:#000!important;
+}
+
+.selected-gate-strip{
+  margin:10px auto 20px;
+  max-width:900px;
+  border:1px solid #22d3ee;
+  color:#22d3ee;
+  background:#000;
+  border-radius:14px;
+  padding:12px 16px;
+  text-align:center;
+  font-weight:900;
+}
+
+.status-box input{
+  width:100%;
+  margin:6px 0;
+  border:1px solid rgba(34,211,238,.45);
+  background:#050505;
+  color:white;
+  border-radius:10px;
+  padding:12px;
+}
