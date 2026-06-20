@@ -3,7 +3,6 @@ import "./ParkDistricts.css";
 import ParkStore from "../ParkStore/ParkStore";
 import ETVLounge from "../ETVLounge/ETVLounge";
 import CastingSecurity from "../CastingSecurity/CastingSecurity";
-import CastingSecurity from "../CastingSecurity/CastingSecurity";
 
 const roomData = {
   threadfolio: {
@@ -74,7 +73,6 @@ export default function ParkDistricts({ activeKey, onBack }) {
   const [saved, setSaved] = useState([]);
   const [storeOpen, setStoreOpen] = useState(false);
   const [etvOpen, setEtvOpen] = useState(false);
-  const [securityOpen, setSecurityOpen] = useState("");
   const [securityOpen, setSecurityOpen] = useState("");
 
   if (securityOpen) return <CastingSecurity type={securityOpen} onBack={() => setSecurityOpen("")} />;
