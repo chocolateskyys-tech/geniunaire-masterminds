@@ -197,8 +197,8 @@ export default function EntryGate({
             Park Music
           </button>
 
-          <button type="button" className="ghost-admin" onClick={() => setCrowdConsole(true)}>
-            ◇
+          <button type="button" className="play-gate-btn" onClick={() => setCrowdConsole(true)}>
+            Play Gate
           </button>
 
           <button type="button" className="ghost-admin" onClick={onFounderAccess}>
