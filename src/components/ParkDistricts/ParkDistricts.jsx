@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./ParkDistricts.css";
+import ParkStore from "../ParkStore/ParkStore";
 
 const roomData = {
   threadfolio: {
@@ -68,6 +69,9 @@ export default function ParkDistricts({ activeKey, onBack }) {
   const room = roomData[activeKey] || roomData.threadfolio;
   const [activity, setActivity] = useState("Waiting for guest action.");
   const [saved, setSaved] = useState([]);
+  const [storeOpen, setStoreOpen] = useState(false);
+
+  if (storeOpen) return <ParkStore onBack={() => setStoreOpen(false)} />;
 
   const runAction = (action) => {
     const record = {
@@ -80,6 +84,7 @@ export default function ParkDistricts({ activeKey, onBack }) {
     setActivity(`${action} staged inside ${room.title}.`);
     setSaved((current) => [record, ...current].slice(0, 5));
     localStorage.setItem("gm_last_room_action", JSON.stringify(record));
+    if (action.toLowerCase().includes("checkout") || action.toLowerCase().includes("store") || action.toLowerCase().includes("rental")) setStoreOpen(true);
   };
 
   return (
