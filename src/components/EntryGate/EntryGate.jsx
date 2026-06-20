@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import MainStreetPlaza from "../MainStreetPlaza/MainStreetPlaza";
 import CrowdControl from "../CrowdControl/CrowdControl";
+import CloneRoam from "../CloneRoam/CloneRoam";
 import "./EntryGate.css";
 
 const SECRET_ADMIN = "ASPIRE!";
@@ -84,6 +85,7 @@ export default function EntryGate({
   const [insidePark, setInsidePark] = useState(false);
   const [crowdConsole, setCrowdConsole] = useState(false);
   const [cloneRoam, setCloneRoam] = useState(false);
+  const [cloneRoam, setCloneRoam] = useState(false);
   const [secretBox, setSecretBox] = useState("");
   const [gateStatus, setGateStatus] = useState("Closed");
   const [musicMode, setMusicMode] = useState("Crowd Mix 01");
@@ -91,8 +93,11 @@ export default function EntryGate({
   const [signup, setSignup] = useState({ name: "", email: "", phone: "" });
 
   if (cloneRoam) return <CloneRoam onBack={() => setCloneRoam(false)} />;
+  if (cloneRoam) return <CloneRoam onBack={() => setCloneRoam(false)} />;
   if (crowdConsole) return <CrowdControl onBack={() => setCrowdConsole(false)} />;
+  if (cloneRoam) return <CloneRoam onBack={() => setCloneRoam(false)} />;
   if (crowdConsole) return <CrowdControl onBack={() => setCrowdConsole(false)} />;
+  if (cloneRoam) return <CloneRoam onBack={() => setCloneRoam(false)} />;
   if (crowdConsole) return <CrowdControl onBack={() => setCrowdConsole(false)} />;
   if (insidePark) return <MainStreetPlaza />;
 
