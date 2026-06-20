@@ -1,0 +1,10 @@
+.security-page{min-height:100vh;background:linear-gradient(135deg,#020617,#000,#1e1b4b);color:white;padding:24px}
+.security-back{border:1px solid #facc15;background:#000;color:#facc15;border-radius:999px;padding:10px 16px;font-weight:900}
+.security-panel{max-width:1100px;margin:28px auto;border:1px solid #a855f7;border-radius:30px;background:rgba(0,0,0,.78);padding:30px;text-align:center}
+.security-panel p{color:#facc15;letter-spacing:.35em;text-transform:uppercase;font-size:12px;font-weight:900}
+.security-panel h1{font-size:clamp(38px,7vw,84px);margin:12px}
+.security-panel h2{color:#cbd5e1;font-weight:500;line-height:1.45}
+.security-status{border:1px solid #22d3ee;border-radius:18px;padding:18px;margin:22px;color:#22d3ee;font-size:22px}
+.security-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.security-grid button,.security-finish{border:0;border-radius:14px;padding:14px;font-weight:900;background:#9333ea;color:white}
+.security-finish{margin-top:18px;background:#06b6d4;color:#000;min-width:280px}
