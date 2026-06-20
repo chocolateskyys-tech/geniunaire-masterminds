@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import MainStreetPlaza from "../MainStreetPlaza/MainStreetPlaza";
 import CrowdControl from "../CrowdControl/CrowdControl";
-import CrowdControl from "../CrowdControl/CrowdControl";
-import CrowdControl from "../CrowdControl/CrowdControl";
-import CloneRoam from "../CloneRoam/CloneRoam";
 import "./EntryGate.css";
 
 const SECRET_ADMIN = "ASPIRE!";
