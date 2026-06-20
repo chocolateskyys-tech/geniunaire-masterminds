@@ -49,6 +49,34 @@ export default function EntryGate({
     setSelected(item);
     setGateStatus(`${item.label} ticket booth active`);
     localStorage.setItem("gm_selected_gate", JSON.stringify(item));
+
+    if (item.key === "free") {
+      setPassType("Guest Pass");
+    }
+
+    if (item.key === "etv" || item.key === "chill") {
+      setPassType("Subscriber Pass");
+    }
+
+    if (item.key === "walk") {
+      setPassType("Ticket Pass");
+    }
+
+    if (item.key === "casting") {
+      setPassType("Casting Pass");
+    }
+
+    if (item.key === "subscribers") {
+      setPassType("Subscriber Pass");
+    }
+
+    if (item.key === "thread") {
+      setPassType("Thread Client Pass");
+    }
+
+    if (item.key === "celeb") {
+      setPassType("Celebrity Pass");
+    }
   };
 
   const submitTicket = () => {
@@ -63,7 +91,29 @@ export default function EntryGate({
 
     setGateStatus("Ticket accepted. Gate opening...");
     setTimeout(() => setGateStatus("Tunnel rumble active..."), 550);
-    setTimeout(() => setInsidePark(true), 1200);
+    setTimeout(() => {
+      if (selected.key === "subscribers") {
+        onEnterMoneyTracker?.();
+        return;
+      }
+
+      if (selected.key === "thread") {
+        onEnterDreamLab?.();
+        return;
+      }
+
+      if (selected.key === "celeb") {
+        onRequestClearance?.();
+        return;
+      }
+
+      if (selected.key === "etv" || selected.key === "chill" || selected.key === "casting") {
+        onEnterAiality?.();
+        return;
+      }
+
+      setInsidePark(true);
+    }, 1200);
   };
 
   const rentClone = (pass) => {
