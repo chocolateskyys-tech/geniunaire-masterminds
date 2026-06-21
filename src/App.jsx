@@ -229,33 +229,28 @@ etvStore: <ETVStore {...roomProps} />,
       )}
 
       
-      {/* GLOBAL_BACK_TO_GATE_BUTTON_FORCE */}
-      {currentView !== 'entryGate' && (
-        <button
-          type="button"
-          onClick={() => {
-            setAccessGranted(false);
-            setCurrentView('entryGate');
-          }}
-          style={{
-            position: 'fixed',
-            top: '16px',
-            right: '16px',
-            zIndex: 999999,
-            background: '#facc15',
-            color: '#000',
-            border: '3px solid #fff',
-            borderRadius: '999px',
-            padding: '14px 20px',
-            fontWeight: 900,
-            fontSize: '14px',
-            boxShadow: '0 0 30px rgba(250, 204, 21, 0.75)',
-            cursor: 'pointer',
-          }}
-        >
-          EXIT TO GATE
-        </button>
-      )}
+      {/* BK_2_GATE_ALWAYS_ON */}
+      <button
+        type="button"
+        onClick={() => window.location.reload()}
+        style={{
+          position: 'fixed',
+          top: '16px',
+          left: '16px',
+          zIndex: 999999,
+          background: '#facc15',
+          color: '#000',
+          border: '3px solid #fff',
+          borderRadius: '999px',
+          padding: '14px 20px',
+          fontWeight: 900,
+          fontSize: '14px',
+          boxShadow: '0 0 30px rgba(250, 204, 21, 0.85)',
+          cursor: 'pointer',
+        }}
+      >
+        BK 2 GATE
+      </button>
 
       {renderCurrentView()}
     </div>
