@@ -3,6 +3,13 @@ import React, { useState } from "react";
 const STORAGE_KEY = "gmCloneParkingVehicles";
 const TICKET_KEY = "gmCloneValetTicket";
 
+const DRIVER_TAG = "GM RIDZ 01";
+
+const blockedWords = [
+  "fuck", "shit", "bitch", "dick", "pussy", "hoe", "slut", "whore",
+  "porn", "sex", "nude", "naked", "asshole", "cum", "kill", "rape"
+];
+
 const packages = [
   {
     name: "Monthly Clone Parking Bot",
@@ -18,6 +25,11 @@ const packages = [
     name: "Founder Fleet Parking",
     price: "$99.99/mo",
     perks: "Multiple vehicle profiles, business/fleet parking, GM Ridz curb, admin review, promo-ready vehicle card.",
+  },
+  {
+    name: "GM Ridz Driver Parking",
+    price: "Driver Account",
+    perks: "Driver vehicle profile, forced GM Ridz tag, front curb dispatch, admin approval, no public custom tag.",
   },
 ];
 
@@ -38,27 +50,44 @@ function safeLoadVehicles() {
   }
 }
 
+function cleanTag(value) {
+  return String(value || "")
+    .replace(/[^a-zA-Z0-9 _.-]/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 18);
+}
+
+function hasBlockedWord(value) {
+  const clean = String(value || "").toLowerCase();
+  return blockedWords.some((word) => new RegExp(`\\b${word}\\b`, "i").test(clean));
+}
+
 export default function CloneValetFeature() {
   const [vehicles, setVehicles] = useState(() => safeLoadVehicles());
   const [selectedVehicleId, setSelectedVehicleId] = useState("");
   const [selectedPackage, setSelectedPackage] = useState(packages[0].name);
+  const [profileType, setProfileType] = useState("Guest Clone");
   const [status, setStatus] = useState("Clone cart idle at GM Ridz curb.");
   const [ticket, setTicket] = useState(null);
   const [progress, setProgress] = useState(0);
+  const [warning, setWarning] = useState("");
+
   const [form, setForm] = useState({
     ownerName: "",
     vehicleName: "",
+    displayTag: "",
     make: "",
     model: "",
     color: "",
     year: "",
-    tagLast4: "",
     parkingZone: "GM Front Lot",
     notes: "",
     photo: "",
   });
 
   function update(field, value) {
+    setWarning("");
     setForm((prev) => ({ ...prev, [field]: value }));
   }
 
@@ -78,23 +107,45 @@ export default function CloneValetFeature() {
     reader.readAsDataURL(file);
   }
 
+  function getFinalDisplayTag() {
+    if (profileType === "GM Ridz Driver") {
+      return DRIVER_TAG;
+    }
+
+    const preferred = cleanTag(form.displayTag || form.ownerName || form.vehicleName);
+
+    if (!preferred) {
+      return "GM GUEST";
+    }
+
+    return preferred.toUpperCase();
+  }
+
   function saveVehicle(event) {
     event.preventDefault();
+
+    const finalTag = getFinalDisplayTag();
+
+    if (profileType !== "GM Ridz Driver" && hasBlockedWord(finalTag)) {
+      setWarning("That public tag is blocked. Choose a clean name or nickname.");
+      return;
+    }
 
     const vehicle = {
       id: Date.now(),
       createdAt: new Date().toLocaleString(),
+      profileType,
       ownerName: form.ownerName || "Guest",
       vehicleName: form.vehicleName || "My GM Clone Vehicle",
+      displayTag: finalTag,
       make: form.make || "Make pending",
       model: form.model || "Model pending",
       color: form.color || "Color pending",
       year: form.year || "Year pending",
-      tagLast4: form.tagLast4 || "Private",
-      parkingZone: form.parkingZone,
+      parkingZone: profileType === "GM Ridz Driver" ? "GM Ridz Driver Curb" : form.parkingZone,
       notes: form.notes,
       photo: form.photo,
-      package: selectedPackage,
+      package: profileType === "GM Ridz Driver" ? "GM Ridz Driver Parking" : selectedPackage,
       status: "Parked In Virtual Lot",
       parkingPass: `GM-PARK-${Math.floor(100000 + Math.random() * 899999)}`,
     };
@@ -102,16 +153,16 @@ export default function CloneValetFeature() {
     const next = [vehicle, ...vehicles];
     saveVehicles(next);
     setSelectedVehicleId(String(vehicle.id));
-    setStatus(`${vehicle.vehicleName} saved and parked in ${vehicle.parkingZone}.`);
+    setStatus(`${vehicle.displayTag} saved and parked in ${vehicle.parkingZone}.`);
 
     setForm({
       ownerName: "",
       vehicleName: "",
+      displayTag: "",
       make: "",
       model: "",
       color: "",
       year: "",
-      tagLast4: "",
       parkingZone: "GM Front Lot",
       notes: "",
       photo: "",
@@ -166,8 +217,6 @@ export default function CloneValetFeature() {
     }
   }
 
-  const selectedVehicle = getSelectedVehicle();
-
   return (
     <section className="relative z-20 max-w-7xl mx-auto -mt-4 mb-8 rounded-[2rem] border border-cyan-400/50 bg-black/85 p-5 shadow-2xl">
       <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-6">
@@ -179,8 +228,9 @@ export default function CloneValetFeature() {
             Monthly Clone Parking Bot
           </h2>
           <p className="text-slate-300 max-w-4xl mt-3">
-            Upload your vehicle, save make/model/color/tag details, park the clone in GM’s virtual lot,
-            then call the golf cart bot to bring it to the front gate in real time.
+            Guests can personalize a clean public tag, name, or nickname. GM Ridz drivers are assigned
+            <span className="text-yellow-300 font-black"> GM RIDZ 01 </span>
+            with no custom tag override.
           </p>
         </div>
 
@@ -190,6 +240,12 @@ export default function CloneValetFeature() {
         </div>
       </div>
 
+      {warning && (
+        <div className="mb-5 rounded-2xl border border-red-500 bg-red-500/10 p-4 text-red-200 font-black">
+          {warning}
+        </div>
+      )}
+
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-5">
         <form onSubmit={saveVehicle} className="rounded-3xl border border-purple-700 bg-purple-950/20 p-5">
           <h3 className="text-2xl font-black text-purple-300 mb-4">
@@ -197,9 +253,22 @@ export default function CloneValetFeature() {
           </h3>
 
           <select
+            value={profileType}
+            onChange={(e) => {
+              setProfileType(e.target.value);
+              setWarning("");
+            }}
+            className="w-full mb-3 bg-black border border-slate-700 rounded px-4 py-3 text-white"
+          >
+            <option>Guest Clone</option>
+            <option>GM Ridz Driver</option>
+          </select>
+
+          <select
             value={selectedPackage}
             onChange={(e) => setSelectedPackage(e.target.value)}
-            className="w-full mb-3 bg-black border border-slate-700 rounded px-4 py-3 text-white"
+            disabled={profileType === "GM Ridz Driver"}
+            className="w-full mb-3 bg-black border border-slate-700 rounded px-4 py-3 text-white disabled:opacity-50"
           >
             {packages.map((pack) => (
               <option key={pack.name}>{pack.name}</option>
@@ -209,7 +278,7 @@ export default function CloneValetFeature() {
           <input
             value={form.ownerName}
             onChange={(e) => update("ownerName", e.target.value)}
-            placeholder="Owner / Guest Name"
+            placeholder="Owner / User Name"
             className="w-full mb-3 bg-black border border-slate-700 rounded px-4 py-3"
           />
 
@@ -219,6 +288,18 @@ export default function CloneValetFeature() {
             placeholder="Vehicle Nickname / Clone Name"
             className="w-full mb-3 bg-black border border-slate-700 rounded px-4 py-3"
           />
+
+          <input
+            value={profileType === "GM Ridz Driver" ? DRIVER_TAG : form.displayTag}
+            onChange={(e) => update("displayTag", e.target.value)}
+            placeholder="Public Tag / Username / Nickname"
+            disabled={profileType === "GM Ridz Driver"}
+            className="w-full mb-3 bg-black border border-slate-700 rounded px-4 py-3 disabled:opacity-50"
+          />
+
+          <p className="text-xs text-slate-500 mb-3">
+            Public tag appears on the clone vehicle card. Explicit tags are blocked. Drivers always display GM RIDZ 01.
+          </p>
 
           <div className="grid grid-cols-2 gap-3">
             <input value={form.year} onChange={(e) => update("year", e.target.value)} placeholder="Year" className="w-full mb-3 bg-black border border-slate-700 rounded px-4 py-3" />
@@ -230,18 +311,11 @@ export default function CloneValetFeature() {
             <input value={form.model} onChange={(e) => update("model", e.target.value)} placeholder="Model" className="w-full mb-3 bg-black border border-slate-700 rounded px-4 py-3" />
           </div>
 
-          <input
-            value={form.tagLast4}
-            onChange={(e) => update("tagLast4", e.target.value)}
-            placeholder="Tag / Plate Last 4 Only"
-            maxLength={8}
-            className="w-full mb-3 bg-black border border-slate-700 rounded px-4 py-3"
-          />
-
           <select
-            value={form.parkingZone}
+            value={profileType === "GM Ridz Driver" ? "GM Ridz Driver Curb" : form.parkingZone}
             onChange={(e) => update("parkingZone", e.target.value)}
-            className="w-full mb-3 bg-black border border-slate-700 rounded px-4 py-3 text-white"
+            disabled={profileType === "GM Ridz Driver"}
+            className="w-full mb-3 bg-black border border-slate-700 rounded px-4 py-3 text-white disabled:opacity-50"
           >
             <option>GM Front Lot</option>
             <option>VIP Clone Parking</option>
@@ -260,7 +334,7 @@ export default function CloneValetFeature() {
           <textarea
             value={form.notes}
             onChange={(e) => update("notes", e.target.value)}
-            placeholder="Notes: real driver style profile, parking instructions, pickup preference..."
+            placeholder="Notes: parking instructions, pickup preference, driver/admin approval notes..."
             className="w-full mb-4 bg-black border border-slate-700 rounded px-4 py-3 min-h-[90px]"
           />
 
@@ -282,7 +356,7 @@ export default function CloneValetFeature() {
             <option value="">Choose parked clone vehicle</option>
             {vehicles.map((vehicle) => (
               <option key={vehicle.id} value={vehicle.id}>
-                {vehicle.vehicleName} · {vehicle.make} {vehicle.model}
+                {vehicle.displayTag} · {vehicle.make} {vehicle.model}
               </option>
             ))}
           </select>
@@ -333,11 +407,7 @@ export default function CloneValetFeature() {
             {vehicles.map((vehicle) => (
               <div key={vehicle.id} className="rounded-2xl border border-slate-700 bg-black/70 p-4">
                 {vehicle.photo ? (
-                  <img
-                    src={vehicle.photo}
-                    alt={vehicle.vehicleName}
-                    className="w-full h-36 object-cover rounded-xl mb-3 border border-slate-700"
-                  />
+                  <img src={vehicle.photo} alt={vehicle.vehicleName} className="w-full h-36 object-cover rounded-xl mb-3 border border-slate-700" />
                 ) : (
                   <div className="w-full h-36 rounded-xl mb-3 border border-slate-700 bg-slate-900 flex items-center justify-center text-slate-500">
                     No vehicle photo
@@ -345,28 +415,21 @@ export default function CloneValetFeature() {
                 )}
 
                 <p className="text-xs text-cyan-300 uppercase tracking-widest">{vehicle.parkingPass}</p>
-                <h4 className="text-xl font-black text-white mt-1">{vehicle.vehicleName}</h4>
+                <h4 className="text-xl font-black text-white mt-1">{vehicle.displayTag}</h4>
+                <p className="text-yellow-300 text-sm font-black">{vehicle.profileType}</p>
                 <p className="text-slate-300 text-sm">
                   {vehicle.year} {vehicle.color} {vehicle.make} {vehicle.model}
                 </p>
                 <p className="text-slate-500 text-xs mt-1">
-                  Tag: {vehicle.tagLast4} · {vehicle.parkingZone}
+                  {vehicle.vehicleName} · {vehicle.parkingZone}
                 </p>
                 <p className="text-yellow-300 text-xs mt-2">{vehicle.package}</p>
 
                 <div className="flex flex-wrap gap-2 mt-3">
-                  <button
-                    type="button"
-                    onClick={() => setSelectedVehicleId(String(vehicle.id))}
-                    className="rounded border border-cyan-500 px-3 py-2 text-sm"
-                  >
+                  <button type="button" onClick={() => setSelectedVehicleId(String(vehicle.id))} className="rounded border border-cyan-500 px-3 py-2 text-sm">
                     Select
                   </button>
-                  <button
-                    type="button"
-                    onClick={() => deleteVehicle(vehicle.id)}
-                    className="rounded border border-red-500 px-3 py-2 text-sm"
-                  >
+                  <button type="button" onClick={() => deleteVehicle(vehicle.id)} className="rounded border border-red-500 px-3 py-2 text-sm">
                     Delete
                   </button>
                 </div>
@@ -382,8 +445,9 @@ export default function CloneValetFeature() {
 
       <div className="mt-5 rounded-2xl border border-slate-700 bg-black/70 p-4">
         <p className="text-slate-400 text-sm">
-          Launch note: This demo stores vehicle profiles locally in the browser. Production version should use secure account storage,
-          private image hosting, payment status, consent, and full privacy controls before collecting real vehicle tags or personal vehicle data.
+          Launch note: Public tags use usernames or nicknames only. GM Ridz drivers display GM RIDZ 01 with no exceptions.
+          Real plate numbers should not be displayed publicly. Production version should use secure account storage,
+          private image hosting, payment status, consent, moderation, and full privacy controls.
         </p>
       </div>
     </section>
