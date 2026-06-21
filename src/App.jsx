@@ -184,6 +184,19 @@ etvStore: <ETVStore {...roomProps} />,
 
   return (
     <div className="min-h-screen bg-black">
+      {/* GLOBAL_BACK_TO_GATE_BUTTON */}
+      {currentView !== 'entryGate' && (
+        <button
+          type="button"
+          onClick={() => {
+            setAccessGranted(false);
+            setCurrentView('entryGate');
+          }}
+          className="fixed bottom-4 right-4 z-[9999] rounded-full border border-yellow-400 bg-black px-5 py-3 text-sm font-black text-yellow-300 shadow-2xl hover:bg-yellow-400 hover:text-black"
+        >
+          ← Gate
+        </button>
+      )}
       {currentView !== 'entryGate' && accessGranted && (
         <nav className="sticky top-0 z-50 border-b border-purple-900 bg-black/90 backdrop-blur px-6 py-4">
           <div className="max-w-6xl mx-auto flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
