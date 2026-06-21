@@ -92,6 +92,64 @@ export default function EntryGate({
 
   return (
     <main className="gm-front-gate">
+
+      {/* FRONT_GATE_REMOTE_ALWAYS */}
+      <div
+        style={{
+          position: 'fixed',
+          top: '14px',
+          right: '14px',
+          zIndex: 999999,
+          display: 'flex',
+          gap: '10px',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'flex-end',
+        }}
+      >
+        <button
+          type="button"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          style={{
+            background: '#22d3ee',
+            color: '#000',
+            border: '3px solid #fff',
+            borderRadius: '999px',
+            padding: '12px 16px',
+            fontWeight: 900,
+            fontSize: '13px',
+            boxShadow: '0 0 24px rgba(34, 211, 238, 0.75)',
+            cursor: 'pointer',
+          }}
+        >
+          GATE VIEW
+        </button>
+
+        <button
+          type="button"
+          onClick={() => {
+            if (typeof onFounderAccess !== 'undefined' && onFounderAccess) {
+              onFounderAccess();
+            } else {
+              alert('Secret control is ready, but onFounderAccess is not wired in this gate yet.');
+            }
+          }}
+          style={{
+            background: '#facc15',
+            color: '#000',
+            border: '3px solid #fff',
+            borderRadius: '999px',
+            padding: '12px 16px',
+            fontWeight: 900,
+            fontSize: '13px',
+            boxShadow: '0 0 24px rgba(250, 204, 21, 0.85)',
+            cursor: 'pointer',
+          }}
+        >
+          SECRET
+        </button>
+      </div>
+
       <section className="gm-gate-shell">
         <nav className="gm-gate-nav">
           {gateButtons.map((item) => (
