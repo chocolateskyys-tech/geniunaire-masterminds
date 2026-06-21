@@ -31,6 +31,7 @@ import ClientIntakeDashboard from './components/ClientIntakeDashboard/ClientInta
 import MineLab from './components/MineLab/MineLab';
 import SourceSalesTracker from './components/SourceSalesTracker/SourceSalesTracker';
 import LaunchReadiness from './components/LaunchReadiness/LaunchReadiness';
+import WildPushRooms from './components/WildPushRooms/WildPushRooms';
 
 function App() {
   const [currentView, setCurrentView] = useState('entryGate');
@@ -42,6 +43,7 @@ function App() {
   const [accessGranted, setAccessGranted] = useState(false);
 
   const navItems = [
+    ['Wild Push', 'wildPushRooms'],
     ['Entry Gate', 'entryGate'],
     ['Payment Doors', 'paymentDoors'],
 ['Client Intake', 'clientIntake'],
@@ -98,6 +100,7 @@ launchReadiness: <LaunchReadiness {...roomProps} />,
     founderTierRules: <FounderTierRules {...roomProps} />,
     assetVault: <AssetVault {...roomProps} />,
     domainVault: <DomainVault {...roomProps} />,
+    wildPushRooms: <WildPushRooms {...roomProps} />,
     robotStorefront: <RobotStorefront {...roomProps} />,
     avatarStore: <AvatarStore {...roomProps} />,
     soundscapeStudio: <SoundscapeStudio {...roomProps} />,
