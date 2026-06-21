@@ -3,6 +3,7 @@ import MainStreetPlaza from "../MainStreetPlaza/MainStreetPlaza";
 import CrowdControl from "../CrowdControl/CrowdControl";
 import CloneRoam from "../CloneRoam/CloneRoam";
 import "./EntryGate.css";
+import CloneValetFeature from "../CloneValetFeature/CloneValetFeature";
 
 const SECRET_ADMIN = "ASPIRE!";
 const SECRET_PLAY = "ORBIT!";
@@ -243,6 +244,8 @@ export default function EntryGate({
           <span>Clone Bots operate the park.</span>
         </section>
       </section>
-    </main>
+    
+      <CloneValetFeature />
+</main>
   );
 }
