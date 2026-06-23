@@ -139,6 +139,11 @@ etvStore: <ETVStore {...roomProps} />,
     setCurrentView('aiBuildLab');
   }
 
+  function openPaymentCenter() {
+    setAccessGranted(true);
+    setCurrentView('gmPaymentCenter');
+  }
+
   function renderSignup() {
     return (
       <SignupRequest
@@ -166,7 +171,8 @@ etvStore: <ETVStore {...roomProps} />,
             requestAccess('General Admiration Funnel Access', 'clientIntake')
           }
           onFounderAccess={founderAccess}
-          onEnterAIality={() =>
+          onOpenPaymentCenter={openPaymentCenter}
+          onEnterAiality={() =>
             requestAccess("AI'ality Tv Network Access", "broadcastStudio")
           }
         />

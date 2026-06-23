@@ -8,6 +8,7 @@ const SECRET_ADMIN = "ASPIRE!";
 const SECRET_PLAY = "ORBIT!";
 
 const gateButtons = [
+  { key: "pay", label: "GM Pay", destination: "GM Payment Center", price: "Stripe Checkout", info: "Open the GM cash register for passes, streams, avatars, Orbits, and monthly activations." },
   { key: "free", label: "Free Sign Up", destination: "Limited Guest Access", price: "Free", info: "Create a limited guest pass to browse the park before buying." },
   { key: "etv", label: "E-TV Lounge", destination: "E-TV Lounge Preview", price: "Free Preview / Paid Signal", info: "Watch commercials, TV drops, ads, and E-TV Book previews." },
   { key: "walk", label: "Walk The Park", destination: "Main Street Plaza", price: "Ticket / Clone Optional", info: "Enter the tunnel and browse the park." },
@@ -24,6 +25,7 @@ export default function EntryGate({
   onRequestClearance,
   onFounderAccess,
   onEnterAiality,
+  onOpenPaymentCenter,
 }) {
   const [selected, setSelected] = useState(null);
   const [insidePark, setInsidePark] = useState(false);
@@ -58,6 +60,12 @@ export default function EntryGate({
       signup,
       time: new Date().toISOString()
     }));
+
+    if (selected.key === "pay") {
+      setGateStatus("GM Payment Center opening...");
+      setTimeout(() => onOpenPaymentCenter?.(), 650);
+      return;
+    }
 
     setGateStatus("Ticket accepted. Gate opening...");
     setTimeout(() => setGateStatus("Tunnel rumble active..."), 550);
@@ -158,7 +166,7 @@ export default function EntryGate({
             </div>
 
             <button className="open-gate-btn" onClick={submitTicket} disabled={!selected}>
-              Sign / Verify / Open Gate
+              {selected?.key === "pay" ? "Open GM Payment Center" : "Sign / Verify / Open Gate"}
             </button>
 
             <div className="status-box">
