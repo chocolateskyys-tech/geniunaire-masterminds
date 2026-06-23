@@ -1,0 +1,368 @@
+.gm-orbits-hub {
+  width: min(1180px, calc(100% - 32px));
+  margin: 42px auto;
+  color: #fff;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.gm-orbits-hero {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 34px;
+  padding: 34px;
+  display: grid;
+  grid-template-columns: 1.7fr 0.8fr;
+  gap: 28px;
+  background:
+    radial-gradient(circle at top left, rgba(255, 0, 180, 0.45), transparent 32%),
+    radial-gradient(circle at 85% 20%, rgba(0, 235, 255, 0.35), transparent 30%),
+    linear-gradient(135deg, #14002c, #3b096a 48%, #09152d);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
+}
+
+.gm-orbits-kicker {
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  color: #7df9ff;
+  font-weight: 800;
+}
+
+.gm-orbits-hero h1 {
+  margin: 0;
+  font-size: clamp(2.8rem, 8vw, 6rem);
+  line-height: 0.92;
+  letter-spacing: -0.06em;
+}
+
+.gm-orbits-hero h2 {
+  margin: 12px 0 14px;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  color: #ffd8ff;
+}
+
+.gm-orbits-hero p,
+.gm-orbits-section-head p,
+.gm-orbits-brand-card p,
+.gm-orbits-category-card p,
+.gm-orbits-rule-card p,
+.gm-orbits-display p,
+.gm-orbits-warning p,
+.gm-orbits-stripe p {
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.6;
+}
+
+.gm-orbits-monogram {
+  min-height: 250px;
+  display: grid;
+  place-items: center;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.08) 0 14px, transparent 14px 28px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.15), transparent 58%);
+}
+
+.gm-orbits-monogram span {
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 1000;
+  letter-spacing: -0.1em;
+  text-shadow: 0 0 28px rgba(125, 249, 255, 0.8), 0 0 50px rgba(255, 0, 180, 0.55);
+}
+
+.gm-orbits-monogram small {
+  position: absolute;
+  margin-top: 150px;
+  letter-spacing: 0.25em;
+  font-weight: 900;
+  color: #ffe7ff;
+}
+
+.gm-orbits-brand-grid,
+.gm-orbits-category-grid,
+.gm-orbits-rules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 18px 0 34px;
+}
+
+.gm-orbits-brand-card,
+.gm-orbits-category-card,
+.gm-orbits-rule-card,
+.gm-orbits-warning,
+.gm-orbits-stripe,
+.gm-orbits-tracker {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 24px;
+  padding: 20px;
+  background: rgba(12, 8, 35, 0.74);
+  backdrop-filter: blur(14px);
+}
+
+.gm-orbits-brand-card h3,
+.gm-orbits-category-card h3,
+.gm-orbits-rule-card h3 {
+  margin: 0 0 8px;
+  color: #fff;
+}
+
+.gm-orbits-category-card strong {
+  display: inline-flex;
+  margin: 4px 0 8px;
+  color: #ffe45c;
+}
+
+.gm-orbits-section-head {
+  margin: 34px 0 16px;
+}
+
+.gm-orbits-section-head h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+.gm-orbits-layout {
+  display: grid;
+  grid-template-columns: 315px 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.gm-orbits-menu {
+  border-radius: 28px;
+  padding: 18px;
+  background: linear-gradient(180deg, rgba(255, 0, 190, 0.18), rgba(0, 235, 255, 0.1));
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  position: sticky;
+  top: 18px;
+}
+
+.gm-orbits-menu h3 {
+  margin: 0 0 8px;
+}
+
+.gm-orbits-menu p {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.gm-orbits-menu button {
+  width: 100%;
+  border: 0;
+  border-radius: 18px;
+  padding: 13px 14px;
+  margin-top: 10px;
+  text-align: left;
+  cursor: pointer;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.gm-orbits-menu button:hover,
+.gm-orbits-menu button.active {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, rgba(255, 0, 190, 0.72), rgba(0, 208, 255, 0.55));
+}
+
+.gm-orbits-menu button strong,
+.gm-orbits-menu button span {
+  display: block;
+}
+
+.gm-orbits-menu button span {
+  margin-top: 4px;
+  font-size: 0.78rem;
+  opacity: 0.78;
+}
+
+.gm-orbits-display {
+  border-radius: 30px;
+  padding: 22px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04)),
+    rgba(9, 10, 30, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.gm-orbits-display-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.gm-orbits-display-top h2 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+.gm-orbits-network-chip {
+  border-radius: 999px;
+  padding: 10px 14px;
+  background: rgba(255, 228, 92, 0.16);
+  border: 1px solid rgba(255, 228, 92, 0.38);
+  color: #ffe45c;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.gm-orbits-stalls {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px;
+}
+
+.gm-orbit-stall {
+  position: relative;
+  overflow: hidden;
+  min-height: 250px;
+  border-radius: 24px;
+  padding: 16px;
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.07) 0 10px, transparent 10px 20px),
+    linear-gradient(180deg, rgba(255, 0, 190, 0.18), rgba(0, 235, 255, 0.12));
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.gm-orbit-stall:before {
+  content: "GM GM GM GM GM GM GM GM GM GM GM GM";
+  position: absolute;
+  inset: -30px;
+  transform: rotate(-26deg);
+  font-size: 2.2rem;
+  line-height: 1.4;
+  letter-spacing: 0.18em;
+  font-weight: 1000;
+  color: rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+}
+
+.gm-orbit-stall-door {
+  position: relative;
+  z-index: 1;
+  min-height: 92px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px dashed rgba(255, 255, 255, 0.28);
+}
+
+.gm-orbit-stall-door span {
+  font-size: 2.7rem;
+  font-weight: 1000;
+  letter-spacing: -0.08em;
+}
+
+.gm-orbit-stall-door small {
+  font-weight: 900;
+  color: #7df9ff;
+}
+
+.gm-orbit-stall h3,
+.gm-orbit-stall p,
+.gm-orbit-stall button {
+  position: relative;
+  z-index: 1;
+}
+
+.gm-orbit-stall button {
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 14px;
+  margin-top: 8px;
+  color: #1a0531;
+  background: #ffe45c;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.gm-orbits-tracker {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: 1.4fr 240px;
+  gap: 14px;
+  align-items: center;
+}
+
+.gm-orbits-tracker select {
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: #11072a;
+  color: #fff;
+  padding: 12px 14px;
+}
+
+.gm-orbits-tracker strong {
+  grid-column: 1 / -1;
+  color: #7df9ff;
+}
+
+.gm-orbits-warning {
+  margin: 24px 0;
+  background: linear-gradient(135deg, rgba(255, 228, 92, 0.14), rgba(255, 0, 190, 0.08));
+}
+
+.gm-orbits-warning h3 {
+  margin: 0;
+  color: #ffe45c;
+}
+
+.gm-orbits-stripe {
+  margin-top: 28px;
+}
+
+.gm-orbits-stripe-list {
+  margin-top: 18px;
+  display: grid;
+  gap: 10px;
+}
+
+.gm-orbits-stripe-item {
+  display: grid;
+  grid-template-columns: 1fr 130px 210px;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.gm-orbits-stripe-item strong {
+  color: #ffe45c;
+}
+
+.gm-orbits-stripe-item small {
+  color: rgba(255,255,255,0.68);
+}
+
+@media (max-width: 860px) {
+  .gm-orbits-hero,
+  .gm-orbits-layout,
+  .gm-orbits-tracker {
+    grid-template-columns: 1fr;
+  }
+
+  .gm-orbits-menu {
+    position: relative;
+    top: 0;
+  }
+
+  .gm-orbits-display-top {
+    flex-direction: column;
+  }
+
+  .gm-orbits-network-chip {
+    white-space: normal;
+  }
+
+  .gm-orbits-stripe-item {
+    grid-template-columns: 1fr;
+  }
+}
