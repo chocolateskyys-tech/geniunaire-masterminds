@@ -106,7 +106,7 @@ export const workerBotRentals = [
 ];
 
 export const workerBotStoreCopy = {
-  title: "Robot Storefront",
+  title: "Helper Storefront",
   identity: "AI Worker Rental Desk",
   subtitle:
     "Rent approved worker bots for E-TV setup, casting, avatar booking, wardrobe requests, copywriting requests, commercial breaks, and room support.",

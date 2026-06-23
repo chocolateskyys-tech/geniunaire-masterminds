@@ -5,7 +5,7 @@ const STORAGE_KEY = 'geniunaireAssetVault';
 const priceCards = [
   ['Domain Rental', '$4.99 - $49.99/mo', 'Reserved domains, client-used domains, and niche identity assets.'],
   ['Hosting / Support', '$29.99 - $199.99/mo', 'Website hosting, basic updates, support, and monthly care.'],
-  ['Robot Rental', '$19.99 - $99.99/mo', 'Programmed AI workers for websites, promo, support, or niche tasks.'],
+  ['Helper Rental', '$19.99 - $99.99/mo', 'Programmed AI workers for websites, promo, support, or niche tasks.'],
   ['Sample Preview', '$49 - $99', 'Mock website, landing page, or niche preview before full build.'],
   ['Managed Launch', '$199 - $999/mo', 'Ongoing launch support, updates, promo, tracking, and strategy.'],
   ['Growth Project', '$1,000 - $5,000/mo', 'High-potential apps, funnels, or brands needing serious support.'],
@@ -112,7 +112,7 @@ function AssetVault({ onReturn }) {
     '',
     'If a client stops paying, the project may be paused, vaulted, relaunched, rented, sold, auctioned, or repurposed depending on the agreement and asset source.',
     '',
-    'Monthly money paths may include hosting/support, domain rental, robot rental, promo support, product vault access, checkout links, and managed launch services.',
+    'Monthly money paths may include hosting/support, domain rental, helper rental, promo support, product vault access, checkout links, and managed launch services.',
   ].join('\n');
 
   async function copyRules() {
@@ -136,7 +136,7 @@ function AssetVault({ onReturn }) {
         </h1>
 
         <p className="text-slate-400 max-w-3xl mb-8">
-          Track created assets, Vault-picked assets, hosting money, robot rental, domain rental, sell eligibility, and project status.
+          Track created assets, Vault-picked assets, hosting money, helper rental, domain rental, sell eligibility, and project status.
         </p>
 
         {copyStatus && <p className="mb-6 text-purple-300">{copyStatus}</p>}
@@ -182,7 +182,7 @@ function AssetVault({ onReturn }) {
             <option value="Vault-Picked / House-Owned">Vault-Picked / House-Owned</option>
             <option value="Website Rescue / Relaunch">Website Rescue / Relaunch</option>
             <option value="Product Vault / White Label">Product Vault / White Label</option>
-            <option value="Robot Rental / AI Worker">Robot Rental / AI Worker</option>
+            <option value="Helper Rental / AI Worker">Helper Rental / AI Worker</option>
           </select>
 
           <input value={monthlyFee} onChange={(e) => setMonthlyFee(e.target.value)} placeholder="Monthly Fee / Plan" className="w-full mb-4 bg-black border border-slate-700 px-4 py-3 rounded" />

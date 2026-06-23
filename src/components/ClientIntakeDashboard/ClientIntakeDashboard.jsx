@@ -37,11 +37,11 @@ const clientPaths = [
     action: "Start Novelty Store Path",
   },
   {
-    title: "Robot Worker Setup",
+    title: "Helper Worker Setup",
     tag: "AI Worker",
     description:
-      "Request AI workers, bot helpers, task assistants, automation helpers, or future robot body selections for your build system.",
-    action: "Request Robot Setup",
+      "Request AI workers, bot helpers, task assistants, automation helpers, or future helper body selections for your build system.",
+    action: "Request Helper Setup",
   },
   {
     title: "Domain / Hosting",

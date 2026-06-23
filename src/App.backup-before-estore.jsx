@@ -11,7 +11,7 @@ import SignupRequest from './components/SignupRequest/SignupRequest';
 import AssetVault from './components/AssetVault/AssetVault';
 import CheckoutRoom from './components/CheckoutRoom/CheckoutRoom';
 import DomainVault from './components/DomainVault/DomainVault';
-import RobotStorefront from './components/RobotStorefront/RobotStorefront';
+import HelperStorefront from './components/HelperStorefront/HelperStorefront';
 import SoundscapeStudio from './components/SoundscapeStudio/SoundscapeStudio';
 import AIBuildLab from './components/AIBuildLab/AIBuildLab';
 import WebsiteRescueLab from './components/WebsiteRescueLab/WebsiteRescueLab';
@@ -37,7 +37,7 @@ function App() {
     ['Asset Vault', 'assetVault'],
     ['Checkout', 'checkoutRoom'],
     ['Domains', 'domainVault'],
-    ['Robots', 'robotStorefront'],
+    ['Helpers', 'helperStorefront'],
     ['Soundscape', 'soundscapeStudio'],
     ['AI Build Lab', 'aiBuildLab'],
     ['Website Rescue', 'websiteRescueLab'],
@@ -63,7 +63,7 @@ function App() {
     assetVault: <AssetVault {...roomProps} />,
     checkoutRoom: <CheckoutRoom {...roomProps} />,
     domainVault: <DomainVault {...roomProps} />,
-    robotStorefront: <RobotStorefront {...roomProps} />,
+    helperStorefront: <HelperStorefront {...roomProps} />,
     soundscapeStudio: <SoundscapeStudio {...roomProps} />,
     aiBuildLab: <AIBuildLab {...roomProps} />,
     websiteRescueLab: <WebsiteRescueLab {...roomProps} />,

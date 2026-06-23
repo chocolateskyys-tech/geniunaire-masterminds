@@ -32,9 +32,9 @@ const betaApps = [
   {
     name: "AI Worker Rentals",
     status: "Future Beta",
-    type: "Robot / Automation",
+    type: "Helper / Automation",
     description:
-      "A future lane for AI workers, robot bodies, automation helpers, task bots, and service-specific digital staff.",
+      "A future lane for AI workers, helper bodies, automation helpers, task bots, and service-specific digital staff.",
   },
   {
     name: "Auction / Resale System",

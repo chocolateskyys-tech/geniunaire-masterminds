@@ -116,7 +116,7 @@ export default function SignupRequest({
                 Adult Novelty Link Store
               </option>
               <option value="digital-product">Digital Product</option>
-              <option value="robot-worker">Robot Worker Setup</option>
+              <option value="helper-worker">Helper Worker Setup</option>
               <option value="domain-hosting">Domain / Hosting Help</option>
               <option value="promo-campaign">Promo Campaign</option>
               <option value="managed-launch">Managed Launch Support</option>

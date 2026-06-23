@@ -42,6 +42,19 @@ const booths = [
   }
 ];
 
+const signStops = [
+  ["Gold Mine", "Master power cave, vault energy, owner signal, and park control."],
+  ["Thread Set Pavilion", "ThreadFolio, E-Folio, E-Map, client builds, and business setup."],
+  ["E-TV Network Row", "E-TV Book, commercials, streams, show drops, and subscriptions."],
+  ["Production Studio", "Shows, scripts, commercials, voiceover, promo TV, and release packages."],
+  ["Casting Gate", "Talent sign-in, verification, agreements, rules, and network access."],
+  ["Sound Mine", "Music, sound effects, voice drops, intro drops, jingles, and broadcast audio."],
+  ["E-Store District", "Products, services, digital shelves, affiliate shelves, and checkout paths."],
+  ["Celebrity Marketplace", "Verification, placement review, booking requests, and promo TV."],
+  ["DormMageddon House", "Student creator attraction, campus drops, watch rooms, merch, and subscriptions."],
+  ["GM Pay Desk", "Tickets, E-TV streams, guest passes, subscriptions, and prepaid builds."]
+];
+
 export default function EntryGate() {
   const [selected, setSelected] = useState(null);
   const [guest, setGuest] = useState({ name: "", email: "", phone: "" });
@@ -49,12 +62,16 @@ export default function EntryGate() {
   const [status, setStatus] = useState("Front gate closed. Choose a booth or enter owner code.");
   const [music, setMusic] = useState("Atlanta Gate Brass");
   const [gateOpen, setGateOpen] = useState(false);
+  const [showSigns, setShowSigns] = useState(false);
+  const [activeSign, setActiveSign] = useState(null);
 
   const hasGuestInfo = () => guest.name.trim().length > 0 && guest.email.trim().length > 0;
 
   const chooseBooth = (booth) => {
     setSelected(booth);
     setGateOpen(false);
+    setShowSigns(false);
+    setActiveSign(null);
     setStatus(`${booth.label} selected. Name and email required before access opens.`);
     localStorage.setItem("gm_selected_booth", JSON.stringify(booth));
   };
@@ -82,17 +99,20 @@ export default function EntryGate() {
     }));
 
     setGateOpen(true);
+    setShowSigns(true);
     setStatus(`${selected.label} accepted. Gate opened for checked-in guest.`);
   };
 
   const submitOwnerCode = () => {
     if (ownerCode === OWNER_CODE) {
       setGateOpen(true);
+      setShowSigns(true);
       setStatus("OWNER ACCESS ACCEPTED. Front gate unlocked.");
       return;
     }
 
     setGateOpen(false);
+    setShowSigns(false);
     setStatus("Secret access denied.");
   };
 
@@ -218,6 +238,32 @@ export default function EntryGate() {
             <button onClick={() => chooseBooth(booths[2])}>E-TV Access</button>
           </article>
         </section>
+
+        {showSigns && (
+          <section className="park-sign-area">
+            <div className="park-sign-header">
+              <p>INSIDE THE FRONT GATE</p>
+              <h2>Park Sign Trail</h2>
+              <span>Signs appear only after entry.</span>
+            </div>
+
+            <div className="park-sign-board">
+              {signStops.map((sign) => (
+                <button key={sign[0]} onClick={() => setActiveSign(sign)}>
+                  <strong>{sign[0]}</strong>
+                  <span>{sign[1]}</span>
+                  <em>Walk This Way</em>
+                </button>
+              ))}
+            </div>
+
+            <div className="inside-status">
+              <p>Park Guide</p>
+              <h2>{activeSign ? activeSign[0] : "Choose a park sign."}</h2>
+              <span>{activeSign ? activeSign[1] : "The gate is open. The park is live."}</span>
+            </div>
+          </section>
+        )}
 
         <section className="gate-bottom-bar">
           <span>Front Gate Live</span>

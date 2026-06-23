@@ -10,9 +10,9 @@ import {
   protectedToolNotice,
   customerFacingRule,
 } from "../../data/adminAccessMap";
-import "./RobotStorefront.css";
+import "./HelperStorefront.css";
 
-export default function RobotStorefront({ onNavigate }) {
+export default function HelperStorefront({ onNavigate }) {
   const [selectedBot, setSelectedBot] = useState(null);
 
   const handleRequest = (bot) => {
@@ -38,18 +38,18 @@ export default function RobotStorefront({ onNavigate }) {
   };
 
   return (
-    <main className="robot-storefront-room">
-      <section className="robot-hero">
-        <p className="robot-kicker">BOTBOX BOOK REQUIRED FOR DEEP BOT ACCESS</p>
+    <main className="helper-storefront-room">
+      <section className="helper-hero">
+        <p className="helper-kicker">BOTBOX BOOK REQUIRED FOR DEEP BOT ACCESS</p>
         <h1>{workerBotStoreCopy.title}</h1>
         <h2>{workerBotStoreCopy.identity}</h2>
         <p>{workerBotStoreCopy.subtitle}</p>
 
-        <div className="robot-protection">
+        <div className="helper-protection">
           <strong>Protected Machine Rule:</strong> {workerBotStoreCopy.protectionLine}
         </div>
 
-        <div className="robot-actions">
+        <div className="helper-actions">
           <button type="button" onClick={() => onNavigate?.("etvStore")}>
             Choose BotBox Model
           </button>

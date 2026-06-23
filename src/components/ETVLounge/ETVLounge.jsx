@@ -14,7 +14,7 @@ export default function ETVLounge({ onBack }) {
   const [ad, setAd] = useState("Lumen Noir // Shop Now");
 
   const runAd = () => {
-    const ads = ["Lumen Noir // Shop Now", "Geniunaire Trio Bundle", "ThreadFolio Glow", "Clone Pass Upgrade", "Wardrobe Plan"];
+    const ads = ["Lumen Noir // Shop Now", "Geniunaire Trio Bundle", "ThreadFolio Glow", "Guest Pass Pass Upgrade", "Wardrobe Plan"];
     setAd(ads[Math.floor(Math.random() * ads.length)]);
   };
 

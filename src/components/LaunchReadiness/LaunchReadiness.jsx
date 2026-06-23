@@ -58,7 +58,7 @@ const launchSections = [
     description:
       "Store-style shelves exist so product images, descriptions, prices, affiliate links, purchase links, ingredients, and use info can be uploaded later.",
     checks: [
-      "Robot Storefront",
+      "Helper Storefront",
       "White Label Product Store",
       "E-Store",
       "Future novelty/dropship shelf noted",

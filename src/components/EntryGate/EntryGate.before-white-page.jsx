@@ -184,7 +184,7 @@ return (
     <footer className="relative z-10 mt-10 pb-6 w-full text-center">
       <p className="text-[10px] text-slate-600 tracking-[0.3em] uppercase flex items-center justify-center gap-2">
         <span className="w-1.5 h-1.5 bg-purple-600 rounded-full animate-pulse" />
-        <span>Do not copy the Mine. Do not leak the structure. Do not clone the workers. Do not repackage the diamonds.</span>
+        <span>Do not copy the Mine. Do not leak the structure. Do not guest pass the workers. Do not repackage the diamonds.</span>
       </p>
     </footer>
   </main>

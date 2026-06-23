@@ -40,7 +40,7 @@ const trackerLanes = [
     title: "Product Shelf Prep",
     label: "Shelf Lane",
     description:
-      "Prepare products before they move into the Robot Storefront, White Label Product Store, E-Store, or specialty dropship shelves.",
+      "Prepare products before they move into the Helper Storefront, White Label Product Store, E-Store, or specialty dropship shelves.",
     items: ["Image needed", "Description", "Price", "Shelf destination"],
   },
 ];

@@ -1,4 +1,4 @@
-.robot-storefront-room {
+.helper-storefront-room {
   min-height: 100vh;
   padding: 48px clamp(18px, 4vw, 64px);
   color: #f8fbff;
@@ -8,7 +8,7 @@
     linear-gradient(135deg, #030812 0%, #0c0922 48%, #03020a 100%);
 }
 
-.robot-hero,
+.helper-hero,
 .bot-rental-card,
 .bot-rental-info article {
   border: 1px solid rgba(114, 255, 208, 0.28);
@@ -18,14 +18,14 @@
   backdrop-filter: blur(12px);
 }
 
-.robot-hero {
+.helper-hero {
   max-width: 1160px;
   margin: 0 auto 28px;
   padding: clamp(28px, 5vw, 56px);
   text-align: center;
 }
 
-.robot-kicker {
+.helper-kicker {
   margin: 0 0 12px;
   color: #72ffd0;
   font-size: 0.78rem;
@@ -34,7 +34,7 @@
   text-transform: uppercase;
 }
 
-.robot-hero h1 {
+.helper-hero h1 {
   margin: 0;
   color: #ffffff;
   font-size: clamp(2.7rem, 8vw, 6.5rem);
@@ -45,20 +45,20 @@
     0 0 44px rgba(169, 86, 255, 0.42);
 }
 
-.robot-hero h2 {
+.helper-hero h2 {
   margin: 14px 0;
   color: #c9a1ff;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
 
-.robot-storefront-room p,
-.robot-storefront-room li {
+.helper-storefront-room p,
+.helper-storefront-room li {
   color: #dbe8ef;
   line-height: 1.65;
 }
 
-.robot-protection {
+.helper-protection {
   max-width: 920px;
   margin: 26px auto 0;
   padding: 16px 18px;
@@ -67,7 +67,7 @@
   background: rgba(255, 216, 112, 0.1);
 }
 
-.robot-actions {
+.helper-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -75,7 +75,7 @@
   margin-top: 24px;
 }
 
-.robot-actions button,
+.helper-actions button,
 .bot-rental-card button {
   border: 1px solid rgba(114, 255, 208, 0.62);
   border-radius: 14px;

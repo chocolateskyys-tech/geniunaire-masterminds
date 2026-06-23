@@ -99,7 +99,7 @@ export default function AvatarStore({ onNavigate }) {
           <button type="button" onClick={() => onNavigate?.("aiCastingMembership")}>
             Join Casting Membership
           </button>
-          <button type="button" onClick={() => onNavigate?.("robotStorefront")}>
+          <button type="button" onClick={() => onNavigate?.("helperStorefront")}>
             Rent Worker Bot
           </button>
           <button type="button" onClick={() => onNavigate?.("etvLounge")}>

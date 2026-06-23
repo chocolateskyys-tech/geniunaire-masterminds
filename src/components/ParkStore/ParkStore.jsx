@@ -3,14 +3,14 @@ import "./ParkStore.css";
 
 const products = [
   ["Gate Ticket", "$9", "Basic park entry and browse access."],
-  ["Clone Rental", "$5/hr", "Mini clone body for virtual walking."],
-  ["Day Clone Pass", "$19", "Roam the park for the day."],
-  ["Monthly Clone Pass", "$49/mo", "Monthly clone roaming plan."],
+  ["Guest Pass Rental", "$5/hr", "Mini guest pass body for virtual walking."],
+  ["Day Guest Pass Pass", "$19", "Roam the park for the day."],
+  ["Monthly Guest Pass Pass", "$49/mo", "Monthly guest pass roaming plan."],
   ["E-TV Book Signal", "$29/mo", "Watch, stream, cast, and receive drops."],
   ["Thread Client Setup", "$149+", "Onboarding, admin handoff, business setup."],
   ["Casting Verification", "$25", "Talent agreement and verification lane."],
   ["Celebrity Security", "$99+", "Marketplace verification and placement review."],
-  ["Wardrobe Plan", "$19/mo", "Avatar and clone outfit changes."],
+  ["Wardrobe Plan", "$19/mo", "Avatar and guest pass outfit changes."],
   ["Promo TV Package", "$199+", "Commercials, ads, and lounge placement."]
 ];
 

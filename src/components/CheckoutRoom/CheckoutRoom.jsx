@@ -6,7 +6,7 @@ const starterOffers = [
   ['DormMageddon Student Access', '$7.99/month', 'Monthly Subscription', 'Students, campus founders, parents, and supporters'],
   ['Website Sample Preview', '$49 - $99', 'One-Time Fee', 'Clients testing a niche/site idea before full build'],
   ['Starter Website + Hosting Support', '$29.99 - $99.99/month', 'Monthly Plan', 'Low-cash clients needing website, hosting, and updates'],
-  ['Robot Rental', '$19.99 - $99.99/month', 'Monthly Rental', 'Clients wanting a programmed AI worker'],
+  ['Helper Rental', '$19.99 - $99.99/month', 'Monthly Rental', 'Clients wanting a programmed AI worker'],
   ['Admiration Funnel Consultation', '$25 - $149', 'One-Time Fee', 'Clients needing niche review, rebrand help, or launch direction'],
 ].map(([name, price, type, audience], index) => ({
   id: index + 1,
@@ -118,7 +118,7 @@ function CheckoutRoom({ onReturn }) {
     '',
     'Use external checkout first: Stripe links, Gumroad links, PayPal links, financing links, or approved payment processors.',
     '',
-    'Do not promise guaranteed income. Position offers as build, support, hosting, promotion, product, robot, or launch services.',
+    'Do not promise guaranteed income. Position offers as build, support, hosting, promotion, product, helper, or launch services.',
     '',
     'Clients can start with cash, card, financing, credit approval, pay-over-time, or custom monthly support depending on the offer.',
   ].join('\n');
@@ -135,7 +135,7 @@ function CheckoutRoom({ onReturn }) {
         </h1>
 
         <p className="text-slate-400 max-w-3xl mb-8">
-          Store payment links, offer prices, monthly plans, consultation fees, robot rentals, domain rentals, and paid launch paths.
+          Store payment links, offer prices, monthly plans, consultation fees, helper rentals, domain rentals, and paid launch paths.
         </p>
 
         {copyStatus && <p className="mb-6 text-purple-300">{copyStatus}</p>}

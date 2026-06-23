@@ -17,15 +17,15 @@ export default function StoreShelf({
           name:
             type === "white-label"
               ? "White Label Product Slot"
-              : type === "robot"
-              ? "Robot Body Slot"
+              : type === "helper"
+              ? "Helper Body Slot"
               : type === "digital"
               ? "Digital Product Slot"
               : "Product Slot",
           model:
             type === "white-label"
               ? "Formula / SKU"
-              : type === "robot"
+              : type === "helper"
               ? "Model / Bot Type"
               : type === "digital"
               ? "File / Access Type"

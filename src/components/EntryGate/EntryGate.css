@@ -32,7 +32,8 @@
 
 .gm-booth-row button,
 .guest-pass-booth button,
-.open-gate-btn {
+.open-gate-btn,
+.park-sign-board button {
   border: 0;
   border-radius: 12px;
   padding: 13px 18px;
@@ -365,6 +366,92 @@
   background: #06b6d4;
   color: #000;
   min-width: 260px;
+}
+
+.park-sign-area {
+  margin-top: 24px;
+  border: 2px solid rgba(126,34,206,.85);
+  border-radius: 28px;
+  padding: 24px;
+  background:
+    linear-gradient(90deg, transparent 0 46%, rgba(34,211,238,.16) 48% 52%, transparent 54%),
+    linear-gradient(180deg, rgba(88,28,135,.5), rgba(0,0,0,.95));
+}
+
+.park-sign-header {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.park-sign-header p {
+  color: #facc15;
+  letter-spacing: .35em;
+  font-weight: 1000;
+  margin: 0;
+}
+
+.park-sign-header h2 {
+  font-size: clamp(36px, 6vw, 72px);
+  color: #f7d98b;
+  margin: 8px 0;
+}
+
+.park-sign-header span {
+  color: #67e8f9;
+  font-weight: 900;
+}
+
+.park-sign-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.park-sign-board button {
+  min-height: 180px;
+  text-align: left;
+  background: linear-gradient(145deg, #12001f, #020617);
+  border: 2px solid #a855f7;
+}
+
+.park-sign-board strong {
+  display: block;
+  font-size: 24px;
+  color: #f0abfc;
+  margin-bottom: 10px;
+}
+
+.park-sign-board span {
+  display: block;
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+
+.park-sign-board em {
+  display: block;
+  margin-top: 16px;
+  color: #facc15;
+  font-style: normal;
+  font-weight: 1000;
+}
+
+.inside-status {
+  margin-top: 18px;
+  border: 1px solid rgba(34,211,238,.65);
+  border-radius: 22px;
+  padding: 20px;
+  background: rgba(0,0,0,.76);
+}
+
+.inside-status p {
+  color: #67e8f9;
+  letter-spacing: .25em;
+  font-weight: 1000;
+}
+
+.inside-status h2 {
+  font-size: 34px;
+  margin: 0 0 8px;
 }
 
 .gate-bottom-bar {

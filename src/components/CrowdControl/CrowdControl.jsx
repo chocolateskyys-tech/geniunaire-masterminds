@@ -34,7 +34,7 @@ export default function CrowdControl({ onBack }) {
         </div>
 
         <div className="crowd-grid">
-          {["Free Clone Hour", "E-TV Preview", "Discount Ticket", "Wardrobe Credit", "Founder Surprise"].map((item) => (
+          {["Free Guest Pass Hour", "E-TV Preview", "Discount Ticket", "Wardrobe Credit", "Founder Surprise"].map((item) => (
             <button key={item} onClick={() => { setPrize(item); save("Prize", item); }}>{item}</button>
           ))}
         </div>

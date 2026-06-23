@@ -154,7 +154,7 @@ function PreviewGallery({ onReturn }) {
             <option value="Vault Release Demo">Vault Release Demo</option>
             <option value="Before / After Example">Before / After Example</option>
             <option value="Product Launch Preview">Product Launch Preview</option>
-            <option value="Robot Demo">Robot Demo</option>
+            <option value="Helper Demo">Helper Demo</option>
             <option value="PCOA / Teaser Gate">PCOA / Teaser Gate</option>
           </select>
 

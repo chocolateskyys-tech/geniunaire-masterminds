@@ -34,12 +34,12 @@ const paymentDoors = [
     secondary: "Upload Product Info",
   },
   {
-    title: "Robot Worker Setup",
+    title: "Helper Worker Setup",
     price: "Request Quote",
     description:
-      "For AI workers, automations, bot-style helpers, content systems, task assistants, or future robot body selections inside the cloud build system.",
-    primary: "Request Robot Setup",
-    secondary: "View Robot Options",
+      "For AI workers, automations, bot-style helpers, content systems, task assistants, or future helper body selections inside the cloud build system.",
+    primary: "Request Helper Setup",
+    secondary: "View Helper Options",
   },
   {
     title: "Domain + Hosting Help",

@@ -134,8 +134,8 @@ const stripeChecklist = [
   ["GM Founder Access Pass", "$49", "One-time"],
   ["Wild Push Setup Ticket", "$97", "One-time"],
   ["Thread Set / E-Folio Preorder", "$197", "One-time"],
-  ["Monthly Clone Parking Bot", "$19.99/mo", "Subscription"],
-  ["VIP Clone Valet Pass", "$49.99/mo", "Subscription"],
+  ["Monthly Guest Pass Parking Bot", "$19.99/mo", "Subscription"],
+  ["VIP Guest Pass Valet Pass", "$49.99/mo", "Subscription"],
   ["Customer Day Pass / $5 Hour Machine", "$5", "One-time"],
   ["Club Staff Avatar Demo Pack", "$15", "One-time / verified staff only"],
   ["Club Staff Team Demo Pack", "$49", "One-time / up to 5 approved workers"],
@@ -204,7 +204,7 @@ export default function GMOrbitsRentalHub() {
 
       <div className="gm-orbits-layout">
         <aside className="gm-orbits-menu">
-          <h3>Robot Store Showroom</h3>
+          <h3>Helper Store Showroom</h3>
           <p>Browse the cute display setup by purpose, job, season, niche, or E-TV world.</p>
           {orbitDisplays.map((orbit) => (
             <button

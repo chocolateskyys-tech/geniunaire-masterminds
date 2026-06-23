@@ -10,13 +10,13 @@ const parkZones = [
   ["mall", "E-Mall", "Stores, products, services, affiliate shelves, checkout doors.", "🛍️"],
   ["celeb", "Celebrity Marketplace", "Verification, placement, promo TV, booking review.", "⭐"],
   ["dorm", "DormMageddon House", "College haunted attraction, student creators, watch rooms.", "🏚️"],
-  ["clone", "Clone Center", "Clone rentals, day passes, monthly roaming bodies.", "🤖"],
+  ["guest pass", "Guest Pass Center", "Guest Pass rentals, day passes, monthly roaming bodies.", "🤖"],
   ["paydesk", "Pay Desk", "Stripe passes, streams, subscriptions, prepaid builds.", "💳"]
 ];
 
 export default function MainStreetPlaza() {
   const [activeRoom, setActiveRoom] = useState(null);
-  const [guideMessage, setGuideMessage] = useState("Welcome inside GM. Choose a building and the clone guide will route you.");
+  const [guideMessage, setGuideMessage] = useState("Welcome inside GM. Choose a building and the guest pass guide will route you.");
 
   if (activeRoom) {
     return <ParkDistricts activeKey={activeRoom} onBack={() => setActiveRoom(null)} />;
@@ -41,10 +41,10 @@ export default function MainStreetPlaza() {
               MAIN STREET PLAZA
             </h1>
             <p className="text-slate-300 mt-4 text-lg">
-              The park is open: build, shop, watch, cast, stream, rent clones, and hit the Pay Desk.
+              The park is open: build, shop, watch, cast, stream, rent guest passs, and hit the Pay Desk.
             </p>
             <div className="mt-5 rounded-2xl border border-cyan-400 bg-cyan-950/30 p-4">
-              <p className="text-xs text-cyan-300 uppercase tracking-[0.35em]">Clone Guide</p>
+              <p className="text-xs text-cyan-300 uppercase tracking-[0.35em]">Guest Pass Guide</p>
               <h2 className="text-2xl font-black mt-2">{guideMessage}</h2>
             </div>
           </header>
@@ -82,7 +82,7 @@ export default function MainStreetPlaza() {
 
           <section className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="rounded-2xl border border-cyan-500 bg-black/80 p-5">
-              <h3 className="font-black text-cyan-300">Clone Body Active</h3>
+              <h3 className="font-black text-cyan-300">Guest Pass Body Active</h3>
               <p className="text-sm text-slate-400 mt-2">Guest can roam virtually, shop, watch, and return to hub.</p>
             </div>
             <div className="rounded-2xl border border-purple-500 bg-black/80 p-5">

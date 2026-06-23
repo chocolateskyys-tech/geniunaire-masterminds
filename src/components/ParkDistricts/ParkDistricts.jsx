@@ -61,19 +61,19 @@ const roomData = {
     icon: "🏚️",
     actions: ["Enter Dorm House", "Open Campus Drop", "Watch Room", "Student Creator Pass", "Dorm Store"]
   },
-  clone: {
-    title: "Clone Center",
-    type: "Mini Clone Bot Machine",
-    lead: "Rent clone bodies by hour, day, or month so guests can walk, shop, sit, chill, watch, and roam.",
+  guest pass: {
+    title: "Guest Pass Center",
+    type: "Mini Guest Pass Bot Machine",
+    lead: "Rent guest pass bodies by hour, day, or month so guests can walk, shop, sit, chill, watch, and roam.",
     icon: "🤖",
-    actions: ["$5 Hour Rental", "Day Pass", "Monthly Clone Pass", "Return Clone To Hub", "Recommend Upgrade"]
+    actions: ["$5 Hour Rental", "Day Pass", "Monthly Guest Pass Pass", "Return Guest Pass To Hub", "Recommend Upgrade"]
   },
   paydesk: {
     title: "Pay Desk",
     type: "Stripe / Ticket / Subscription",
-    lead: "The cash register for tickets, subscriptions, clone rental, E-TV streams, client onboarding, and prepaid builds.",
+    lead: "The cash register for tickets, subscriptions, guest pass rental, E-TV streams, client onboarding, and prepaid builds.",
     icon: "💳",
-    actions: ["Ticket Checkout", "Subscriber Checkout", "Thread Client Checkout", "Clone Rental Checkout", "Prepaid Build Checkout"]
+    actions: ["Ticket Checkout", "Subscriber Checkout", "Thread Client Checkout", "Guest Pass Rental Checkout", "Prepaid Build Checkout"]
   }
 };
 
@@ -133,10 +133,10 @@ export default function ParkDistricts({ activeKey, onBack }) {
         </article>
 
         <article className="park-room-card">
-          <p className="eyebrow">Clone Guide</p>
+          <p className="eyebrow">Guest Pass Guide</p>
           <h2>Mini Bot Available</h2>
           <p>A roaming bot can greet visitors, explain the room, recommend passes, and send them to checkout.</p>
-          <button onClick={() => runAction("Clone Bot Guest Approach")}>Send Bot To Guest</button>
+          <button onClick={() => runAction("Guest Pass Bot Guest Approach")}>Send Bot To Guest</button>
         </article>
 
         <article className="park-room-card">
