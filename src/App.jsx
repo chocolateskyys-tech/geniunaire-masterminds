@@ -31,6 +31,7 @@ import ClientIntakeDashboard from './components/ClientIntakeDashboard/ClientInta
 import MineLab from './components/MineLab/MineLab';
 import SourceSalesTracker from './components/SourceSalesTracker/SourceSalesTracker';
 import LaunchReadiness from './components/LaunchReadiness/LaunchReadiness';
+import GMOrbitsRentalHub from "./components/GMOrbitsRentalHub/GMOrbitsRentalHub.jsx";
 
 function App() {
   const [currentView, setCurrentView] = useState('entryGate');
@@ -99,6 +100,7 @@ launchReadiness: <LaunchReadiness {...roomProps} />,
     assetVault: <AssetVault {...roomProps} />,
     domainVault: <DomainVault {...roomProps} />,
     robotStorefront: <RobotStorefront {...roomProps} />,
+    gmOrbits: <GMOrbitsRentalHub {...roomProps} />,
     avatarStore: <AvatarStore {...roomProps} />,
     soundscapeStudio: <SoundscapeStudio {...roomProps} />,
     soundMine: <SoundMine {...roomProps} />,
