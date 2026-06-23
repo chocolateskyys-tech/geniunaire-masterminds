@@ -1,0 +1,142 @@
+.gm-payment-center {
+  min-height: 100vh;
+  padding: 48px 22px 80px;
+  color: #fff;
+  background:
+    radial-gradient(circle at top left, rgba(168, 85, 247, 0.35), transparent 35%),
+    radial-gradient(circle at top right, rgba(250, 204, 21, 0.22), transparent 28%),
+    linear-gradient(135deg, #05000b, #110022 48%, #05000b);
+}
+
+.gm-payment-hero {
+  max-width: 1050px;
+  margin: 0 auto 32px;
+  padding: 34px;
+  border: 1px solid rgba(216, 180, 254, 0.45);
+  border-radius: 28px;
+  background: rgba(10, 2, 22, 0.82);
+  box-shadow: 0 0 40px rgba(168, 85, 247, 0.22);
+  text-align: center;
+}
+
+.gm-payment-kicker {
+  margin: 0 0 10px;
+  color: #facc15;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 800;
+  font-size: 0.82rem;
+}
+
+.gm-payment-hero h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 6vw, 5.4rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  text-shadow: 0 0 24px rgba(216, 180, 254, 0.65);
+}
+
+.gm-payment-hero p {
+  max-width: 760px;
+  margin: 18px auto 0;
+  color: #efe4ff;
+  font-size: 1.05rem;
+}
+
+.gm-payment-rule {
+  display: inline-flex;
+  margin-top: 22px;
+  padding: 12px 18px;
+  border: 1px solid rgba(250, 204, 21, 0.55);
+  border-radius: 999px;
+  color: #facc15;
+  background: rgba(250, 204, 21, 0.08);
+  font-weight: 800;
+}
+
+.gm-payment-grid {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.gm-payment-card {
+  position: relative;
+  display: flex;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid rgba(192, 132, 252, 0.5);
+  border-radius: 24px;
+  background: rgba(8, 3, 18, 0.86);
+  box-shadow: 0 0 26px rgba(147, 51, 234, 0.16);
+}
+
+.gm-payment-number {
+  flex: 0 0 54px;
+  height: 54px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  color: #05000b;
+  background: linear-gradient(135deg, #facc15, #f97316);
+  font-size: 1.8rem;
+  font-weight: 950;
+  box-shadow: 0 0 20px rgba(250, 204, 21, 0.35);
+}
+
+.gm-payment-info h2 {
+  margin: 0 0 10px;
+  font-size: 1.18rem;
+}
+
+.gm-payment-info p {
+  margin: 0;
+  color: #d8c7ff;
+  line-height: 1.45;
+}
+
+.gm-payment-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.gm-payment-meta span {
+  padding: 8px 12px;
+  border-radius: 999px;
+  color: #facc15;
+  background: rgba(250, 204, 21, 0.1);
+  border: 1px solid rgba(250, 204, 21, 0.25);
+  font-weight: 800;
+}
+
+.gm-payment-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  color: #090014;
+  background: linear-gradient(135deg, #facc15, #f0abfc);
+  font-weight: 950;
+  text-decoration: none;
+  box-shadow: 0 0 20px rgba(216, 180, 254, 0.28);
+}
+
+.gm-payment-button:hover {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 850px) {
+  .gm-payment-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gm-payment-card {
+    flex-direction: column;
+  }
+}

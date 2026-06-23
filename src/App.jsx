@@ -32,6 +32,7 @@ import MineLab from './components/MineLab/MineLab';
 import SourceSalesTracker from './components/SourceSalesTracker/SourceSalesTracker';
 import LaunchReadiness from './components/LaunchReadiness/LaunchReadiness';
 import GMOrbitsRentalHub from "./components/GMOrbitsRentalHub/GMOrbitsRentalHub.jsx";
+import GMPaymentCenter from "./components/GMPaymentCenter/GMPaymentCenter.jsx";
 
 function App() {
   const [currentView, setCurrentView] = useState('entryGate');
@@ -62,6 +63,7 @@ function App() {
     ['Asset Vault', 'assetVault'],
     ['Domains', 'domainVault'],
     ['Robots', 'robotStorefront'],
+    ['GM Pay', 'gmPaymentCenter'],
     ['AI\'ality', 'broadcastStudio'],
     ['Sound Mine', 'soundMine'],
     ['Broadcast Studio', 'broadcastStudio'],
@@ -101,6 +103,7 @@ launchReadiness: <LaunchReadiness {...roomProps} />,
     domainVault: <DomainVault {...roomProps} />,
     robotStorefront: <RobotStorefront {...roomProps} />,
     gmOrbits: <GMOrbitsRentalHub {...roomProps} />,
+    gmPaymentCenter: <GMPaymentCenter {...roomProps} />,
     avatarStore: <AvatarStore {...roomProps} />,
     soundscapeStudio: <SoundscapeStudio {...roomProps} />,
     soundMine: <SoundMine {...roomProps} />,
