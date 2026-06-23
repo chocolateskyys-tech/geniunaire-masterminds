@@ -86,7 +86,17 @@ export default function EntryGate({
   };
 
   const rentClone = (pass) => {
+    if (!hasRequiredGuestInfo()) {
+      setGateStatus("LOCKED: Name and email required before clone rental activates.");
+      return;
+    }
+
     localStorage.setItem("gm_clone_pass", pass);
+    localStorage.setItem("gm_gate_signup", JSON.stringify({
+      selected: { key: "clone", label: pass },
+      signup,
+      time: new Date().toISOString()
+    }));
     setGateStatus(`${pass} activated`);
     setCloneRoam(true);
   };
@@ -122,8 +132,7 @@ export default function EntryGate({
 
           <button className="music-btn" onClick={changeMusic}>Park Music</button>
 
-          <button className="ghost-admin" onClick={() => setCrowdLevel(crowdLevel === "Maximum" ? "Normal" : "Maximum")}>◌</button>
-          <button className="ghost-admin" onClick={() => setGateStatus("Owner play button waiting for secret word")}>◇</button>
+          <button className="music-btn" onClick={ownerRadio}>Owner Radio</button>
         </nav>
 
         <section className="gm-hero-gate">
