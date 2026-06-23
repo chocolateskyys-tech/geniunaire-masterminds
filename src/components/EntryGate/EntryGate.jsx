@@ -11,7 +11,7 @@ const gateButtons = [
   { key: "pay", label: "GM Pay", destination: "GM Payment Center", price: "Stripe Checkout", info: "Open the GM cash register for passes, streams, avatars, Orbits, and monthly activations." },
   { key: "free", label: "Free Sign Up", destination: "Limited Guest Access", price: "Free", info: "Create a limited guest pass to browse the park before buying." },
   { key: "etv", label: "E-TV Lounge", destination: "E-TV Lounge Preview", price: "Free Preview / Paid Signal", info: "Watch commercials, TV drops, ads, and E-TV Book previews." },
-  { key: "walk", label: "Walk The Park", destination: "Main Street Plaza", price: "Ticket / Clone Optional", info: "Enter the tunnel and browse the park." },
+  { key: "walk", label: "Walk The Park", destination: "Main Street Plaza", price: "Guest Info Required", info: "Name and email required before the park gate opens." },
   { key: "chill", label: "Chill In E-TV Lounge", destination: "E-TV Lounge", price: "Signal Plan", info: "Sit in the lounge, watch programmed screens, ads, commercials, and drops." },
   { key: "casting", label: "Casting / E-TV Network", destination: "Casting Security", price: "Verification Required", info: "Talent must sign in, verify, agree to rules, and accept network terms." },
   { key: "subscribers", label: "Subscribers", destination: "Subscriber Entrance", price: "Monthly Signal", info: "Subscriber access for E-TV Book, signal plans, and monthly streams." },
@@ -41,6 +41,8 @@ export default function EntryGate({
   if (crowdConsole) return <CrowdControl onBack={() => setCrowdConsole(false)} />;
   if (insidePark) return <MainStreetPlaza />;
 
+  const hasRequiredGuestInfo = () => signup.name.trim() && signup.email.trim();
+
   const changeMusic = () => {
     const mixes = ["Crowd Mix 01", "Tunnel Rumble", "Clone Parade", "E-TV Lounge Ads", "Park Walk Loop", "Atlanta Gate Brass"];
     setMusicMode(mixes[Math.floor(Math.random() * mixes.length)]);
@@ -48,12 +50,17 @@ export default function EntryGate({
 
   const chooseGate = (item) => {
     setSelected(item);
-    setGateStatus(`${item.label} ticket booth active`);
+    setGateStatus(`${item.label} selected. Name and email required before access opens.`);
     localStorage.setItem("gm_selected_gate", JSON.stringify(item));
   };
 
   const submitTicket = () => {
     if (!selected) return;
+
+    if (!hasRequiredGuestInfo()) {
+      setGateStatus("LOCKED: Name and email required before this gate opens.");
+      return;
+    }
 
     localStorage.setItem("gm_gate_signup", JSON.stringify({
       selected,
@@ -96,6 +103,11 @@ export default function EntryGate({
     }
 
     setGateStatus("Secret access denied");
+  };
+
+  const ownerRadio = () => {
+    setSecretBox(SECRET_ADMIN);
+    setGateStatus("Owner Radio ready. ASPIRE loaded. Press Submit Secret Code.");
   };
 
   return (
@@ -141,7 +153,7 @@ export default function EntryGate({
           <article className="ticket-booth">
             <p className="panel-kicker">Front Gate Ticket Booth</p>
             <h2>{selected ? selected.destination : "Choose Your Entrance"}</h2>
-            <p>{selected ? selected.info : "Pick a gate button above. Every guest goes through a booth before the gate opens."}</p>
+            <p>{selected ? selected.info : "Pick a gate button above. Name and email are required before any gate opens."}</p>
 
             {selected && (
               <div className="status-box">
@@ -153,8 +165,8 @@ export default function EntryGate({
 
             <div className="status-box">
               <span>Guest Sign Up / Check In</span>
-              <input placeholder="Name / Stage Name" value={signup.name} onChange={(e) => setSignup({ ...signup, name: e.target.value })} />
-              <input placeholder="Email" value={signup.email} onChange={(e) => setSignup({ ...signup, email: e.target.value })} />
+              <input placeholder="Name / Stage Name REQUIRED" value={signup.name} onChange={(e) => setSignup({ ...signup, name: e.target.value })} />
+              <input placeholder="Email REQUIRED" value={signup.email} onChange={(e) => setSignup({ ...signup, email: e.target.value })} />
               <input placeholder="Phone / Optional" value={signup.phone} onChange={(e) => setSignup({ ...signup, phone: e.target.value })} />
             </div>
 
@@ -166,20 +178,20 @@ export default function EntryGate({
             </div>
 
             <button className="open-gate-btn" onClick={submitTicket} disabled={!selected}>
-              {selected?.key === "pay" ? "Open GM Payment Center" : "Sign / Verify / Open Gate"}
+              {selected?.key === "pay" ? "Submit Info / Open GM Payment Center" : "Submit Info / Open Gate"}
             </button>
 
             <div className="status-box">
               <span>Secret Access</span>
               <input placeholder="Secret word" value={secretBox} onChange={(e) => setSecretBox(e.target.value)} />
-              <button className="open-gate-btn" onClick={unlockSecret}>Unlock</button>
+              <button className="open-gate-btn" onClick={unlockSecret}>Submit Secret Code</button>
             </div>
           </article>
 
           <article className="clone-machine">
             <p className="panel-kicker cyan">Mini Clone Bot Machine</p>
             <h2>Come Inside The Screen</h2>
-            <p>Rent a mini clone body to walk, shop, sit, chill, watch TV, and roam the park virtually.</p>
+            <p>Name and email required before clone access activates.</p>
 
             <button onClick={() => rentClone("$5 / Hour Clone Rental")}>$5 / Hour</button>
             <button onClick={() => rentClone("Day Pass Clone Rental")}>Day Pass</button>
