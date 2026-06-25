@@ -1,5 +1,5 @@
-import EntryGate from "./components/EntryGate/EntryGate";
+import GMRecoveryPark from "./components/GMRecoveryPark/GMRecoveryPark";
 
 export default function App() {
-  return <EntryGate />;
+  return <GMRecoveryPark />;
 }
