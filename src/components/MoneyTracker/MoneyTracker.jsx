@@ -1,414 +1,269 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from "react";
 
-const STORAGE_KEY = 'geniunaireMoneyProjects';
+const STORAGE_KEY = "gmOwnerMoneyVault";
+
+const defaultLanes = [
+  "Front Gate",
+  "GM RIDZ Parking Lot",
+  "PCOA Pool",
+  "NightOwl Hideout Pool Bar",
+  "GM Orbits Store",
+  "GM E-TV Network",
+  "ThreadFolio Glow E-Folio Set",
+  "DormMageddon House",
+  "GM E-Store",
+  "PCOA Partner Streaming",
+  "Kiddie Land / NextGen Separate App"
+];
 
 function MoneyTracker({ onReturn }) {
-  const [name, setName] = useState('');
-  const [type, setType] = useState('');
-  const [projected, setProjected] = useState('');
-  const [actual, setActual] = useState('');
-  const [status, setStatus] = useState('');
-  const [notes, setNotes] = useState('');
-  const [priority, setPriority] = useState('');
-  const [copyStatus, setCopyStatus] = useState('');
+  const [name, setName] = useState("");
+  const [lane, setLane] = useState("");
+  const [projected, setProjected] = useState("");
+  const [actual, setActual] = useState("");
+  const [status, setStatus] = useState("");
+  const [priority, setPriority] = useState("");
+  const [notes, setNotes] = useState("");
+  const [copyStatus, setCopyStatus] = useState("");
 
-  const [projects, setProjects] = useState(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    return saved ? JSON.parse(saved) : [];
+  const [records, setRecords] = useState(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
   });
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
-  }, [projects]);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+  }, [records]);
 
-  const totalProjected = projects.reduce((sum, project) => {
-    return sum + Number(project.projected || 0);
-  }, 0);
+  const totals = useMemo(() => {
+    return records.reduce(
+      (sum, record) => {
+        sum.projected += Number(record.projected || 0);
+        sum.actual += Number(record.actual || 0);
+        return sum;
+      },
+      { projected: 0, actual: 0 }
+    );
+  }, [records]);
 
-  const totalActual = projects.reduce((sum, project) => {
-    return sum + Number(project.actual || 0);
-  }, 0);
+  const counts = useMemo(() => {
+    return {
+      planning: records.filter((item) => item.status === "Planning").length,
+      building: records.filter((item) => item.status === "Building").length,
+      live: records.filter((item) => item.status === "Live").length,
+      review: records.filter((item) => item.status === "Owner Review").length
+    };
+  }, [records]);
 
-  const planning = projects.filter((project) => project.status === 'Planning').length;
-  const building = projects.filter((project) => project.status === 'Building').length;
-  const live = projects.filter((project) => project.status === 'Live').length;
-
-  function addProject(event) {
+  function addRecord(event) {
     event.preventDefault();
 
-    const newProject = {
+    const newRecord = {
       id: Date.now(),
-      name: name || 'Unnamed Project',
-      type: type || 'Not selected',
-      projected: projected || '0',
-      actual: actual || '0',
-      status: status || 'Planning',
-      notes: notes || '',
-      priority: priority || 'Medium',
+      name: name || "Untitled GM Money Lane",
+      lane: lane || "GM Owner Admin",
+      projected: projected || "0",
+      actual: actual || "0",
+      status: status || "Planning",
+      priority: priority || "Medium",
+      notes: notes || "",
+      createdAt: new Date().toISOString()
     };
 
-    setProjects([newProject, ...projects]);
-
-    setName('');
-    setType('');
-    setProjected('');
-    setActual('');
-    setStatus('');
-    setNotes('');
-    setPriority('');
+    setRecords([newRecord, ...records]);
+    setName("");
+    setLane("");
+    setProjected("");
+    setActual("");
+    setStatus("");
+    setPriority("");
+    setNotes("");
   }
 
-  function updateProject(id, field, value) {
-    setProjects(
-      projects.map((project) => {
-        if (project.id === id) {
-          return { ...project, [field]: value };
+  function updateRecord(id, field, value) {
+    setRecords(
+      records.map((record) => {
+        if (record.id === id) {
+          return { ...record, [field]: value };
         }
-
-        return project;
+        return record;
       })
     );
   }
 
-  function deleteProject(id) {
-    setProjects(projects.filter((project) => project.id !== id));
+  function deleteRecord(id) {
+    setRecords(records.filter((record) => record.id !== id));
   }
-
-  function clearProjects() {
-  const confirmed = window.confirm(
-    'Are you sure you want to clear all saved Money Tracker projects? This cannot be undone.'
-  );
-
-  if (confirmed) {
-    setProjects([]);
-  }
-}
 
   function buildSummary() {
-    const projectLines = projects.map((project, index) => {
+    const lines = records.map((record, index) => {
       return [
-        `Project ${index + 1}: ${project.name}`,
-        `Type: ${project.type}`,
-        `Priority: ${project.priority || 'Medium'}`,
-        `Status: ${project.status}`,
-        `Projected Revenue: $${project.projected || '0'}`,
-        `Actual Revenue: $${project.actual || '0'}`,
-        `Notes: ${project.notes || 'No notes added'}`,
-      ].join('\n');
+        `GM Money Lane ${index + 1}: ${record.name}`,
+        `Attraction / Building: ${record.lane}`,
+        `Status: ${record.status}`,
+        `Priority: ${record.priority}`,
+        `Projected Revenue: $${record.projected || "0"}`,
+        `Actual Revenue: $${record.actual || "0"}`,
+        `Notes: ${record.notes || "No notes added"}`
+      ].join("\n");
     });
 
     return [
-      'GENIUNAIRE MASTERMINDS — MONEY TRACKER SUMMARY',
-      '',
-      `Total Projects: ${projects.length}`,
-      `Total Projected Revenue: $${totalProjected}`,
-      `Total Actual Revenue: $${totalActual}`,
-      `Revenue Gap: $${totalProjected - totalActual}`,
-      '',
-      `Planning: ${planning}`,
-      `Building: ${building}`,
-      `Live: ${live}`,
-      '',
-      'PROJECT DETAILS',
-      '',
-      projectLines.length > 0 ? projectLines.join('\n\n') : 'No tracked projects yet.',
-    ].join('\n');
+      "GENIUNAIRE MASTERMINDS — GM OWNER MONEY VAULT",
+      "",
+      `Tracked Money Lanes: ${records.length}`,
+      `Total Projected Revenue: $${totals.projected}`,
+      `Total Actual Revenue: $${totals.actual}`,
+      `Revenue Gap: $${totals.projected - totals.actual}`,
+      "",
+      `Planning: ${counts.planning}`,
+      `Building: ${counts.building}`,
+      `Live: ${counts.live}`,
+      `Owner Review: ${counts.review}`,
+      "",
+      "GM MONEY LANE DETAILS",
+      "",
+      lines.length ? lines.join("\n\n") : "No tracked GM money lanes yet."
+    ].join("\n");
   }
 
   async function copySummary() {
-    const summary = buildSummary();
-
     try {
-      await navigator.clipboard.writeText(summary);
-      setCopyStatus('Summary copied to clipboard.');
-    } catch (error) {
-      setCopyStatus('Copy failed. Select and copy manually.');
+      await navigator.clipboard.writeText(buildSummary());
+      setCopyStatus("GM Money Vault summary copied.");
+    } catch {
+      setCopyStatus("Copy failed. Select and copy manually.");
     }
   }
 
-return (
-  <main className="min-h-screen bg-black text-slate-300 px-6 py-10">
-    <section className="max-w-6xl mx-auto">
-      <h1 className="text-5xl font-bold text-purple-400 mb-4">
-        MONEY TRACKER
-      </h1>
-
-      <p className="text-slate-400 mb-8">
-        Track project money, status, priority, revenue movement, and notes.
-      </p>
-
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-        <div className="border border-purple-900 rounded-xl p-4">
-          <p className="text-slate-500 text-sm">Projects</p>
-          <p className="text-2xl text-purple-300 font-bold">{projects.length}</p>
-        </div>
-
-        <div className="border border-purple-900 rounded-xl p-4">
-          <p className="text-slate-500 text-sm">Projected</p>
-          <p className="text-2xl text-purple-300 font-bold">${totalProjected}</p>
-        </div>
-
-        <div className="border border-purple-900 rounded-xl p-4">
-          <p className="text-slate-500 text-sm">Actual</p>
-          <p className="text-2xl text-purple-300 font-bold">${totalActual}</p>
-        </div>
-
-        <div className="border border-purple-900 rounded-xl p-4">
-          <p className="text-slate-500 text-sm">Revenue Gap</p>
-          <p className="text-2xl text-purple-300 font-bold">
-            ${totalProjected - totalActual}
-          </p>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <div className="border border-slate-800 rounded-xl p-4">
-          <p className="text-slate-500 text-sm">Planning</p>
-          <p className="text-xl text-purple-300 font-bold">{planning}</p>
-        </div>
-
-        <div className="border border-slate-800 rounded-xl p-4">
-          <p className="text-slate-500 text-sm">Building</p>
-          <p className="text-xl text-purple-300 font-bold">{building}</p>
-        </div>
-
-        <div className="border border-slate-800 rounded-xl p-4">
-          <p className="text-slate-500 text-sm">Live</p>
-          <p className="text-xl text-purple-300 font-bold">{live}</p>
-        </div>
-      </div>
-
-      <div className="border border-purple-900 rounded-xl p-6 mb-8">
-        <h2 className="text-purple-300 mb-4">Export Summary</h2>
-
-        <p className="text-slate-500 mb-4">
-          Copy a clean project summary for ChatGPT, email, notes, planning, or investor prep.
+  return (
+    <main className="gm-money-vault">
+      <section className="gm-money-header">
+        <p className="gm-kicker">GM Owner Admin Building</p>
+        <h1>GM Money Vault</h1>
+        <p>
+          Owner-side tracking for attraction money, projected revenue, actual revenue,
+          revenue gaps, status, priorities, Stripe notes, partner notes, and launch movement.
         </p>
+      </section>
 
-        <button
-          type="button"
-          onClick={copySummary}
-          className="px-6 py-3 bg-purple-900 border border-purple-500 rounded"
-        >
-          Copy Project Summary
-        </button>
+      <section className="gm-money-stats">
+        <article><span>Money Lanes</span><strong>{records.length}</strong></article>
+        <article><span>Projected</span><strong>${totals.projected}</strong></article>
+        <article><span>Actual</span><strong>${totals.actual}</strong></article>
+        <article><span>Revenue Gap</span><strong>${totals.projected - totals.actual}</strong></article>
+      </section>
 
-        {copyStatus && (
-          <p className="mt-4 text-purple-300">
-            {copyStatus}
-          </p>
-        )}
-      </div>
+      <section className="gm-money-stats small">
+        <article><span>Planning</span><strong>{counts.planning}</strong></article>
+        <article><span>Building</span><strong>{counts.building}</strong></article>
+        <article><span>Live</span><strong>{counts.live}</strong></article>
+        <article><span>Owner Review</span><strong>{counts.review}</strong></article>
+      </section>
 
-      <form onSubmit={addProject} className="border border-purple-900 rounded-xl p-6 mb-8">
-        <h2 className="text-purple-300 mb-4">Add New Project</h2>
+      <section className="gm-money-panel">
+        <h2>Add GM Money Lane</h2>
+        <form onSubmit={addRecord} className="gm-money-form">
+          <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Offer / Product / Revenue Lane Name" />
 
-        <input
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          placeholder="Project / Client Name"
-          className="w-full mb-4 bg-black border border-slate-700 px-4 py-3 rounded"
-        />
+          <select value={lane} onChange={(e) => setLane(e.target.value)}>
+            <option value="">Attraction / Building</option>
+            {defaultLanes.map((item) => (
+              <option key={item} value={item}>{item}</option>
+            ))}
+          </select>
 
-        <select
-          value={type}
-          onChange={(event) => setType(event.target.value)}
-          className="w-full mb-4 bg-black border border-slate-700 px-4 py-3 rounded"
-        >
-          <option value="">Project Type</option>
-          <option value="Website">Website</option>
-          <option value="Funnel">Funnel</option>
-          <option value="Ebook">Ebook</option>
-          <option value="App">App</option>
-          <option value="Full Ecosystem">Full Ecosystem</option>
-        </select>
+          <input value={projected} onChange={(e) => setProjected(e.target.value)} placeholder="Projected Revenue" />
+          <input value={actual} onChange={(e) => setActual(e.target.value)} placeholder="Actual Revenue" />
 
-        <input
-          value={projected}
-          onChange={(event) => setProjected(event.target.value)}
-          placeholder="Projected Revenue"
-          className="w-full mb-4 bg-black border border-slate-700 px-4 py-3 rounded"
-        />
+          <select value={status} onChange={(e) => setStatus(e.target.value)}>
+            <option value="">Status</option>
+            <option>Planning</option>
+            <option>Building</option>
+            <option>Live</option>
+            <option>Owner Review</option>
+          </select>
 
-        <input
-          value={actual}
-          onChange={(event) => setActual(event.target.value)}
-          placeholder="Actual Revenue"
-          className="w-full mb-4 bg-black border border-slate-700 px-4 py-3 rounded"
-        />
+          <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+            <option value="">Priority</option>
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+            <option>Urgent</option>
+          </select>
 
-        <select
-          value={status}
-          onChange={(event) => setStatus(event.target.value)}
-          className="w-full mb-4 bg-black border border-slate-700 px-4 py-3 rounded"
-        >
-          <option value="">Status</option>
-          <option value="Planning">Planning</option>
-          <option value="Building">Building</option>
-          <option value="Live">Live</option>
-        </select>
+          <textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Money notes / Stripe link / partner note / policy note / contract note / next action" rows="4" />
 
-        <textarea
-          value={notes}
-          onChange={(event) => setNotes(event.target.value)}
-          placeholder="Project notes / next steps / domain / payment / support notes"
-          rows="4"
-          className="w-full mb-4 bg-black border border-slate-700 px-4 py-3 rounded"
-        />
+          <button type="submit">Save To GM Money Vault</button>
+        </form>
+      </section>
 
-        <select
-          value={priority}
-          onChange={(event) => setPriority(event.target.value)}
-          className="w-full mb-5 bg-black border border-slate-700 px-4 py-3 rounded"
-        >
-          <option value="">Priority Level</option>
-          <option value="Low">Low</option>
-          <option value="Medium">Medium</option>
-          <option value="High">High</option>
-          <option value="Urgent">Urgent</option>
-        </select>
+      <section className="gm-money-panel">
+        <div className="gm-money-panel-head">
+          <h2>Tracked GM Money Lanes</h2>
+          <button type="button" onClick={copySummary}>Copy Owner Summary</button>
+        </div>
 
-        <button className="px-6 py-3 bg-purple-900 border border-purple-500 rounded">
-          Save Project
-        </button>
-      </form>
+        {copyStatus && <p className="gm-copy-status">{copyStatus}</p>}
 
-      <div className="border border-purple-900 rounded-xl p-6 mb-8">
-        <h2 className="text-purple-300 mb-2">Tracked Projects</h2>
+        {records.length === 0 && <p className="gm-empty">No tracked GM money lanes yet.</p>}
 
-        <p className="text-slate-500 text-sm mb-6">
-          Edit project details directly inside each card. Changes save automatically.
-        </p>
+        {records.map((record) => (
+          <article className="gm-money-record" key={record.id}>
+            <input value={record.name} onChange={(e) => updateRecord(record.id, "name", e.target.value)} />
 
-        {projects.length === 0 && (
-          <p className="text-slate-500">No tracked projects yet.</p>
-        )}
-
-        {projects.map((project) => (
-          <div key={project.id} className="border border-slate-800 rounded-xl p-5 mb-5 bg-black/40">
-            <label className="block text-xs uppercase tracking-widest text-slate-500 mb-2">
-              Project / Client Name
-            </label>
-            <input
-              value={project.name}
-              onChange={(event) => updateProject(project.id, 'name', event.target.value)}
-              className="w-full mb-4 bg-black border border-slate-700 px-4 py-2 rounded"
-            />
-
-            <label className="block text-xs uppercase tracking-widest text-slate-500 mb-2">
-              Project Type
-            </label>
-            <select
-              value={project.type}
-              onChange={(event) => updateProject(project.id, 'type', event.target.value)}
-              className="w-full mb-4 bg-black border border-slate-700 px-4 py-2 rounded"
-            >
-              <option value="Not selected">Not selected</option>
-              <option value="Website">Website</option>
-              <option value="Funnel">Funnel</option>
-              <option value="Ebook">Ebook</option>
-              <option value="App">App</option>
-              <option value="Full Ecosystem">Full Ecosystem</option>
+            <select value={record.lane} onChange={(e) => updateRecord(record.id, "lane", e.target.value)}>
+              {defaultLanes.map((item) => (
+                <option key={item} value={item}>{item}</option>
+              ))}
             </select>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <div>
-                <label className="block text-xs uppercase tracking-widest text-slate-500 mb-2">
-                  Projected Revenue
-                </label>
-                <input
-                  value={project.projected}
-                  onChange={(event) => updateProject(project.id, 'projected', event.target.value)}
-                  className="w-full bg-black border border-slate-700 px-4 py-2 rounded"
-                />
-              </div>
+            <div className="gm-money-two">
+              <label>
+                Projected Revenue
+                <input value={record.projected} onChange={(e) => updateRecord(record.id, "projected", e.target.value)} />
+              </label>
 
-              <div>
-                <label className="block text-xs uppercase tracking-widest text-slate-500 mb-2">
-                  Actual Revenue
-                </label>
-                <input
-                  value={project.actual}
-                  onChange={(event) => updateProject(project.id, 'actual', event.target.value)}
-                  className="w-full bg-black border border-slate-700 px-4 py-2 rounded"
-                />
-              </div>
+              <label>
+                Actual Revenue
+                <input value={record.actual} onChange={(e) => updateRecord(record.id, "actual", e.target.value)} />
+              </label>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <div>
-                <label className="block text-xs uppercase tracking-widest text-slate-500 mb-2">
-                  Project Status
-                </label>
-                <select
-                  value={project.status}
-                  onChange={(event) => updateProject(project.id, 'status', event.target.value)}
-                  className="w-full bg-black border border-slate-700 px-4 py-2 rounded"
-                >
-                  <option value="Planning">Planning</option>
-                  <option value="Building">Building</option>
-                  <option value="Live">Live</option>
-                </select>
-              </div>
+            <div className="gm-money-two">
+              <select value={record.status} onChange={(e) => updateRecord(record.id, "status", e.target.value)}>
+                <option>Planning</option>
+                <option>Building</option>
+                <option>Live</option>
+                <option>Owner Review</option>
+              </select>
 
-              <div>
-                <label className="block text-xs uppercase tracking-widest text-slate-500 mb-2">
-                  Priority Level
-                </label>
-                <select
-                  value={project.priority || 'Medium'}
-                  onChange={(event) => updateProject(project.id, 'priority', event.target.value)}
-                  className="w-full bg-black border border-slate-700 px-4 py-2 rounded"
-                >
-                  <option value="Low">Low Priority</option>
-                  <option value="Medium">Medium Priority</option>
-                  <option value="High">High Priority</option>
-                  <option value="Urgent">Urgent Priority</option>
-                </select>
-              </div>
+              <select value={record.priority} onChange={(e) => updateRecord(record.id, "priority", e.target.value)}>
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+                <option>Urgent</option>
+              </select>
             </div>
 
-            <label className="block text-xs uppercase tracking-widest text-slate-500 mb-2">
-              Project Notes
-            </label>
-            <textarea
-              value={project.notes || ''}
-              onChange={(event) => updateProject(project.id, 'notes', event.target.value)}
-              rows="3"
-              placeholder="Project notes"
-              className="w-full mb-4 bg-black border border-slate-700 px-4 py-2 rounded"
-            />
+            <textarea value={record.notes} onChange={(e) => updateRecord(record.id, "notes", e.target.value)} rows="3" />
 
-            <button
-              type="button"
-              onClick={() => deleteProject(project.id)}
-              className="px-4 py-2 border border-red-900 text-red-300 rounded hover:bg-red-950"
-            >
-              Delete Project
-            </button>
-          </div>
+            <button type="button" className="danger" onClick={() => deleteRecord(record.id)}>Delete Lane</button>
+          </article>
         ))}
+      </section>
 
-        {projects.length > 0 && (
-          <button
-            type="button"
-            onClick={clearProjects}
-            className="mt-4 px-6 py-3 border border-red-900 text-red-300 rounded hover:bg-red-950"
-          >
-            Clear Saved Projects
-          </button>
-        )}
-      </div>
-
-      <button
-        onClick={onReturn}
-        className="px-6 py-3 border border-slate-700 rounded hover:border-purple-500"
-      >
-        Return To Entry Gate
-      </button>
-    </section>
-  </main>
-);
+      {onReturn && (
+        <button type="button" className="gm-return" onClick={onReturn}>
+          Return To GM Admin Building
+        </button>
+      )}
+    </main>
+  );
 }
 
 export default MoneyTracker;
