@@ -1,11 +1,15 @@
 import React from "react";
 import "./GMFinalVisual.css";
 
+const FRONT_GATE = "/assets/gm-front-gate-final.png";
+const PARKING_LOT = "/assets/gm/parking-lot/parking-lot-approved.png";
+const POOL_LOGO = "/assets/gm-pcoa-pool-logo-final.png";
+
 export default function GMFinalVisual({ onAction = () => {} }) {
   return (
     <main className="gm-final">
       <section className="gm-image-wrap">
-        <img src="/assets/gm/front-gate/front-gate-approved.png" alt="Geniunaire MasterMinds Theme Park — Atlanta" />
+        <img src={FRONT_GATE} alt="Geniunaire MasterMinds Theme Park — Atlanta" />
 
         <button className="gm-hotspot orbit" onClick={() => onAction("rent-orbit")}>Rent Orbit Now</button>
         <button className="gm-hotspot tickets" onClick={() => onAction("buy-tickets")}>Buy Tickets</button>
@@ -17,7 +21,7 @@ export default function GMFinalVisual({ onAction = () => {} }) {
       </section>
 
       <section className="gm-image-wrap lot">
-        <img src="/assets/gm/parking-lot/parking-lot-approved.png" alt="GMPark RIDEZ 001-000000" />
+        <img src={PARKING_LOT} alt="GMPark RIDEZ 001-000000 Parking Lot" />
 
         <button className="gm-hotspot refresh" onClick={() => onAction("refreshments")}>Refreshments</button>
         <button className="gm-hotspot table" onClick={() => onAction("reserve-table")}>Reserve Table</button>
@@ -26,7 +30,7 @@ export default function GMFinalVisual({ onAction = () => {} }) {
       </section>
 
       <section className="gm-pool-lock">
-        <img src="/assets/gm/pool/gm-pool-logo-approved.png" alt="GM Empire Pool Logo - Pool Skin Only" />
+        <img src={POOL_LOGO} alt="GM Empire Pool Logo - Pool Skin Only" />
       </section>
     </main>
   );
