@@ -29,7 +29,7 @@ export default function GMFinalVisual({ onAction = () => {} }) {
         <button className="gm-hotspot golf" onClick={() => onAction("golf-cart")}>Request Golf Cart</button>
       </section>
 
-      <section className="gm-pool-lock">
+      <section className="gm-pool-unlock">
         <img src={POOL_LOGO} alt="GM Empire Pool Logo - Pool Skin Only" />
       </section>
     </main>
