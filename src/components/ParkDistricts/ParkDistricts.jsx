@@ -13,7 +13,7 @@ const roomData = {
     actions: ["Scan Thread", "Create E-Folio", "Create E-Map", "Build Client Page", "Send To Pay Desk"]
   },
   etv: {
-    title: "E-TV Lounge",
+    title: "GM E-TV Lounge",
     type: "Streaming / E-TV Book",
     lead: "Runs commercials, drops, E-TV Book previews, product streams, creator streams, and subscription channels.",
     icon: "📺",
@@ -27,7 +27,7 @@ const roomData = {
     actions: ["Create Show", "Write Commercial", "Schedule Drop", "Send To Sound Mine", "Release Promo Package"]
   },
   casting: {
-    title: "Casting / E-TV Network",
+    title: "Casting / GM E-TV Network",
     type: "Talent Gate",
     lead: "Talent signs in, accepts agreements, reviews rules, verifies access, and enters E-TV casting.",
     icon: "🎭",

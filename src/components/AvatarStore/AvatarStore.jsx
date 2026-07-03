@@ -103,7 +103,7 @@ export default function AvatarStore({ onNavigate }) {
             Rent Worker Bot
           </button>
           <button type="button" onClick={() => onNavigate?.("etvLounge")}>
-            Open E-TV Lounge
+            Open GM E-TV Lounge
           </button>
         </div>
       </section>

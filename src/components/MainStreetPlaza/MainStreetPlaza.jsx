@@ -3,9 +3,9 @@ import ParkDistricts from "../ParkDistricts/ParkDistricts";
 
 const parkZones = [
   ["threadfolio", "ThreadFolio Tower", "Thread Set brain, E-Folio, E-Map, build plans.", "🧠"],
-  ["etv", "E-TV Lounge", "Streams, commercials, drops, E-TV Book, subscriptions.", "📺"],
+  ["etv", "GM E-TV Lounge", "Streams, commercials, drops, E-TV Book, subscriptions.", "📺"],
   ["production", "Production Studio", "Shows, episodes, commercials, scripts, release drops.", "🎬"],
-  ["casting", "Casting / E-TV Network", "Talent sign-in, rules, verification, agreements.", "🎭"],
+  ["casting", "Casting / GM E-TV Network", "Talent sign-in, rules, verification, agreements.", "🎭"],
   ["sound", "Sound Mine", "Music, voice, intro drops, sound effects, broadcast mix.", "🎧"],
   ["mall", "E-Mall", "Stores, products, services, affiliate shelves, checkout doors.", "🛍️"],
   ["celeb", "Celebrity Marketplace", "Verification, placement, promo TV, booking review.", "⭐"],

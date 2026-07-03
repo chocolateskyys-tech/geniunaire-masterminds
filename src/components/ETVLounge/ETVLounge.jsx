@@ -22,7 +22,7 @@ export default function ETVLounge({ onBack }) {
     <main className="etv-page">
       <button className="etv-back" onClick={onBack}>← Back To Park</button>
       <section className="etv-shell">
-        <p>Geniunaire E-TV Lounge</p>
+        <p>Geniunaire GM E-TV Lounge</p>
         <h1>Watch. Stream. Cast. Shop.</h1>
 
         <div className="tv-screen">

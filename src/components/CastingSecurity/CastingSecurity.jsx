@@ -3,7 +3,7 @@ import "./CastingSecurity.css";
 
 export default function CastingSecurity({ type = "casting", onBack }) {
   const [step, setStep] = useState("Start");
-  const title = type === "celeb" ? "Celebrity Verification" : "Casting / E-TV Network";
+  const title = type === "celeb" ? "Celebrity Verification" : "Casting / GM E-TV Network";
   const lead = type === "celeb"
     ? "Tight security, placement review, booking lane, promo TV package, marketplace approval."
     : "Talent sign in, agreements, rules, bylaws, verification, series access, broadcast readiness.";

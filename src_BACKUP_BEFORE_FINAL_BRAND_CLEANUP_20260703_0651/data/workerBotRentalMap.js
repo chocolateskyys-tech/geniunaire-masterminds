@@ -1,0 +1,127 @@
+export const botRentalStatuses = {
+  available: "AVAILABLE",
+  pendingReview: "PENDING REVIEW",
+  rented: "RENTED",
+  assigned: "ASSIGNED",
+  adminOnly: "ADMIN ONLY",
+};
+
+export const workerBotRentals = [
+  {
+    id: "etvConcierge",
+    name: "E-TV Concierge Bot",
+    task: "Helps users choose the correct E-TV model, signal plan, and wired room path.",
+    requiredModel: "Pocket Signal or higher",
+    requiredSignal: "Basic Signal or higher",
+    monthlyRental: "$19/mo",
+    setupFee: "$9 setup",
+    status: "available",
+    customerCan: ["Ask model questions", "Compare E-TV options", "Get upgrade suggestions"],
+    adminOnly: ["Edit store rules", "Override compatibility", "Change pricing"],
+  },
+  {
+    id: "signalActivation",
+    name: "Signal Activation Bot",
+    task: "Guides post-purchase setup, signal activation, renewal reminders, and restore-access prompts.",
+    requiredModel: "RiftView or higher",
+    requiredSignal: "Viewer Signal or higher",
+    monthlyRental: "$29/mo",
+    setupFee: "$19 setup",
+    status: "available",
+    customerCan: ["Check signal status", "Start activation request", "Request restore access"],
+    adminOnly: ["Clip signal", "Restore signal manually", "Override payment status"],
+  },
+  {
+    id: "castingDesk",
+    name: "Casting Desk Bot",
+    task: "Helps casting members choose role lanes, submit bio/portfolio, check consent, and route to admin review.",
+    requiredModel: "CastWire or higher",
+    requiredSignal: "Production Signal",
+    monthlyRental: "$49/mo",
+    setupFee: "$29 setup",
+    status: "available",
+    customerCan: ["Submit casting profile", "Choose role lane", "Upload portfolio link"],
+    adminOnly: ["Approve cast members", "Assign roles", "View private admin notes"],
+  },
+  {
+    id: "personaBooking",
+    name: "Persona Booking Bot",
+    task: "Helps customers request, rent, book, or reserve approved avatars from the persona shelf.",
+    requiredModel: "CastWire or higher",
+    requiredSignal: "Production Signal",
+    monthlyRental: "$49/mo",
+    setupFee: "$29 setup",
+    status: "available",
+    customerCan: ["Request avatar", "Check avatar status", "Choose allowed persona lane"],
+    adminOnly: ["Open avatar machine", "Approve booked status", "Assign final cast identity"],
+  },
+  {
+    id: "wardrobeDesk",
+    name: "Wardrobe Desk Bot",
+    task: "Shows approved wardrobe categories based on avatar type, subscription, and role lane.",
+    requiredModel: "CastWire or higher",
+    requiredSignal: "Production Signal",
+    monthlyRental: "$39/mo",
+    setupFee: "$19 setup",
+    status: "available",
+    customerCan: ["Choose allowed outfit category", "Submit wardrobe preference", "Request premium look"],
+    adminOnly: ["Open wardrobe creator", "Access Swagged Persona backend", "Approve continuity changes"],
+  },
+  {
+    id: "copyRequest",
+    name: "Copy Request Bot",
+    task: "Collects website copywriting requests, funnel copy needs, page details, and client project notes.",
+    requiredModel: "BotBox Book or higher",
+    requiredSignal: "Bot Signal",
+    monthlyRental: "$39/mo",
+    setupFee: "$19 setup",
+    status: "available",
+    customerCan: ["Submit copy request", "Choose copy package", "Send website details"],
+    adminOnly: ["Open copywriter engine", "Generate unlimited copy", "Export internal prompts"],
+  },
+  {
+    id: "commercialBot",
+    name: "Commercial Bot",
+    task: "Manages sponsor break requests, affiliate offer placement, ad script requests, and promo inserts.",
+    requiredModel: "BotBox Book or Broadcast Bible",
+    requiredSignal: "Bot Signal or Broadcast Signal",
+    monthlyRental: "$59/mo",
+    setupFee: "$29 setup",
+    status: "available",
+    customerCan: ["Request sponsor break", "Submit affiliate offer", "Ask for promo placement"],
+    adminOnly: ["Approve ad placement", "Wire commercials into drops", "Edit sponsor schedule"],
+  },
+  {
+    id: "memoryBot",
+    name: "Memory Bot",
+    task: "Tracks episode progress, avatar continuity, user signal status, drops unlocked, and casting history.",
+    requiredModel: "VaultScreen or approved access",
+    requiredSignal: "Vault Signal or approved access",
+    monthlyRental: "$79/mo",
+    setupFee: "$49 setup",
+    status: "available",
+    customerCan: ["Resume approved progress", "View permitted memory", "Continue episode path"],
+    adminOnly: ["Edit memory logs", "View private production notes", "Override continuity"],
+  },
+];
+
+export const workerBotStoreCopy = {
+  title: "Helper Storefront",
+  identity: "AI Worker Rental Desk",
+  subtitle:
+    "Rent approved worker bots for E-TV setup, casting, avatar booking, wardrobe requests, copywriting requests, commercial breaks, and room support.",
+  protectionLine:
+    "Customers rent approved bot services. They do not receive open access to the bot builder, worker bot tools, admin machines, private prompts, or backend controls.",
+};
+
+export const botRentalNotice =
+  "Worker bots are rented service assistants. They may guide, collect, recommend, route, explain, upsell, submit requests, and support approved rooms. They do not expose admin-only machines, vault assets, backend builder tools, protected prompts, or owner controls.";
+
+export const botRentalFlow = [
+  "Choose worker bot",
+  "Check E-TV model and signal requirement",
+  "Submit request or rental selection",
+  "Payment/subscription review",
+  "Admin approval or setup",
+  "Bot assigned to permitted room or task",
+];

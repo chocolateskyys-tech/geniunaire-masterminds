@@ -13,15 +13,15 @@ const ACCESS_HASHES = {
 
 const publicBuildings = [
   ["front", "Front Gate"],
-  ["gm-ridz", "GM RIDZ Lot"],
-  ["pcoa-pool", "PCOA Pool"],
+  ["gm-ridz", "GMPark RIDEZ"],
+  ["pcoa-pool", "NightOwl HideOut Pool, Lounge & Discovery Bar"],
   ["pool-bar", "Pool Bar"],
-  ["orbits-store", "GM Orbits Store"],
+  ["orbits-store", "GM OrbitS Ai & AiALITY Display Rental Hub"],
   ["gm-estore", "GM E-Store"],
   ["gm-etv", "GM E-TV Network"],
   ["threadfolio", "ThreadFolio Glow"],
   ["dorm-house", "DormMageddon House"],
-  ["kiddie-shell", "Kiddie Land Relocation"]
+  ["kiddie-shell", "Geniunaire K!ddz- K!ddz Planet Relocation"]
 ];
 
 const rideTags = Array.from({ length: 18 }, (_, index) => {
@@ -82,8 +82,8 @@ const orbitDisplays = [
 
 const etvPlans = [
   ["Pocket Signal", "$9/mo", "Starter mobile signal, previews, pocket drops, and quick entry."],
-  ["DormScreen Book", "$19/mo", "Student screen for DormMageddon, Student Founder Drops, Campus Creator Tools, and E-TV Lounge."],
-  ["RiftView", "$29/mo", "Living-book viewing, AI’ality drops, scheduled scenes, and E-TV Lounge."],
+  ["DormScreen Book", "$19/mo", "Student screen for DormMageddon, Student Founder Drops, Campus Creator Tools, and GM E-TV Lounge."],
+  ["RiftView", "$29/mo", "Living-book viewing, AI’ality drops, scheduled scenes, and GM E-TV Lounge."],
   ["CastWire", "$49/mo", "Casting, voice chamber, writer room, actor room, callback desk, and production access."],
   ["BotBox Book", "$69/mo", "Bot rentals, AI worker setup, business bot rooms, and training."],
   ["Broadcast Bible", "$149/mo", "Live rooms, interviews, classes, watch parties, and network events."],
@@ -102,7 +102,7 @@ const dormHouseAttractions = [
 ];
 
 const pcoaRoles = [
-  ["PCOA Pool Safety", "Pool entry, pool flow, cabana flow, and crowd support."],
+  ["NightOwl HideOut Pool, Lounge & Discovery Bar Safety", "Pool entry, pool flow, cabana flow, and crowd support."],
   ["Orbit Pool Entry", "Orbit jump, pool effect, pool display, and VIP lane support."],
   ["GM E-TV Screen Support", "Huge screen over the bar, casting display, watch rooms, and streaming presentation."],
   ["Pool Bar Flow", "Day pass sign-up, club customer sit-down flow, and worker verification routed to GM Admin."],
@@ -122,10 +122,10 @@ const adminBuildings = [
 
 const moneySeparation = [
   ["Front Gate", "Tickets, VIP entry, Orbit entry, owner access, guest check-in."],
-  ["GM RIDZ Parking Lot", "Parking passes, golf carts, driver tags, future ride-app merge."],
-  ["PCOA Pool", "Pool access, cabanas, Orbit jumps, pool effects, VIP pool experiences."],
-  ["NightOwl Hideout Pool Bar", "Day passes, club customer sign-up, worker specials, casting upgrades, E-TV club stream offers."],
-  ["GM Orbits Store", "Orbit rentals, clothing rentals, dressing rooms, team Orbits, seasonal displays, niche workers."],
+  ["GMPark RIDEZ VR Lot Party Experience", "Parking passes, golf carts, driver tags, future ride-app merge."],
+  ["NightOwl HideOut Pool, Lounge & Discovery Bar", "Pool access, cabanas, Orbit jumps, pool effects, VIP pool experiences."],
+  ["NightOwl HideOut Pool, Lounge & Discovery Bar", "Day passes, club customer sign-up, worker specials, casting upgrades, E-TV club stream offers."],
+  ["GM OrbitS Ai & AiALITY Display Rental Hub", "Orbit rentals, clothing rentals, dressing rooms, team Orbits, seasonal displays, niche workers."],
   ["GM E-TV Network", "Signal plans, E-TV book models, casting memberships, broadcasts, replays, commercial breaks, watch rooms."],
   ["ThreadFolio Glow E-Folio Set", "ThreadFolio, Glow, E-Folio, E-Map, E-Brochure, CheerFrame, creator packages."],
   ["DormMageddon House", "Dorm TV, student founder lanes, Campus TV, merch, watch rooms, creator access, campus subscriptions."],
@@ -133,10 +133,10 @@ const moneySeparation = [
 ];
 
 const nextGenSet = [
-  ["Teen / Youth Operating Brain", "NextGen Set belongs with Kiddie Land as the operating brain of the kids mini-GM."],
+  ["Teen / Youth Operating Brain", "NextGen Set belongs with Geniunaire K!ddz- K!ddz Planet as the operating brain of the kids mini-GM."],
   ["Parent Controls", "Parent approval, commerce limits, fundraising permissions, and guardian-side review."],
   ["School / Student Path", "Age-appropriate student lanes, founder growth, report-card stages, and future handoff points."],
-  ["GM Display Rule", "Inside GM, Kiddie Land remains a relocation shell and business handoff only."]
+  ["GM Display Rule", "Inside GM, Geniunaire K!ddz- K!ddz Planet remains a relocation shell and business handoff only."]
 ];
 
 const poolColors = [
@@ -206,12 +206,12 @@ export default function GMRecoveryPark() {
 
     setGateOpen(true);
     setActive("gm-ridz");
-    setStatus(`${guest.pass} saved. GM RIDZ Lot opened.`);
+    setStatus(`${guest.pass} saved. GMPark RIDEZ opened.`);
   }
 
   function activatePool(effect) {
     setPoolEffect(effect);
-    setStatus(`Orbit jumped into PCOA Pool. ${effect[0]} activated.`);
+    setStatus(`Orbit jumped into NightOwl HideOut Pool, Lounge & Discovery Bar. ${effect[0]} activated.`);
   }
 
   return (
@@ -288,7 +288,7 @@ export default function GMRecoveryPark() {
               <select value={guest.pass} onChange={(e) => setGuest({ ...guest, pass: e.target.value })}>
                 <option>GM $5 Hour Machine Day Pass</option>
                 <option>Orbit Rental Day Pass</option>
-                <option>GM RIDZ Parking Lot Pass</option>
+                <option>GMPark RIDEZ VR Lot Party Experience Pass</option>
                 <option>Pool Bar Day Pass</option>
                 <option>GM E-TV Casting Pass</option>
                 <option>GM E-Store Product Access</option>
@@ -317,7 +317,7 @@ export default function GMRecoveryPark() {
           <p className="gm-kicker">Front Gate Play</p>
           <h2>Live Front Gate Control</h2>
           <div className="control-grid">
-            {["Open Gate", "Close Gate", "VIP Rope Glow", "GM RIDZ Rush", "Gold Mine Glow", "Guest Spotlight"].map((mode) => (
+            {["Open Gate", "Close Gate", "VIP Rope Glow", "GMPark RIDEZ Rush", "Gold Mine Glow", "Guest Spotlight"].map((mode) => (
               <button key={mode} type="button" onClick={() => {
                 setGateOpen(mode !== "Close Gate");
                 setStatus(`${mode} activated.`);
@@ -332,7 +332,7 @@ export default function GMRecoveryPark() {
       {active === "gm-ridz" && (
         <section className="gm-building">
           <p className="gm-kicker">Paid Virtual Parking Attraction</p>
-          <h2>GM RIDZ Parking Lot</h2>
+          <h2>GMPark RIDEZ VR Lot Party Experience</h2>
           <p>Landscaped paid parking lot under the front gate with refreshment stands, golf cart booth, table sign-up, driver flow, and virtual park entry.</p>
 
           <div className="ridz-lot">
@@ -383,7 +383,7 @@ export default function GMRecoveryPark() {
       {active === "pool-bar" && (
         <section className="gm-building poolbar">
           <p className="gm-kicker">Sponsored By Party Crashers Of Atlanta</p>
-          <h2>NightOwl Hideout Pool Bar</h2>
+          <h2>NightOwl HideOut Pool, Lounge & Discovery Bar</h2>
           <p>Real GM E-TV streaming and casting display building for club TVs, Pool Bar day passes, worker offers, live performance stage, and customer TV-entry sign-up.</p>
 
           <div className="poolbar-stage">
@@ -400,7 +400,7 @@ export default function GMRecoveryPark() {
               <p className="gm-kicker">PCOA Partner Streaming</p>
               <h2>Club TV Stream Door</h2>
               <p>Partner streaming door for club TV display and casting presentation. Money and admin remain in GM Owner Admin.</p>
-              <input type="password" value={access.pcoaPartner} onChange={(e) => setAccess({ ...access, pcoaPartner: e.target.value })} placeholder="PCOA streaming code" />
+              <input type="password" value={access.pcoaPartner} onChange={(e) => setAccess({ ...access, pcoaPartner: e.target.value })} placeholder="Party Crashers Of Atlanta streaming code" />
               <button type="button" onClick={() => openSecure("pcoaPartner", "pcoa-partner-stream", "PCOA Partner Streaming opened.")}>Open PCOA Streaming</button>
             </article>
 
@@ -432,7 +432,7 @@ export default function GMRecoveryPark() {
       {active === "orbits-store" && (
         <section className="gm-building">
           <p className="gm-kicker">Walk-In Storefront Attraction</p>
-          <h2>GM Orbits Store</h2>
+          <h2>GM OrbitS Ai & AiALITY Display Rental Hub</h2>
           <p>Adult Orbit storefront with dressing rooms, collector-style displays, seasonal Orbits, team Orbits, Orbit clothing rentals, niche workers, and E-TV display activation.</p>
 
           <div className="orbit-layout">
@@ -584,11 +584,11 @@ export default function GMRecoveryPark() {
       {active === "kiddie-shell" && (
         <section className="gm-building kiddie-shell">
           <p className="gm-kicker">Relocation Building Inside GM</p>
-          <h2>Geniunaire Kids — Kiddie Land</h2>
-          <p>Kiddie Land is the separate mini replica of GM for kids. Inside GM, this building is a relocation and business handoff shell only.</p>
+          <h2>Geniunaire Kids — Geniunaire K!ddz- K!ddz Planet</h2>
+          <p>Geniunaire K!ddz- K!ddz Planet is the separate mini replica of GM for kids. Inside GM, this building is a relocation and business handoff shell only.</p>
 
           <div className="relocation-card">
-            <strong>GENIUNAIRE KIDS — KIDDIE LAND HAS BEEN RELOCATED</strong>
+            <strong>GENIUNAIRE KIDS — GENIUNAIRE K!DDZ- K!DDZ PLANET HAS BEEN RELOCATED</strong>
             <span>Separate app / separate theme park</span>
             <span>Geniunaire-Kids-ThemePark-Atl.me</span>
           </div>

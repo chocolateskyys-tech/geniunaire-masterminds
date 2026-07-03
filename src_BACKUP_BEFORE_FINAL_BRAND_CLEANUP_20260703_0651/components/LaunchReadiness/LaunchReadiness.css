@@ -1,0 +1,190 @@
+.launch-readiness-page {
+  min-height: 100vh;
+  padding: 48px 22px 70px;
+  color: #ffffff;
+  background:
+    radial-gradient(circle at top left, rgba(255, 215, 120, 0.18), transparent 34%),
+    radial-gradient(circle at top right, rgba(183, 92, 255, 0.22), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(129, 232, 223, 0.13), transparent 32%),
+    linear-gradient(135deg, #050307 0%, #13081d 50%, #07040b 100%);
+}
+
+.launch-readiness-hero {
+  max-width: 1080px;
+  margin: 0 auto 34px;
+  text-align: center;
+}
+
+.launch-readiness-kicker {
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.78rem;
+  font-weight: 900;
+  color: #81e8df;
+}
+
+.launch-readiness-hero h1 {
+  margin: 0;
+  font-size: clamp(2.8rem, 8vw, 6.8rem);
+  line-height: 0.92;
+  color: #d9b3ff;
+  text-shadow:
+    0 0 24px rgba(183, 92, 255, 0.62),
+    0 0 45px rgba(255, 215, 120, 0.18);
+}
+
+.launch-readiness-hero p {
+  max-width: 850px;
+  margin: 18px auto 0;
+  font-size: 1.06rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.launch-progress-wrap {
+  max-width: 720px;
+  margin: 26px auto 0;
+  padding: 18px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.launch-progress-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-weight: 900;
+}
+
+.launch-progress-top strong {
+  color: #81e8df;
+}
+
+.launch-progress-bar {
+  height: 12px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.launch-progress-bar div {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #81e8df, #d9b3ff, #ffd978);
+}
+
+.launch-readiness-grid {
+  max-width: 1350px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+  gap: 18px;
+}
+
+.launch-readiness-card {
+  min-height: 370px;
+  padding: 22px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.085);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(14px);
+}
+
+.launch-card-head {
+  margin-bottom: 14px;
+}
+
+.launch-card-head span {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 7px 10px;
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #16091d;
+  background: #ffffff;
+}
+
+.launch-readiness-card h2 {
+  margin: 0 0 10px;
+  font-size: 1.45rem;
+}
+
+.launch-readiness-card p {
+  margin: 0 0 16px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.launch-checks {
+  display: grid;
+  gap: 9px;
+}
+
+.launch-check {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 9px 10px;
+  border-radius: 14px;
+  color: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.launch-check input {
+  margin-top: 3px;
+  accent-color: #81e8df;
+}
+
+.launch-readiness-note {
+  max-width: 1100px;
+  margin: 32px auto 0;
+  padding: 26px;
+  text-align: center;
+  border-radius: 26px;
+  background: rgba(255, 215, 120, 0.1);
+  border: 1px solid rgba(255, 215, 120, 0.22);
+}
+
+.launch-readiness-note h2 {
+  margin: 0 0 10px;
+  color: #ffd978;
+}
+
+.launch-readiness-note p {
+  max-width: 860px;
+  margin: 0 auto;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.launch-readiness-note button {
+  margin-top: 20px;
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 15px;
+  cursor: pointer;
+  font-weight: 950;
+  color: #14091d;
+  background: linear-gradient(135deg, #81e8df, #ffffff);
+}
+
+@media (max-width: 620px) {
+  .launch-readiness-page {
+    padding: 34px 14px 54px;
+  }
+
+  .launch-progress-top {
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .launch-readiness-card {
+    min-height: auto;
+  }
+}

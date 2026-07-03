@@ -4,16 +4,16 @@ const STORAGE_KEY = "gmOwnerMoneyVault";
 
 const defaultLanes = [
   "Front Gate",
-  "GM RIDZ Parking Lot",
-  "PCOA Pool",
-  "NightOwl Hideout Pool Bar",
-  "GM Orbits Store",
+  "GMPark RIDEZ VR Lot Party Experience",
+  "NightOwl HideOut Pool, Lounge & Discovery Bar",
+  "NightOwl HideOut Pool, Lounge & Discovery Bar",
+  "GM OrbitS Ai & AiALITY Display Rental Hub",
   "GM E-TV Network",
   "ThreadFolio Glow E-Folio Set",
   "DormMageddon House",
   "GM E-Store",
   "PCOA Partner Streaming",
-  "Kiddie Land / NextGen Separate App"
+  "Geniunaire K!ddz- K!ddz Planet / NextGen Separate App"
 ];
 
 function MoneyTracker({ onReturn }) {

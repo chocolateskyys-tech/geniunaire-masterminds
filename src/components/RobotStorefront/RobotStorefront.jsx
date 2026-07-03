@@ -54,7 +54,7 @@ export default function HelperStorefront({ onNavigate }) {
             Choose BotBox Model
           </button>
           <button type="button" onClick={() => onNavigate?.("etvLounge")}>
-            Open E-TV Lounge
+            Open GM E-TV Lounge
           </button>
           <button type="button" onClick={() => onNavigate?.("aiCastingMembership")}>
             Casting Desk Access

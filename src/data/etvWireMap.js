@@ -18,7 +18,7 @@ export const etvDeviceLadder = [
     id: "etvBook",
     name: "E-TV Book",
     pairedModel: "RiftView",
-    deviceUse: "Core living-book viewing, AI'ality episodes, scheduled drops, and E-TV Lounge access.",
+    deviceUse: "Core living-book viewing, AI'ality episodes, scheduled drops, and GM E-TV Lounge access.",
     publicLine: "A regular ebook opens. An E-TV Book turns on.",
   },
   {
@@ -81,7 +81,7 @@ export const etvModels = [
     compatibleRooms: [
       "Public Preview",
       "Starter Drops",
-      "E-TV Lounge Preview",
+      "GM E-TV Lounge Preview",
       "Limited Visitor Access",
     ],
     accessNote:
@@ -103,7 +103,7 @@ export const etvModels = [
       "DormMageddon",
       "Student Founder Drops",
       "Campus Creator Tools",
-      "E-TV Lounge",
+      "GM E-TV Lounge",
     ],
     accessNote:
       "Student/founder model for campus drops, DormMageddon, student creator access, and campus-style programming.",
@@ -122,13 +122,13 @@ export const etvModels = [
     upgradePath: "Upgrade to CastWire for casting and production access",
     compatibleRooms: [
       "AI'ality Viewing",
-      "E-TV Lounge",
+      "GM E-TV Lounge",
       "Scheduled Drops",
       "Bonus Scenes",
       "Living Book Programming",
     ],
     accessNote:
-      "Core AI'ality viewer model for living-book episodes, scheduled drops, bonus scenes, and E-TV Lounge access.",
+      "Core AI'ality viewer model for living-book episodes, scheduled drops, bonus scenes, and GM E-TV Lounge access.",
   },
   {
     id: "castWire",
@@ -190,7 +190,7 @@ export const etvModels = [
     compatibleRooms: [
       "Premium Drops",
       "Creator Studio",
-      "Advanced E-TV Lounge",
+      "Advanced GM E-TV Lounge",
       "Upgrade Wall",
       "Diamond Programming",
     ],
@@ -286,7 +286,7 @@ export const signalPlans = [
     name: "Viewer Signal",
     monthlyPrice: "$29/mo",
     purpose: "AI'ality viewer access and scheduled living-book drops.",
-    unlocks: ["AI'ality viewing", "scheduled drops", "bonus scenes", "E-TV Lounge"],
+    unlocks: ["AI'ality viewing", "scheduled drops", "bonus scenes", "GM E-TV Lounge"],
   },
   {
     id: "productionSignal",
@@ -494,7 +494,7 @@ export const etvBotWorkers = [
   },
   {
     id: "etvLoungeHostBot",
-    name: "E-TV Lounge Host Bot",
+    name: "GM E-TV Lounge Host Bot",
     job: "Welcomes users into their wired E-TV lounge and shows active drops, rewards, upgrades, and alerts.",
     sampleMessage:
       "Welcome back. Your RiftView signal is active. You have scheduled drops, commercial rewards, and AI'ality casting alerts.",
@@ -543,7 +543,7 @@ export const etvStoreCopy = {
 };
 
 export const etvLoungeCopy = {
-  title: "E-TV Lounge",
+  title: "GM E-TV Lounge",
   subtitle: "Your signal lives here.",
   explanation:
     "Manage your E-TV model, unlocked rooms, scheduled drops, cast bot access, commercial rewards, upgrades, and signal status.",

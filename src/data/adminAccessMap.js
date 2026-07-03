@@ -75,7 +75,7 @@ export const adminOnlyTools = [
     id: "etvProgrammingConsole",
     name: "E-TV Programming Console",
     lockLevel: "ADMIN_ONLY",
-    publicReplacement: "E-TV Lounge / Signal Status / Request Upgrade",
+    publicReplacement: "GM E-TV Lounge / Signal Status / Request Upgrade",
     reason:
       "Programming console controls drops, signal clipping, model-room assignment, commercial breaks, and access overrides.",
   },
@@ -173,7 +173,7 @@ export const accessRoleRules = {
     label: "Paid Member",
     allowed: [
       "Use subscribed rooms",
-      "Access E-TV Lounge",
+      "Access GM E-TV Lounge",
       "View purchased drops",
       "Submit episode/show requests",
       "Request upgrades",

@@ -104,8 +104,8 @@ const adminZones = [
     body: "PCOA access point, business routing, paperwork, approvals, and official park-side processing."
   },
   {
-    title: "NightOwl Hideout GM E-TV Network & Business Plan",
-    body: "NightOwl Hideout placement, GM E-TV Network plan, service model, business plan, and club-side rollout."
+    title: "NightOwl HideOut GM E-TV Network & Business Plan",
+    body: "NightOwl HideOut placement, GM E-TV Network plan, service model, business plan, and club-side rollout."
   },
   {
     title: "GM E-TV Programming Console",

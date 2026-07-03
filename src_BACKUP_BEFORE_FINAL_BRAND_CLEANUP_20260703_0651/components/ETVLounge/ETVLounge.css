@@ -1,0 +1,12 @@
+.etv-page{min-height:100vh;background:radial-gradient(circle at center,rgba(168,85,247,.3),#000 60%);color:white;padding:24px}
+.etv-back{border:1px solid #22d3ee;background:#000;color:#22d3ee;border-radius:999px;padding:10px 16px;font-weight:900}
+.etv-shell{max-width:1200px;margin:20px auto;text-align:center}
+.etv-shell>p{color:#22d3ee;text-transform:uppercase;letter-spacing:.35em;font-size:12px;font-weight:900}
+.etv-shell h1{font-size:clamp(40px,7vw,90px);margin:12px}
+.tv-screen{min-height:420px;border:12px solid #111;border-radius:28px;background:linear-gradient(135deg,#111827,#2e1065,#000);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 50px rgba(168,85,247,.4)}
+.tv-screen h2{font-size:clamp(34px,5vw,70px)}
+.tv-screen p{color:#cbd5e1;font-size:22px}
+.tv-caption{margin-top:28px;border:1px solid #facc15;border-radius:16px;padding:16px;color:#facc15;background:#000}
+.tv-controls,.channel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:18px}
+.tv-controls button,.channel-grid button{border:0;border-radius:14px;padding:14px;font-weight:900;background:#9333ea;color:white}
+.tv-controls button{background:#06b6d4;color:#000}

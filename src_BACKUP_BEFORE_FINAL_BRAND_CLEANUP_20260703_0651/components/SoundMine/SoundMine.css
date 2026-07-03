@@ -1,0 +1,205 @@
+.sound-mine-page {
+  min-height: 100vh;
+  padding: 48px 22px 70px;
+  color: #ffffff;
+  background:
+    radial-gradient(circle at top left, rgba(255, 215, 120, 0.2), transparent 34%),
+    radial-gradient(circle at top right, rgba(183, 92, 255, 0.24), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(129, 232, 223, 0.14), transparent 32%),
+    linear-gradient(135deg, #050307 0%, #13081d 50%, #07040b 100%);
+}
+
+.sound-mine-hero {
+  max-width: 1120px;
+  margin: 0 auto 28px;
+  text-align: center;
+}
+
+.sound-mine-kicker {
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.78rem;
+  font-weight: 900;
+  color: #81e8df;
+}
+
+.sound-mine-hero h1 {
+  margin: 0;
+  font-size: clamp(3rem, 9vw, 7rem);
+  line-height: 0.9;
+  color: #d9b3ff;
+  text-shadow:
+    0 0 24px rgba(183, 92, 255, 0.62),
+    0 0 45px rgba(255, 215, 120, 0.22);
+}
+
+.sound-mine-lead {
+  max-width: 850px;
+  margin: 18px auto 0;
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 950;
+  color: #ffd978;
+}
+
+.sound-mine-copy {
+  max-width: 900px;
+  margin: 16px auto 0;
+  font-size: 1.06rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.sound-mine-rule-panel {
+  max-width: 1120px;
+  margin: 0 auto 28px;
+  padding: 18px;
+  border-radius: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(255, 215, 120, 0.1);
+  border: 1px solid rgba(255, 215, 120, 0.22);
+}
+
+.sound-mine-rule-panel span {
+  padding: 10px 13px;
+  border-radius: 999px;
+  color: #17091e;
+  background: #ffffff;
+  font-weight: 950;
+}
+
+.sound-station-grid {
+  max-width: 1450px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+  gap: 20px;
+}
+
+.sound-station-card {
+  min-height: 385px;
+  padding: 22px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.085);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.26);
+  backdrop-filter: blur(14px);
+  display: flex;
+  flex-direction: column;
+}
+
+.sound-station-top {
+  margin-bottom: 14px;
+}
+
+.sound-station-top span {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 7px 10px;
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #16091d;
+  background: #ffffff;
+}
+
+.sound-station-card h2 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+}
+
+.sound-station-card p {
+  margin: 0;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.sound-tool-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.sound-tool-list small {
+  padding: 7px 9px;
+  border-radius: 999px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.88);
+  background: rgba(129, 232, 223, 0.12);
+  border: 1px solid rgba(129, 232, 223, 0.18);
+}
+
+.sound-access-box {
+  margin-top: auto;
+  padding: 13px;
+  border-radius: 18px;
+  background: rgba(255, 215, 120, 0.1);
+  border: 1px solid rgba(255, 215, 120, 0.18);
+}
+
+.sound-access-box strong,
+.sound-access-box span {
+  display: block;
+}
+
+.sound-access-box strong {
+  margin-bottom: 4px;
+  color: #ffd978;
+}
+
+.sound-access-box span {
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.sound-station-card button,
+.sound-mine-note button {
+  margin-top: 18px;
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 15px;
+  cursor: pointer;
+  font-weight: 950;
+  color: #14091d;
+  background: linear-gradient(135deg, #81e8df, #ffffff);
+}
+
+.sound-mine-note {
+  max-width: 1100px;
+  margin: 32px auto 0;
+  padding: 26px;
+  text-align: center;
+  border-radius: 26px;
+  background: rgba(255, 215, 120, 0.1);
+  border: 1px solid rgba(255, 215, 120, 0.22);
+}
+
+.sound-mine-note h2 {
+  margin: 0 0 10px;
+  color: #ffd978;
+}
+
+.sound-mine-note p {
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.sound-mine-note button {
+  margin-top: 20px;
+}
+
+@media (max-width: 620px) {
+  .sound-mine-page {
+    padding: 34px 14px 54px;
+  }
+
+  .sound-station-card {
+    min-height: auto;
+  }
+}

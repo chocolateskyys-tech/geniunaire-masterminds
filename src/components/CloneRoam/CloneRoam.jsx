@@ -4,13 +4,13 @@ import "./Guest PassRoam.css";
 const stops = [
   "Front Gate",
   "Main Street",
-  "E-TV Lounge",
+  "GM E-TV Lounge",
   "E-Mall",
   "Production Studio",
   "Casting Network",
   "Celebrity Marketplace",
   "DormMageddon House",
-  "Kiddie Land",
+  "Geniunaire K!ddz- K!ddz Planet",
   "Guest Pass Center",
   "Threadfolio Tower"
 ];
