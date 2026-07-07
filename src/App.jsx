@@ -4,8 +4,8 @@ import EntryGate from "./components/EntryGate/EntryGate";
 import "./App.css";
 
 export default function App() {
-  const [view, setView] = useState("live-gate");
-  const [lastAction, setLastAction] = useState("Waiting for guest action.");
+  const [view, setView] = useState("approved-visual");
+  const [lastAction, setLastAction] = useState("Approved picture visual loaded.");
   const [launchAction, setLaunchAction] = useState(null);
 
   const handleAction = (action) => {
@@ -19,28 +19,28 @@ export default function App() {
   };
 
   return (
-    <main className="gm-app-shell">
-      <section className="gm-view-switcher" aria-label="Geniunaire MasterMinds view switcher">
+    <main className="gm-app-shell picture-first-shell">
+      <section className="gm-view-switcher gm-picture-safe-bar" aria-label="Geniunaire MasterMinds view switcher">
         <div>
           <p>Geniunaire MasterMinds</p>
-          <h1>Front Gate Build Console</h1>
+          <h1>Approved Visual / Parking Lot</h1>
           <span>{lastAction}</span>
         </div>
 
         <div className="gm-view-buttons">
-          <button className={view === "live-gate" ? "active" : ""} onClick={() => setView("live-gate")}>
-            Live Front Gate
-          </button>
           <button className={view === "approved-visual" ? "active" : ""} onClick={() => setView("approved-visual")}>
-            Approved Visual / Parking Lot
+            Approved Picture Visual
+          </button>
+          <button className={view === "live-gate" ? "active" : ""} onClick={() => setView("live-gate")}>
+            Gate Controls / Admin
           </button>
         </div>
       </section>
 
-      {view === "live-gate" ? (
-        <EntryGate launchAction={launchAction} onLaunchActionHandled={() => setLaunchAction(null)} />
-      ) : (
+      {view === "approved-visual" ? (
         <GMFinalVisual onAction={handleAction} />
+      ) : (
+        <EntryGate launchAction={launchAction} onLaunchActionHandled={() => setLaunchAction(null)} />
       )}
     </main>
   );
