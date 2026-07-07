@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "lint": "eslint src/App.jsx src/components/EntryGate/EntryGate.jsx src/components/GMFinalVisual/GMFinalVisual.jsx eslint.config.js",
+    "lint:all": "eslint .",
+    "preview": "vite preview",
+    "gm:check": "bash gm_finish_check.sh"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",
