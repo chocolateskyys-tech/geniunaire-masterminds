@@ -47,7 +47,7 @@ const booths = [
 const parkStops = [
   {
     title: "Gold Mine",
-    body: "Master power cave, vault energy, owner signal, park control, and GM command center."
+    body: "Master power cave, vault energy, owner signal, park control, and Geniunaire MasterMinds command center."
   },
   {
     title: "ThreadFolio Set Pavilion",
@@ -59,7 +59,7 @@ const parkStops = [
   },
   {
     title: "Hotel & Apartment District",
-    body: "Hotel picture, apartment building picture, room booking, relocation stays, sponsor placement, VIP travel, and GM Pay Desk routing."
+    body: "Hotel and apartment building visuals, room booking, relocation stays, sponsor placement, VIP travel, and GM Pay Desk routing."
   },
   {
     title: "Production Studio",
@@ -102,7 +102,7 @@ const parkStops = [
 const adminZones = [
   {
     title: "Owner Admin Control Room",
-    body: "Founder access, GM command, gate operations, visitor routing, park controls, and override access."
+    body: "Founder access, Geniunaire MasterMinds command, gate operations, visitor routing, park controls, and override access."
   },
   {
     title: "Universal Client Admin",
@@ -117,12 +117,12 @@ const adminZones = [
     body: "Plain-language build guide for restoring the park, verifying rooms, checking buttons, and confirming launch status."
   },
   {
-    title: "PCOA",
-    body: "Sponsored by Party Crashers of Atlanta access point, business routing, paperwork, approvals, and official park-side processing."
+    title: "Party Crashers of Atlanta",
+    body: "Sponsored by Party Crashers of Atlanta routing, business processing, paperwork, approvals, and official park-side support."
   },
   {
-    title: "NightOwl HideOut GM E-TV Network & Business Plan",
-    body: "NightOwl HideOut placement, GM E-TV Network plan, service model, business plan, and club-side rollout."
+    title: "NightOwl Hideout Pool Lounge & Discovery Bar GM E-TV Network & Business Plan",
+    body: "NightOwl Hideout Pool Lounge & Discovery Bar placement, GM E-TV Network plan, service model, business plan, and club-side rollout."
   },
   {
     title: "GM E-TV Programming Console",
@@ -149,7 +149,7 @@ const adminZones = [
 const phaseTwoUpgrades = [
   {
     title: "Hotel & Apartment Revenue Flow",
-    body: "Connect room booking, apartment leads, relocation stays, deposits, VIP upgrades, and sponsor placements to GM Pay Desk."
+    body: "Connect room booking, apartment building leads, relocation stays, deposits, VIP upgrades, and sponsor placements to GM Pay Desk."
   },
   {
     title: "Sponsor Trigger Flow",
@@ -157,7 +157,7 @@ const phaseTwoUpgrades = [
   },
   {
     title: "Universal Client Admin",
-    body: "One admin lane catches clients, sponsors, vendors, hotel/apartment leads, and build requests before sending them to the right GM room."
+    body: "One admin lane routes clients, sponsors, vendors, hotel/apartment leads, and build requests before sending them to the right GM room."
   },
   {
     title: "Phase 2 Upgrade Note",
@@ -345,14 +345,14 @@ export default function EntryGate() {
           </div>
 
           <div className="gm-theme-park-title">
-            <p>GENIUNAIRE MASTERMINDS</p>
-            <h1>ONLINE VIRTUAL THEME PARK</h1>
-            <span>ATLANTA, GA</span>
+            <p>Geniunaire MasterMinds</p>
+            <h1>Online Virtual Theme Park</h1>
+            <span>Atlanta, GA</span>
           </div>
 
           <div className="gm-city-district">
             <div className="hotel-building">
-              <div className="building-sign">GENIUNAIRE HOTEL</div>
+              <div className="building-sign">HOTEL DISTRICT</div>
               <div className="building-windows">
                 {Array.from({ length: 16 }).map((_, index) => <span key={`hotel-window-${index}`} />)}
               </div>
@@ -360,11 +360,11 @@ export default function EntryGate() {
             </div>
 
             <div className="apartment-building">
-              <div className="building-sign">APARTMENT DISTRICT</div>
+              <div className="building-sign">APARTMENT BUILDING</div>
               <div className="building-windows apt-windows">
                 {Array.from({ length: 20 }).map((_, index) => <span key={`apt-window-${index}`} />)}
               </div>
-              <strong>Apartment Leads</strong>
+              <strong>Apartment Building</strong>
             </div>
           </div>
 
@@ -404,7 +404,7 @@ export default function EntryGate() {
             </div>
             <div className="lot-booth">
               <strong>Hotel / Apartment</strong>
-              <span>Booking Leads</span>
+              <span>Booking / Leads</span>
             </div>
             <div className="lot-booth">
               <strong>Security</strong>
@@ -512,7 +512,7 @@ export default function EntryGate() {
             <div className="control-room-header">
               <p>OWNER ADMIN CONTROL ROOM</p>
               <h2>Geniunaire MasterMinds Command</h2>
-              <span>Founder access, vault logs, emergency build guide, PCOA, NightOwl, GM E-TV, ThreadFolio Set, lodging, sponsor flow, and Universal Client Admin controls.</span>
+              <span>Founder access, vault logs, emergency build guide, Party Crashers of Atlanta, NightOwl Hideout Pool Lounge & Discovery Bar, GM E-TV, ThreadFolio Set, lodging, sponsor flow, and Universal Client Admin controls.</span>
             </div>
 
             <div className="admin-zone-grid">
@@ -607,7 +607,7 @@ export default function EntryGate() {
         <section className="gate-bottom-bar">
           <span>Front Gate Live</span>
           <span>Parking Lot Active</span>
-          <span>Hotel / Apartment Visual</span>
+          <span>Hotel / Apartment Building</span>
           <span>Secure Access Hidden</span>
           <span>ThreadFolio Set</span>
           <span>GM E-TV Network</span>
