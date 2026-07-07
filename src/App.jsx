@@ -6,12 +6,14 @@ import "./App.css";
 export default function App() {
   const [view, setView] = useState("live-gate");
   const [lastAction, setLastAction] = useState("Waiting for guest action.");
+  const [launchAction, setLaunchAction] = useState(null);
 
   const handleAction = (action) => {
     console.log("GM ACTION:", action);
     setLastAction(`Last action: ${action}`);
 
-    if (action === "secret-gate-play" || action === "secret-admin" || action === "kiddz-special-events") {
+    if (["secret-gate-play", "secret-admin", "kaden-house-play", "kiddz-special-events"].includes(action)) {
+      setLaunchAction(action);
       setView("live-gate");
     }
   };
@@ -36,7 +38,7 @@ export default function App() {
       </section>
 
       {view === "live-gate" ? (
-        <EntryGate />
+        <EntryGate launchAction={launchAction} onLaunchActionHandled={() => setLaunchAction(null)} />
       ) : (
         <GMFinalVisual onAction={handleAction} />
       )}
