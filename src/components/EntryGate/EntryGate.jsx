@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./EntryGate.css";
+import "./EntryGateExpansion.css";
 
 const OWNER_CODE = "ASPIRE!";
 const FRONT_GATE_PLAY_CODE = "ORBIT!";
@@ -351,7 +352,7 @@ export default function EntryGate() {
 
           <div className="gm-city-district">
             <div className="hotel-building">
-              <div className="building-sign">GM HOTEL</div>
+              <div className="building-sign">GENIUNAIRE HOTEL</div>
               <div className="building-windows">
                 {Array.from({ length: 16 }).map((_, index) => <span key={`hotel-window-${index}`} />)}
               </div>
@@ -359,7 +360,7 @@ export default function EntryGate() {
             </div>
 
             <div className="apartment-building">
-              <div className="building-sign">APT DISTRICT</div>
+              <div className="building-sign">APARTMENT DISTRICT</div>
               <div className="building-windows apt-windows">
                 {Array.from({ length: 20 }).map((_, index) => <span key={`apt-window-${index}`} />)}
               </div>
@@ -374,7 +375,7 @@ export default function EntryGate() {
 
             <div className="main-gate-building">
               <div className="gold-mine-glow">GOLD MINE</div>
-              <h2>GM FRONT GATE</h2>
+              <h2>Geniunaire MasterMinds Front Gate</h2>
               <p>Tickets • Parking • GM E-TV Network • ThreadFolio Set • VIP Entry</p>
 
               <div className={`gate-doors ${gateOpen ? "gate-open" : ""}`}>
