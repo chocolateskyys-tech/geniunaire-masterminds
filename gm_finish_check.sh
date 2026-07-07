@@ -47,15 +47,11 @@ fi
 echo "Running production build..."
 npm run build
 
-echo "Running lint if available..."
-if npm run | grep -q " lint"; then
-  npm run lint || {
-    echo "Lint found issues. Build already ran; review lint output above."
-    exit 1
-  }
-else
-  echo "No lint script found. Skipping lint."
-fi
+echo "Running lint..."
+npm run lint || {
+  echo "Lint found issues. Build already ran; review lint output above."
+  exit 1
+}
 
 echo "Checking git status..."
 git status --short
