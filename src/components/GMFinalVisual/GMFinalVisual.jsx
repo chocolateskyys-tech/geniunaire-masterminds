@@ -2,7 +2,6 @@ import "./GMFinalVisual.css";
 
 const FRONT_GATE = "/assets/gm-front-gate-final.png";
 const PARKING_LOT = "/assets/gm/parking-lot/parking-lot-approved.png";
-const POOL_LOGO = "/assets/gm-pcoa-pool-logo-final.png";
 
 export default function GMFinalVisual({ onAction = () => {} }) {
   return (
@@ -21,12 +20,8 @@ export default function GMFinalVisual({ onAction = () => {} }) {
         <button className="gm-secret admin" onClick={() => onAction("secret-admin")} aria-label="Open Owner Admin">
           Owner Play / Admin
         </button>
-        <button className="gm-hotspot kaden-house-play" onClick={() => onAction("kaden-house-play")}>
-          Kaden House Play
-        </button>
-        <button className="gm-hotspot kiddz-events" onClick={() => onAction("kiddz-special-events")}>
-          K!DDZ Special Events
-        </button>
+        <button className="gm-hotspot kaden-house-play" onClick={() => onAction("kaden-house-play")}>Kaden House Play</button>
+        <button className="gm-hotspot kiddz-events" onClick={() => onAction("kiddz-special-events")}>K!DDZ Special Events</button>
       </section>
 
       <section className="gm-image-wrap lot">
@@ -36,10 +31,6 @@ export default function GMFinalVisual({ onAction = () => {} }) {
         <button className="gm-hotspot table" onClick={() => onAction("reserve-table")}>Reserve Table</button>
         <button className="gm-hotspot dropoff" onClick={() => onAction("drop-off")}>Drop Off Now</button>
         <button className="gm-hotspot golf" onClick={() => onAction("golf-cart")}>Request Golf Cart</button>
-      </section>
-
-      <section className="gm-pool-unlock">
-        <img src={POOL_LOGO} alt="GM Empire Pool Logo - Pool Skin Only" />
       </section>
     </main>
   );
