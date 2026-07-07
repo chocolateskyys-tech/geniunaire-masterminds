@@ -50,11 +50,15 @@ const parkStops = [
   },
   {
     title: "ThreadFolio Set Pavilion",
-    body: "ThreadFolio, E-Folio, E-Map, client builds, launch packages, and business setup."
+    body: "ThreadFolio, E-Folio, E-Map, client builds, launch packages, business setup, and founder handoff."
   },
   {
     title: "GM E-TV Network Row",
     body: "E-TV Book models, signal plans, scheduled drops, commercials, living-book programming, and broadcast access."
+  },
+  {
+    title: "Hotel & Apartment District",
+    body: "Hotel picture, apartment building picture, room booking, relocation stays, sponsor placement, VIP travel, and GM Pay Desk routing."
   },
   {
     title: "Production Studio",
@@ -81,8 +85,16 @@ const parkStops = [
     body: "Student creator attraction, campus drops, watch rooms, creator hub, merch, and student survival offers."
   },
   {
+    title: "Sponsor & Auto-Money Lane",
+    body: "Paid sign placement, room sponsorships, E-TV commercials, day-pass offers, VIP upgrades, and checkout-ready sponsor flow."
+  },
+  {
+    title: "Orbit Machine",
+    body: "SKYY owner signal, Orbit intake logic, body-rental concept notes, and founder-side routing without placing robots on the gate picture."
+  },
+  {
     title: "GM Pay Desk",
-    body: "Tickets, GM E-TV streams, guest passes, subscriptions, prepaid builds, and client checkout."
+    body: "Tickets, GM E-TV streams, guest passes, subscriptions, prepaid builds, sponsor slots, booking deposits, and client checkout."
   }
 ];
 
@@ -90,6 +102,10 @@ const adminZones = [
   {
     title: "Owner Admin Control Room",
     body: "Founder access, GM command, gate operations, visitor routing, park controls, and override access."
+  },
+  {
+    title: "Universal Client Admin",
+    body: "Client intake, sponsor routing, hotel/apartment booking requests, quote notes, contract status, GM Pay Desk handoff, and launch follow-up."
   },
   {
     title: "Vault Log System",
@@ -101,7 +117,7 @@ const adminZones = [
   },
   {
     title: "PCOA",
-    body: "PCOA access point, business routing, paperwork, approvals, and official park-side processing."
+    body: "Sponsored by Party Crashers of Atlanta access point, business routing, paperwork, approvals, and official park-side processing."
   },
   {
     title: "NightOwl HideOut GM E-TV Network & Business Plan",
@@ -112,12 +128,39 @@ const adminZones = [
     body: "E-TV Store, Signal Plans, Wired Rooms, Programming Scheduler, Signal Clipping System, and founder override."
   },
   {
+    title: "Hotel / Apartment Booking Admin",
+    body: "Hotel stay requests, apartment building leads, VIP guest lodging, relocation offers, deposits, sponsor rooms, and future travel upgrades."
+  },
+  {
+    title: "Sponsor Flow Admin",
+    body: "Sponsor packages, ad placement, E-TV commercial slots, park sign rentals, room naming rights, day-pass promos, and paid spotlight controls."
+  },
+  {
     title: "ThreadFolio Set Admin",
     body: "ThreadFolio, E-Folio, E-Map, client setup, business setup, launch package, and handoff control."
   },
   {
     title: "DormMageddon House Admin",
     body: "Kaden access, campus creator hub, student watch rooms, side-hustle lanes, merch, and DormMageddon rollout."
+  }
+];
+
+const phaseTwoUpgrades = [
+  {
+    title: "Hotel & Apartment Revenue Flow",
+    body: "Connect room booking, apartment leads, relocation stays, deposits, VIP upgrades, and sponsor placements to GM Pay Desk."
+  },
+  {
+    title: "Sponsor Trigger Flow",
+    body: "Every visible district can become a paid sponsor slot: gate signs, hotel rooms, apartment building naming, E-TV ads, and day-pass promos."
+  },
+  {
+    title: "Universal Client Admin",
+    body: "One admin lane catches clients, sponsors, vendors, hotel/apartment leads, and build requests before sending them to the right GM room."
+  },
+  {
+    title: "Phase 2 Upgrade Note",
+    body: "GMPark RIDEZ, travel shuttles, hotel check-in, apartment walk-throughs, and sponsored district routing are ready to wire when the expansion goes live."
   }
 ];
 
@@ -153,7 +196,15 @@ export default function EntryGate() {
   };
 
   const changeMusic = () => {
-    const tracks = ["Atlanta Gate Brass", "Parking Lot Bass", "Gold Mine Rumble", "GM E-TV Street Mix", "Main Gate Drumline"];
+    const tracks = [
+      "Atlanta Gate Brass",
+      "Parking Lot Bass",
+      "Gold Mine Rumble",
+      "GM E-TV Street Mix",
+      "Main Gate Drumline",
+      "Hotel Lobby Glow",
+      "Apartment District Ride-In"
+    ];
     const nextTrack = tracks[Math.floor(Math.random() * tracks.length)];
     setMusic(nextTrack);
     setStatus(`Park music changed: ${nextTrack}.`);
@@ -253,6 +304,21 @@ export default function EntryGate() {
       return;
     }
 
+    if (mode === "Hotel Check-In Glow") {
+      setStatus("Hotel Check-In Glow activated for lodging and sponsor flow.");
+      return;
+    }
+
+    if (mode === "Apartment Booking Glow") {
+      setStatus("Apartment Booking Glow activated for building leads and relocation offers.");
+      return;
+    }
+
+    if (mode === "Sponsor Spotlight") {
+      setStatus("Sponsor Spotlight activated for paid placement, signs, rooms, and E-TV promos.");
+      return;
+    }
+
     setStatus(`${mode} activated.`);
   };
 
@@ -283,6 +349,24 @@ export default function EntryGate() {
             <span>ATLANTA, GA</span>
           </div>
 
+          <div className="gm-city-district">
+            <div className="hotel-building">
+              <div className="building-sign">GM HOTEL</div>
+              <div className="building-windows">
+                {Array.from({ length: 16 }).map((_, index) => <span key={`hotel-window-${index}`} />)}
+              </div>
+              <strong>Hotel Check-In</strong>
+            </div>
+
+            <div className="apartment-building">
+              <div className="building-sign">APT DISTRICT</div>
+              <div className="building-windows apt-windows">
+                {Array.from({ length: 20 }).map((_, index) => <span key={`apt-window-${index}`} />)}
+              </div>
+              <strong>Apartment Leads</strong>
+            </div>
+          </div>
+
           <div className="gm-front-gate-art">
             <div className="park-tower">
               <span>VIP</span>
@@ -304,14 +388,22 @@ export default function EntryGate() {
             </div>
           </div>
 
+          <div className="sponsor-lane">
+            <div>
+              <strong>SPONSOR LANE</strong>
+              <span>Paid signs • E-TV commercials • Hotel rooms • Apartment placements • Day-pass promos</span>
+            </div>
+            <button type="button" onClick={() => runFrontGateEffect("Sponsor Spotlight")}>Activate Sponsor Spotlight</button>
+          </div>
+
           <div className="ticket-lot-row">
             <div className="lot-booth">
               <strong>Ticket Booth</strong>
               <span>{selected ? selected.booth : "Choose A Booth"}</span>
             </div>
             <div className="lot-booth">
-              <strong>Guest Pass</strong>
-              <span>Info Required</span>
+              <strong>Hotel / Apartment</strong>
+              <span>Booking Leads</span>
             </div>
             <div className="lot-booth">
               <strong>Security</strong>
@@ -324,6 +416,7 @@ export default function EntryGate() {
             <div className="moving-car car-a"><span /></div>
             <div className="moving-car car-b"><span /></div>
             <div className="moving-car car-c"><span /></div>
+            <div className="moving-car car-d"><span /></div>
             <div className="parked-car p1" />
             <div className="parked-car p2" />
             <div className="parked-car p3" />
@@ -399,6 +492,9 @@ export default function EntryGate() {
               <button onClick={() => runFrontGateEffect("Parking Lot Rush")}>Parking Lot Rush</button>
               <button onClick={() => runFrontGateEffect("Gold Mine Rumble")}>Gold Mine Rumble</button>
               <button onClick={() => runFrontGateEffect("Guest Spotlight")}>Guest Spotlight</button>
+              <button onClick={() => runFrontGateEffect("Hotel Check-In Glow")}>Hotel Check-In Glow</button>
+              <button onClick={() => runFrontGateEffect("Apartment Booking Glow")}>Apartment Booking Glow</button>
+              <button onClick={() => runFrontGateEffect("Sponsor Spotlight")}>Sponsor Spotlight</button>
               <button onClick={() => setAnnouncement("The gate crew is watching. Choose your booth and check in.")}>Gate Announcement</button>
             </div>
 
@@ -415,7 +511,7 @@ export default function EntryGate() {
             <div className="control-room-header">
               <p>OWNER ADMIN CONTROL ROOM</p>
               <h2>Geniunaire MasterMinds Command</h2>
-              <span>Founder access, vault logs, emergency build guide, PCOA, NightOwl, GM E-TV, and ThreadFolio Set controls.</span>
+              <span>Founder access, vault logs, emergency build guide, PCOA, NightOwl, GM E-TV, ThreadFolio Set, lodging, sponsor flow, and Universal Client Admin controls.</span>
             </div>
 
             <div className="admin-zone-grid">
@@ -440,7 +536,7 @@ export default function EntryGate() {
             <div className="control-room-header">
               <p>KADEN ADMIN ACCESS</p>
               <h2>DormMageddon House</h2>
-              <span>Campus creator ecosystem, watch rooms, student survival offers, merch, and creator hub access.</span>
+              <span>Campus creator ecosystem, watch rooms, student survival offers, merch, and creator hub access. Kaden manages DormMageddon only.</span>
             </div>
 
             <div className="admin-zone-grid">
@@ -490,12 +586,31 @@ export default function EntryGate() {
           </section>
         )}
 
+        <section className="phase-two-board">
+          <div className="park-sign-header">
+            <p>PHASE 2 / AUTO-MONEY UPGRADE BOARD</p>
+            <h2>Ready-To-Wire Expansion Notes</h2>
+            <span>Added because these connect directly to hotel/apartment booking, sponsorship, checkout, and GM E-TV revenue.</span>
+          </div>
+
+          <div className="admin-zone-grid">
+            {phaseTwoUpgrades.map((upgrade) => (
+              <button key={upgrade.title}>
+                <strong>{upgrade.title}</strong>
+                <span>{upgrade.body}</span>
+              </button>
+            ))}
+          </div>
+        </section>
+
         <section className="gate-bottom-bar">
           <span>Front Gate Live</span>
           <span>Parking Lot Active</span>
+          <span>Hotel / Apartment Visual</span>
           <span>Secure Access Hidden</span>
           <span>ThreadFolio Set</span>
           <span>GM E-TV Network</span>
+          <span>Sponsor Flow Ready</span>
           <span>DormMageddon House</span>
         </section>
       </section>
