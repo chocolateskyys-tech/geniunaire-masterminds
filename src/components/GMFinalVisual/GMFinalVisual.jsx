@@ -21,6 +21,9 @@ export default function GMFinalVisual({ onAction = () => {} }) {
         <button className="gm-secret admin" onClick={() => onAction("secret-admin")} aria-label="Open Owner Admin">
           Owner Play / Admin
         </button>
+        <button className="gm-hotspot kaden-house-play" onClick={() => onAction("kaden-house-play")}>
+          Kaden House Play
+        </button>
         <button className="gm-hotspot kiddz-events" onClick={() => onAction("kiddz-special-events")}>
           K!DDZ Special Events
         </button>
