@@ -11,7 +11,7 @@ export default function App() {
     console.log("GM ACTION:", action);
     setLastAction(`Last action: ${action}`);
 
-    if (action === "secret-gate-play" || action === "secret-admin") {
+    if (action === "secret-gate-play" || action === "secret-admin" || action === "kiddz-special-events") {
       setView("live-gate");
     }
   };
