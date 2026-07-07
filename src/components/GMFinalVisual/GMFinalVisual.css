@@ -36,6 +36,7 @@
 .tickets{left:37%;top:54%;}
 .starplay{left:54%;top:54%;}
 .vip{left:70%;top:54%;}
+.kaden-house-play{left:16%;top:70%;background:linear-gradient(135deg,#22d3ee,#6d28d9);color:white;}
 .kiddz-events{left:39%;top:68%;background:linear-gradient(135deg,#facc15,#22d3ee);color:#050008;}
 
 .refresh{left:6%;top:18%;}
@@ -72,5 +73,6 @@
     font-size:11px;
   }
 
+  .kaden-house-play{left:12%;top:72%;}
   .kiddz-events{left:28%;top:70%;}
 }
