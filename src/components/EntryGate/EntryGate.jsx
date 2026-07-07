@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import "./EntryGate.css";
 import "./EntryGateExpansion.css";
 
@@ -238,7 +238,7 @@ const kidsSpecialEventControls = [
   }
 ];
 
-export default function EntryGate() {
+export default function EntryGate({ launchAction = null, onLaunchActionHandled = () => {} }) {
   const [selected, setSelected] = useState(null);
   const [guest, setGuest] = useState({ name: "", email: "", phone: "" });
   const [ownerCode, setOwnerCode] = useState("");
@@ -257,6 +257,59 @@ export default function EntryGate() {
   const [activePlayFeature, setActivePlayFeature] = useState(frontGatePlayUpgrades[0]);
   const [activeKadenFeature, setActiveKadenFeature] = useState(kadenOrbitHouseUpgrades[0]);
   const [activeKidsFeature, setActiveKidsFeature] = useState(kidsSpecialEventControls[0]);
+
+  useEffect(() => {
+    if (!launchAction) return;
+
+    setGateOpen(true);
+    setShowParkSigns(true);
+
+    if (launchAction === "secret-gate-play") {
+      setFrontGatePlayOpen(true);
+      setOwnerAdminOpen(false);
+      setKadenAdminOpen(false);
+      setActivePlayFeature(frontGatePlayUpgrades[0]);
+      setFrontGateMode("Guest Spotlight");
+      setAnnouncement(frontGatePlayUpgrades[0].body);
+      setStatus("Approved Visual opened the Restored Front Gate Play Console.");
+    }
+
+    if (launchAction === "secret-admin") {
+      setOwnerAdminOpen(true);
+      setFrontGatePlayOpen(false);
+      setKadenAdminOpen(false);
+      setActiveAdminZone(adminZones[0]);
+      setStatus("Approved Visual opened Owner Admin Control Room.");
+    }
+
+    if (launchAction === "kaden-house-play") {
+      setKadenAdminOpen(true);
+      setOwnerAdminOpen(false);
+      setFrontGatePlayOpen(false);
+      setActiveKadenFeature(kadenOrbitHouseUpgrades[0]);
+      setActiveStop({
+        title: "DormMageddon House",
+        body: "Kaden House Play opened from the approved visual."
+      });
+      setFrontGateMode("DormMageddon House Glow");
+      setAnnouncement(kadenOrbitHouseUpgrades[0].body);
+      setStatus("Approved Visual opened Kaden House Play / DormMageddon House only.");
+    }
+
+    if (launchAction === "kiddz-special-events") {
+      const kidsZone = adminZones.find((zone) => zone.title === "GENIUNAIRE K!DDZ-K!DDZ PLANET Special Events");
+      setOwnerAdminOpen(true);
+      setFrontGatePlayOpen(false);
+      setKadenAdminOpen(false);
+      setActiveAdminZone(kidsZone || adminZones[0]);
+      setActiveKidsFeature(kidsSpecialEventControls[0]);
+      setFrontGateMode("Kids Special Event Glow");
+      setAnnouncement(kidsSpecialEventControls[0].body);
+      setStatus("Approved Visual opened GENIUNAIRE K!DDZ-K!DDZ PLANET Special Events in owner-side controls.");
+    }
+
+    onLaunchActionHandled();
+  }, [launchAction, onLaunchActionHandled]);
 
   const hasGuestInfo = () => guest.name.trim().length > 0 && guest.email.trim().length > 0;
 
