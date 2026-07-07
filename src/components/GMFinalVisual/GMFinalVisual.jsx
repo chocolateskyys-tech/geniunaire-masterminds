@@ -1,4 +1,3 @@
-import React from "react";
 import "./GMFinalVisual.css";
 
 const FRONT_GATE = "/assets/gm-front-gate-final.png";
@@ -16,8 +15,8 @@ export default function GMFinalVisual({ onAction = () => {} }) {
         <button className="gm-hotspot starplay" onClick={() => onAction("starplay")}>StarPlay</button>
         <button className="gm-hotspot vip" onClick={() => onAction("vip-entry")}>VIP Entry</button>
 
-        <button className="gm-secret play" onClick={() => onAction("secret-gate-play")} />
-        <button className="gm-secret admin" onClick={() => onAction("secret-admin")} />
+        <button className="gm-secret play" onClick={() => onAction("secret-gate-play")} aria-label="Open Front Gate Play" />
+        <button className="gm-secret admin" onClick={() => onAction("secret-admin")} aria-label="Open Owner Admin" />
       </section>
 
       <section className="gm-image-wrap lot">
