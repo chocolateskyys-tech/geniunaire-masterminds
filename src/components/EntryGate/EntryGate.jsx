@@ -143,6 +143,10 @@ const adminZones = [
   {
     title: "DormMageddon House Admin",
     body: "Kaden access, campus creator hub, student watch rooms, side-hustle lanes, merch, and DormMageddon rollout."
+  },
+  {
+    title: "GENIUNAIRE K!DDZ-K!DDZ PLANET Special Events",
+    body: "Owner-side special event routing for kid-safe gate moments, ride timing, approvals, event notes, and guardian-facing controls. This is separate from Kaden Admin."
   }
 ];
 
@@ -165,6 +169,75 @@ const phaseTwoUpgrades = [
   }
 ];
 
+const frontGatePlayUpgrades = [
+  {
+    title: "Founder Play Button Restore",
+    body: "Owner-side play stack with gate motions, crowd reactions, guest spotlight, park announcements, music swap, and visible play status."
+  },
+  {
+    title: "Guest Tease / Welcome Moment",
+    body: "Runs a fuller welcome sequence: gate shimmer, ticket booth cue, music change, and front gate announcement."
+  },
+  {
+    title: "VIP + Sponsor Flash",
+    body: "Lights VIP lane, Sponsor Lane, hotel/apartment placement, and GM Pay Desk routes for premium offers."
+  },
+  {
+    title: "Orbit Machine Moment",
+    body: "Shows the Orbit Machine as a separate front-gate feature tied to SKYY owner signal, without placing robots on the gate picture."
+  },
+  {
+    title: "Emergency Pause / Save-My-Ass Check",
+    body: "Play-side reminder to verify guest info, owner lock, paperwork/approval routing, and child-safe separation before any special event goes live."
+  }
+];
+
+const kadenOrbitHouseUpgrades = [
+  {
+    title: "Kaden Orbit Feature Queue",
+    body: "DormMageddon-only Orbit feature queue for student creator drops, watch room cues, and campus content moments."
+  },
+  {
+    title: "DormMageddon House Play Mode",
+    body: "House lights, watch room pulse, creator board, merch/drop reminder, and student side-hustle signal for the DormMageddon attraction."
+  },
+  {
+    title: "Campus Creator Watch Rooms",
+    body: "Queue rooms for writers, artists, editors, film students, voice actors, and student collaborators."
+  },
+  {
+    title: "Kaden Restriction Lock",
+    body: "Kaden access remains DormMageddon House only. No GENIUNAIRE K!DDZ-K!DDZ PLANET, Kiddie, owner, payment, waiver, or kid-event management is granted here."
+  },
+  {
+    title: "Dorm House / Dorm TV Upgrade Path",
+    body: "Future path for Dorm House and Dorm TV controls, campus drops, show releases, room playlists, and student creator monetization."
+  }
+];
+
+const kidsSpecialEventControls = [
+  {
+    title: "Kid-Safe Special Event Gate",
+    body: "Owner-approved gate timing for GENIUNAIRE K!DDZ-K!DDZ PLANET special events, with guardian-friendly entry notes and event-only routing."
+  },
+  {
+    title: "Ride Event Scheduler",
+    body: "Plan ride moments, countdown cues, ticket timing, and safe ride-zone routing for special events."
+  },
+  {
+    title: "Guardian / Agreement Reminder",
+    body: "Event checklist reminder for paperwork, waivers, approvals, and guardian-facing rules before children enter a special event."
+  },
+  {
+    title: "Next Gen / Clones / E-Map Route",
+    body: "Notes the auto-run system for GENIUNAIRE K!DDZ-K!DDZ PLANET using Next Gen, Clones, E-map, and SKYY oversight."
+  },
+  {
+    title: "Separate From Kaden",
+    body: "This control panel belongs to owner-side kid-event routing. Kaden does not manage GENIUNAIRE K!DDZ-K!DDZ PLANET."
+  }
+];
+
 export default function EntryGate() {
   const [selected, setSelected] = useState(null);
   const [guest, setGuest] = useState({ name: "", email: "", phone: "" });
@@ -181,6 +254,9 @@ export default function EntryGate() {
   const [activeAdminZone, setActiveAdminZone] = useState(adminZones[0]);
   const [frontGateMode, setFrontGateMode] = useState("Standard Guest Flow");
   const [announcement, setAnnouncement] = useState("Welcome to Geniunaire MasterMinds Online Virtual Theme Park — Atlanta, GA.");
+  const [activePlayFeature, setActivePlayFeature] = useState(frontGatePlayUpgrades[0]);
+  const [activeKadenFeature, setActiveKadenFeature] = useState(kadenOrbitHouseUpgrades[0]);
+  const [activeKidsFeature, setActiveKidsFeature] = useState(kidsSpecialEventControls[0]);
 
   const hasGuestInfo = () => guest.name.trim().length > 0 && guest.email.trim().length > 0;
 
@@ -204,7 +280,9 @@ export default function EntryGate() {
       "GM E-TV Street Mix",
       "Main Gate Drumline",
       "Hotel Lobby Glow",
-      "Apartment District Ride-In"
+      "Apartment District Ride-In",
+      "K!DDZ Special Event Spark",
+      "DormMageddon House Pulse"
     ];
     const nextTrack = tracks[Math.floor(Math.random() * tracks.length)];
     setMusic(nextTrack);
@@ -254,7 +332,8 @@ export default function EntryGate() {
       setFrontGatePlayOpen(true);
       setOwnerAdminOpen(false);
       setKadenAdminOpen(false);
-      setStatus("Front Gate Play Console opened.");
+      setActivePlayFeature(frontGatePlayUpgrades[0]);
+      setStatus("Front Gate Play Console opened with restored owner play controls.");
       return;
     }
 
@@ -266,13 +345,14 @@ export default function EntryGate() {
     setKadenAdminOpen(true);
     setOwnerAdminOpen(false);
     setFrontGatePlayOpen(false);
+    setActiveKadenFeature(kadenOrbitHouseUpgrades[0]);
     setGateOpen(true);
     setShowParkSigns(true);
     setActiveStop({
       title: "DormMageddon House",
       body: "Kaden Admin access opened for DormMageddon House."
     });
-    setStatus("Kaden Admin opened for DormMageddon House.");
+    setStatus("Kaden Admin opened for DormMageddon House only.");
   };
 
   const runFrontGateEffect = (mode) => {
@@ -320,7 +400,35 @@ export default function EntryGate() {
       return;
     }
 
+    if (mode === "DormMageddon House Glow") {
+      setStatus("DormMageddon House Play Mode activated. Kaden remains restricted to DormMageddon only.");
+      return;
+    }
+
+    if (mode === "Kids Special Event Glow") {
+      setStatus("GENIUNAIRE K!DDZ-K!DDZ PLANET special event glow staged for owner-side kid-safe routing.");
+      return;
+    }
+
     setStatus(`${mode} activated.`);
+  };
+
+  const activatePlayFeature = (feature) => {
+    setActivePlayFeature(feature);
+    setAnnouncement(feature.body);
+    setStatus(`${feature.title} selected in Front Gate Play Console.`);
+  };
+
+  const activateKadenFeature = (feature) => {
+    setActiveKadenFeature(feature);
+    setAnnouncement(feature.body);
+    setStatus(`${feature.title} selected inside DormMageddon House. Kaden access remains restricted.`);
+  };
+
+  const activateKidsFeature = (feature) => {
+    setActiveKidsFeature(feature);
+    setAnnouncement(feature.body);
+    setStatus(`${feature.title} selected for GENIUNAIRE K!DDZ-K!DDZ PLANET special events.`);
   };
 
   return (
@@ -333,7 +441,7 @@ export default function EntryGate() {
             </button>
           ))}
           <button className="music-btn" onClick={changeMusic}>Park Music</button>
-          <button className="kaden-btn" onClick={openKadenAdmin}>Kaden Admin</button>
+          <button className="kaden-btn" onClick={openKadenAdmin}>Kaden House Play</button>
         </nav>
 
         <section className={`gm-front-picture ${frontGateMode.toLowerCase().replaceAll(" ", "-")}`}>
@@ -460,7 +568,7 @@ export default function EntryGate() {
 
           <article className="secure-access-booth">
             <p className="panel-kicker cyan">Secure Access</p>
-            <h2>Owner / Front Gate / Kaden</h2>
+            <h2>Owner / Front Gate Play / Kaden</h2>
             <p>Codes are hidden. Access opens the correct control area without showing the code on the park screen.</p>
 
             <div className="status-box">
@@ -469,22 +577,23 @@ export default function EntryGate() {
               <button className="open-gate-btn" onClick={submitOwnerCode}>Open Owner Admin</button>
             </div>
 
-            <div className="status-box">
+            <div className="status-box play-access-box">
               <span>Front Gate Play</span>
               <input type="password" placeholder="Front gate play code" value={playCode} onChange={(e) => setPlayCode(e.target.value)} />
-              <button className="open-gate-btn" onClick={submitFrontGatePlayCode}>Open Front Gate Play</button>
+              <button className="open-gate-btn" onClick={submitFrontGatePlayCode}>Open Restored Front Gate Play</button>
+              <small>Restores richer owner-side play controls for gate, crowd, music, sponsor, Orbit Machine, and safety checks.</small>
             </div>
 
-            <button className="kaden-admin-wide" onClick={openKadenAdmin}>Open Kaden Admin / DormMageddon House</button>
+            <button className="kaden-admin-wide" onClick={openKadenAdmin}>Open Kaden House Play / DormMageddon House</button>
           </article>
         </section>
 
         {frontGatePlayOpen && (
           <section className="control-room front-play-room">
             <div className="control-room-header">
-              <p>FRONT GATE PLAY CONSOLE</p>
-              <h2>Operate The Live Front Gate Scene</h2>
-              <span>Use this to play with guests at the gate without opening Owner Admin.</span>
+              <p>RESTORED FRONT GATE PLAY CONSOLE</p>
+              <h2>Owner-Side Gate Play Controls</h2>
+              <span>Use this to play with guests at the gate without opening Owner Admin. This is the fuller play stack, not an empty button.</span>
             </div>
 
             <div className="control-button-grid">
@@ -496,13 +605,33 @@ export default function EntryGate() {
               <button onClick={() => runFrontGateEffect("Hotel Check-In Glow")}>Hotel Check-In Glow</button>
               <button onClick={() => runFrontGateEffect("Apartment Booking Glow")}>Apartment Booking Glow</button>
               <button onClick={() => runFrontGateEffect("Sponsor Spotlight")}>Sponsor Spotlight</button>
+              <button onClick={() => runFrontGateEffect("DormMageddon House Glow")}>DormMageddon House Glow</button>
+              <button onClick={() => runFrontGateEffect("Kids Special Event Glow")}>K!DDZ Event Glow</button>
               <button onClick={() => setAnnouncement("The gate crew is watching. Choose your booth and check in.")}>Gate Announcement</button>
+              <button onClick={changeMusic}>Swap Gate Music</button>
             </div>
 
-            <div className="inside-status">
-              <p>Live Announcement</p>
-              <h2>{announcement}</h2>
-              <span>Mode: {frontGateMode}</span>
+            <div className="mini-control-panel">
+              <div className="park-sign-header compact">
+                <p>PLAY BUTTON UPGRADES</p>
+                <h2>Front Gate Play Stack</h2>
+                <span>Pick a play feature to stage the exact action and announcement.</span>
+              </div>
+              <div className="admin-zone-grid compact-grid">
+                {frontGatePlayUpgrades.map((feature) => (
+                  <button key={feature.title} onClick={() => activatePlayFeature(feature)}>
+                    <strong>{feature.title}</strong>
+                    <span>{feature.body}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="inside-status feature-status">
+              <p>Active Play Feature</p>
+              <h2>{activePlayFeature.title}</h2>
+              <span>{activePlayFeature.body}</span>
+              <small>Mode: {frontGateMode}</small>
             </div>
           </section>
         )}
@@ -512,7 +641,7 @@ export default function EntryGate() {
             <div className="control-room-header">
               <p>OWNER ADMIN CONTROL ROOM</p>
               <h2>Geniunaire MasterMinds Command</h2>
-              <span>Founder access, vault logs, emergency build guide, Party Crashers of Atlanta, NightOwl Hideout Pool Lounge & Discovery Bar, GM E-TV, ThreadFolio Set, lodging, sponsor flow, and Universal Client Admin controls.</span>
+              <span>Founder access, vault logs, emergency build guide, Party Crashers of Atlanta, NightOwl Hideout Pool Lounge & Discovery Bar, GM E-TV, ThreadFolio Set, lodging, sponsor flow, Universal Client Admin controls, and owner-side K!DDZ special event routing.</span>
             </div>
 
             <div className="admin-zone-grid">
@@ -529,34 +658,53 @@ export default function EntryGate() {
               <h2>{activeAdminZone.title}</h2>
               <span>{activeAdminZone.body}</span>
             </div>
+
+            <section className="kids-control-panel">
+              <div className="control-room-header kids-header">
+                <p>GENIUNAIRE K!DDZ-K!DDZ PLANET CONTROL PANEL</p>
+                <h2>Gate + Rides Special Events</h2>
+                <span>Owner-side kid-safe event control. This is separate from Kaden Admin and does not give Kaden kid-site management.</span>
+              </div>
+
+              <div className="admin-zone-grid compact-grid kids-grid">
+                {kidsSpecialEventControls.map((feature) => (
+                  <button key={feature.title} onClick={() => activateKidsFeature(feature)}>
+                    <strong>{feature.title}</strong>
+                    <span>{feature.body}</span>
+                  </button>
+                ))}
+              </div>
+
+              <div className="inside-status feature-status kids-status">
+                <p>Active K!DDZ Event Feature</p>
+                <h2>{activeKidsFeature.title}</h2>
+                <span>{activeKidsFeature.body}</span>
+              </div>
+            </section>
           </section>
         )}
 
         {kadenAdminOpen && (
           <section className="control-room kaden-admin-room">
             <div className="control-room-header">
-              <p>KADEN ADMIN ACCESS</p>
+              <p>KADEN HOUSE PLAY ACCESS</p>
               <h2>DormMageddon House</h2>
-              <span>Campus creator ecosystem, watch rooms, student survival offers, merch, and creator hub access. Kaden manages DormMageddon only.</span>
+              <span>Campus creator ecosystem, watch rooms, student survival offers, merch, Orbit features, and house play upgrades. Kaden manages DormMageddon only.</span>
             </div>
 
             <div className="admin-zone-grid">
-              <button>
-                <strong>DormMageddon Creator Hub</strong>
-                <span>Artists, writers, editors, voice actors, creators, and student collaborators.</span>
-              </button>
-              <button>
-                <strong>DormMageddon Watch Rooms</strong>
-                <span>Community watch spaces, campus drops, student events, and scheduled sessions.</span>
-              </button>
-              <button>
-                <strong>Side Hustle / Student Survival</strong>
-                <span>Student resources, campus ambassador path, survival drops, and money lanes.</span>
-              </button>
-              <button>
-                <strong>Merch & Alliance Drops</strong>
-                <span>DormMageddon merch, limited drops, creator economy offers, and campus release items.</span>
-              </button>
+              {kadenOrbitHouseUpgrades.map((feature) => (
+                <button key={feature.title} onClick={() => activateKadenFeature(feature)}>
+                  <strong>{feature.title}</strong>
+                  <span>{feature.body}</span>
+                </button>
+              ))}
+            </div>
+
+            <div className="inside-status feature-status kaden-status">
+              <p>Active DormMageddon / Kaden Feature</p>
+              <h2>{activeKadenFeature.title}</h2>
+              <span>{activeKadenFeature.body}</span>
             </div>
           </section>
         )}
@@ -611,8 +759,9 @@ export default function EntryGate() {
           <span>Secure Access Hidden</span>
           <span>ThreadFolio Set</span>
           <span>GM E-TV Network</span>
-          <span>Sponsor Flow Ready</span>
-          <span>DormMageddon House</span>
+          <span>Restored Play Button</span>
+          <span>Kaden House Play</span>
+          <span>GENIUNAIRE K!DDZ-K!DDZ PLANET Events</span>
         </section>
       </section>
     </main>
